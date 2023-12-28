@@ -16,10 +16,6 @@ class FilteringChipWidget extends StatelessWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-            ),
           ),
           const Icon(
             Icons.keyboard_arrow_down,

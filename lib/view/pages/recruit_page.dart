@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/widgets/advertise_widget.dart';
-import 'package:flutter_app/view/widgets/filtering_chip_widget.dart';
+import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/header_widget.dart';
-import 'package:flutter_app/view/widgets/more_button_widget.dart';
-import 'package:flutter_app/view/widgets/recruit_card_widget.dart';
-import 'package:flutter_app/view/widgets/search_bar_widget.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/advertise_widget.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/filtering_chip_widget.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/more_button_widget.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/search_bar_widget.dart';
 
 class RecruitPage extends StatelessWidget {
   const RecruitPage({super.key});
@@ -22,90 +23,148 @@ class RecruitPage extends StatelessWidget {
         shrinkWrap: true,
         children: [
           //header영역
-          const HeaderWidget(),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 20, top: 12),
+            child: HeaderWidget(),
+          ),
+          const SizedBox(height: 26),
           //search-filter영역
           Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                '채용공고',
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  '채용공고',
+                  style: FontStyle.HeadLine_Bold,
+                ),
               ),
-              const SearchBarWidget(),
+              const SizedBox(height: 16),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: SearchBarWidget(),
+              ),
               //filter buttons
               const SizedBox(height: 16),
-              SizedBox(
-                height: 30,
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
-                    return FilteringChipWidget(
-                      label: filterList[index],
-                      onTap: () {},
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const SizedBox(
-                      width: 8,
-                    );
-                  },
-                  itemCount: filterList.length,
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: SizedBox(
+                  height: 30,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return FilteringChipWidget(
+                        label: filterList[index],
+                        onTap: () {},
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(
+                        width: 8,
+                      );
+                    },
+                    itemCount: filterList.length,
+                  ),
                 ),
               ),
             ],
           ),
           //recruit card영역
           const SizedBox(height: 40),
-          Column(
-            children: [
-              ListTile(
-                title: const Text('이 회사는 지금 적극 채용 중!'),
-                trailing: Text(
-                    '${activeRecruits.indexOf(curActiveRecruit)}/${activeRecruits.length}'),
-              ),
-              const RecruitCardWidget(
-                isActiveRecruit: true,
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                ListTile(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+                  title: Text(
+                    '이 회사는 지금 적극 채용 중!',
+                    style: FontStyle.SubTitle_Bold,
+                  ),
+                  trailing: Text(
+                    '${activeRecruits.indexOf(curActiveRecruit)}/${activeRecruits.length}',
+                    style: TextStyle(
+                      color: DesignColor.Neutral.shade20,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const RecruitCardWidget(
+                  isActiveRecruit: true,
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 60),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                title: const Text('지원자가 많은 회사'),
-                trailing: MoreButtonWidget(
-                  onPressed: () {},
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  contentPadding: const EdgeInsets.only(left: 0, right: 20),
+                  title: Text(
+                    '지원자가 많은 회사',
+                    style: FontStyle.SubTitle_Bold,
+                  ),
+                  trailing: MoreButtonWidget(
+                    onPressed: () {},
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 227,
-                child: ListView.builder(
-                  padding: const EdgeInsets.only(right: 10),
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return const RecruitCardWidget(
-                      isActiveRecruit: false,
-                    );
-                  },
+                SizedBox(
+                  height: 250,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(right: 10),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return const RecruitCardWidget(
+                        isActiveRecruit: false,
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: 60),
           const AdvertiseWidget(),
           const SizedBox(height: 60),
-          Column(
-            children: [
-              ListTile(
-                title: const Text('지역별 인기있는 회사'),
-                trailing: MoreButtonWidget(
-                  onPressed: () {},
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Column(
+              children: [
+                ListTile(
+                  contentPadding: const EdgeInsets.only(left: 0, right: 20),
+                  title: Text(
+                    '지역별 인기있는 회사',
+                    style: FontStyle.SubTitle_Bold,
+                  ),
+                  trailing: MoreButtonWidget(
+                    onPressed: () {},
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 250,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(right: 10),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return const RecruitCardWidget(
+                        isActiveRecruit: false,
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 58),
+              ],
+            ),
           ),
         ],
       ),

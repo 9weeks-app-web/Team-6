@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common.dart';
 
 class RecruitCardWidget extends StatelessWidget {
   const RecruitCardWidget({
@@ -11,6 +12,11 @@ class RecruitCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String title = '채용 공고 제목';
+    String companyName = '[회사이름 주식회사 코리아]';
+    String locationGu = '서초구';
+    String due = '~01.19(금)';
+
     return Container(
       width: isActiveRecruit ? MediaQuery.of(context).size.width : 155,
       decoration: BoxDecoration(
@@ -53,19 +59,30 @@ class RecruitCardWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Expanded(
-                      child: Text('채용 공고 제목'),
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: FontStyle.Label_3_Bold,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     isActiveRecruit == false
                         ? Container()
                         : const Icon(Icons.star_border),
                   ],
                 ),
-                const Text('[회사이름 주식회사 코리아]'),
+                Text(
+                  companyName,
+                  style: FontStyle.Caption_1_Medium,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 Row(
                   children: [
-                    const Expanded(
-                      child: Text('서초구 | ~01.19(금)'),
+                    Expanded(
+                      child: Text(
+                        '$locationGu | $due',
+                        style: FontStyle.Caption_1_Medium,
+                      ),
                     ),
                     isActiveRecruit == false
                         ? Container()
@@ -80,11 +97,9 @@ class RecruitCardWidget extends StatelessWidget {
                                 color: Colors.black,
                               ),
                             ),
-                            child: const Text(
+                            child: Text(
                               '바로지원',
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
+                              style: FontStyle.Caption_1_Medium,
                             ),
                           ),
                   ],
@@ -92,10 +107,6 @@ class RecruitCardWidget extends StatelessWidget {
               ],
             ),
           ),
-          // imgs - isActiveRecruit ? null : star
-          // title - isActiveRecruit ? star : null
-          // company name
-          // location / due date - isActiveRecruit ? button : null
         ],
       ),
     );
