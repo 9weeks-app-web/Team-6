@@ -12,5 +12,5 @@ void main() async {
     anonKey: Common.anonKey,
   );
 
-  runApp(const ProviderScope(child: SFACpolioApp()));
+  runApp(const ProviderScope(child: SFACApp()));
 }
