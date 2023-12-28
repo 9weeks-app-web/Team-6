@@ -53,7 +53,9 @@ class RecruitCardWidget extends StatelessWidget {
                   ],
                 ),
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: isActiveRecruit
+                ? const EdgeInsets.all(12)
+                : const EdgeInsets.only(top: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
