@@ -1,3 +1,4 @@
+import 'package:flutter_app/view/pages/community_pages/community_page.dart';
 import 'package:flutter_app/view/pages/login_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_page.dart';
 import 'package:flutter_app/view/pages/recruit_page.dart';
@@ -15,5 +16,9 @@ final router = GoRouter(initialLocation: '/mypage', routes: [
   GoRoute(
     path: '/recruit',
     builder: (context, state) => const RecruitPage(),
+  ),
+  GoRoute(
+    path: '/community',
+    builder: (context, state) => const CommunityPage(),
   )
 ]);
