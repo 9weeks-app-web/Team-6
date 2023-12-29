@@ -35,6 +35,7 @@ dependencies:
   freezed: ^2.4.6
   go_router: ^13.0.0
   supabase_flutter: ^2.0.2
+  flutter_svg: ^2.0.9
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -51,7 +52,10 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/json/
+    - assets/logo/
     - assets/images/
+  #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
