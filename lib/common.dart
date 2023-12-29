@@ -56,6 +56,8 @@ class FontStyle {
       const TextStyle(fontSize: _labelSize1, fontWeight: _semiBold);
   static TextStyle? get Label_2_SemiBold =>
       const TextStyle(fontSize: _labelSize2, fontWeight: _semiBold);
+  static TextStyle? get Label_2_regular =>
+      const TextStyle(fontSize: _labelSize2, fontWeight: _regular);
   static TextStyle? get Label_3_SemiBold =>
       const TextStyle(fontSize: _labelSize3, fontWeight: _semiBold);
   static TextStyle? get Label_3_Bold =>
