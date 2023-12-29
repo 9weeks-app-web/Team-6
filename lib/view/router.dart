@@ -10,7 +10,7 @@ final router = GoRouter(initialLocation: '/mypage', routes: [
   ),
   GoRoute(
     path: '/mypage',
-    builder: (context, state) => const MyPage(),
+    builder: (context, state) => MyPage(),
   ),
   GoRoute(
     path: '/recruit',

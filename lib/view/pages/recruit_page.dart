@@ -37,7 +37,10 @@ class RecruitPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   '채용공고',
-                  style: FontStyle.HeadLine_Bold,
+                  style: DesignTextStyle(
+                          style: DesignStyle.HeadLine_Bold,
+                          color: DesignColor.Neutral)
+                      .textStyle,
                 ),
               ),
               const SizedBox(height: 16),
@@ -81,7 +84,10 @@ class RecruitPage extends StatelessWidget {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                   title: Text(
                     '이 회사는 지금 적극 채용 중!',
-                    style: FontStyle.SubTitle_Bold,
+                    style: DesignTextStyle(
+                            style: DesignStyle.SubTitle_Bold,
+                            color: DesignColor.Neutral)
+                        .textStyle,
                   ),
                   trailing: Text(
                     '${activeRecruits.indexOf(curActiveRecruit)}/${activeRecruits.length}',
@@ -108,7 +114,10 @@ class RecruitPage extends StatelessWidget {
                   contentPadding: const EdgeInsets.only(left: 0, right: 20),
                   title: Text(
                     '지원자가 많은 회사',
-                    style: FontStyle.SubTitle_Bold,
+                    style: DesignTextStyle(
+                            style: DesignStyle.SubTitle_Bold,
+                            color: DesignColor.Neutral)
+                        .textStyle,
                   ),
                   trailing: MoreButtonWidget(
                     onPressed: () {},
@@ -142,7 +151,10 @@ class RecruitPage extends StatelessWidget {
                   contentPadding: const EdgeInsets.only(left: 0, right: 20),
                   title: Text(
                     '지역별 인기있는 회사',
-                    style: FontStyle.SubTitle_Bold,
+                    style: DesignTextStyle(
+                            style: DesignStyle.SubTitle_Bold,
+                            color: DesignColor.Neutral)
+                        .textStyle,
                   ),
                   trailing: MoreButtonWidget(
                     onPressed: () {},

@@ -64,7 +64,10 @@ class RecruitCardWidget extends StatelessWidget {
                     Expanded(
                       child: Text(
                         title,
-                        style: FontStyle.Label_3_Bold,
+                        style: DesignTextStyle(
+                                style: DesignStyle.Label_3_Bold,
+                                color: DesignColor.Neutral)
+                            .textStyle,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -75,7 +78,10 @@ class RecruitCardWidget extends StatelessWidget {
                 ),
                 Text(
                   companyName,
-                  style: FontStyle.Caption_1_Medium,
+                  style: DesignTextStyle(
+                          style: DesignStyle.Caption_1_Medium,
+                          color: DesignColor.Neutral)
+                      .textStyle,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Row(
@@ -83,7 +89,10 @@ class RecruitCardWidget extends StatelessWidget {
                     Expanded(
                       child: Text(
                         '$locationGu | $due',
-                        style: FontStyle.Caption_1_Medium,
+                        style: DesignTextStyle(
+                                style: DesignStyle.Caption_1_Medium,
+                                color: DesignColor.Neutral)
+                            .textStyle,
                       ),
                     ),
                     isActiveRecruit == false
@@ -101,7 +110,10 @@ class RecruitCardWidget extends StatelessWidget {
                             ),
                             child: Text(
                               '바로지원',
-                              style: FontStyle.Caption_1_Medium,
+                              style: DesignTextStyle(
+                                      style: DesignStyle.Caption_1_Medium,
+                                      color: DesignColor.Neutral)
+                                  .textStyle,
                             ),
                           ),
                   ],
