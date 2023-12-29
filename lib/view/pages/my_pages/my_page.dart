@@ -1,67 +1,131 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/pages/my_pages/my_community_page.dart';
+import 'package:flutter_app/view/pages/my_pages/my_project_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_page.dart';
+import 'package:flutter_app/view/pages/my_pages/my_interest_portfolio_page.dart';
+import 'package:flutter_app/view/pages/my_pages/my_portfolio_page.dart';
+import 'package:flutter_app/view/widgets/my_page_widgets/my_profile_content_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_profile_widget.dart';
+import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_notifier.dart';
+import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_state.dart';
 
-class MyPage extends StatelessWidget {
-  const MyPage({super.key});
+class MyPage extends ConsumerWidget {
+  MyPage({super.key});
 
+  PageController pageController = PageController(initialPage: 0);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('sfacfolio'), backgroundColor: Colors.red[100]),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '마이 페이지',
-                style: FontStyle.HeadLine_SemiBold,
-              ),
-              const ProfileWidget(),
-              const Divider(thickness: 1, height: 1, color: Colors.black12),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+        body: SingleChildScrollView(
+      child: Column(
+        children: [
+          const MyProfileWidget(),
+          const MyProfileContentWidget(),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 1.25,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('정보'),
+                    MyMenuNavigateWidget(
+                      index: 0,
+                      menu: '포트폴리오',
+                      pageController: pageController,
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('내 포트폴리오'),
+                    MyMenuNavigateWidget(
+                      index: 1,
+                      menu: '관심보드',
+                      pageController: pageController,
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('관심 포트폴리오'),
+                    MyMenuNavigateWidget(
+                      index: 2,
+                      menu: '프로젝트',
+                      pageController: pageController,
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('관심 포트폴리오'),
+                    MyMenuNavigateWidget(
+                      index: 3,
+                      menu: '커뮤니티',
+                      pageController: pageController,
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('관심 포트폴리오'),
+                    MyMenuNavigateWidget(
+                      index: 4,
+                      menu: '정보',
+                      pageController: pageController,
                     ),
                   ],
                 ),
               ),
-              const Divider(thickness: 1, height: 1, color: Colors.black12),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: PageView(
-                  children: const [MyInfoPage()],
-                ),
-              )
-            ],
+            ),
           ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: PageView(
+              scrollDirection: Axis.horizontal,
+              controller: pageController,
+              onPageChanged: (value) {
+                ref.read(mypageProvider.notifier).pageChanged(value);
+              },
+              children: const [
+                MyPortfolioPage(),
+                MyInterestPortfolioPage(),
+                MyProjectPage(),
+                MyCommunityPortfolioPage(),
+                MyInfoPage(),
+              ],
+            ),
+          )
+        ],
+      ),
+    ));
+  }
+}
+
+class MyMenuNavigateWidget extends ConsumerWidget {
+  final int index;
+  final String menu;
+  final PageController pageController;
+
+  const MyMenuNavigateWidget({
+    Key? key,
+    required this.index,
+    required this.menu,
+    required this.pageController,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(mypageProvider);
+    return SizedBox(
+      width: 100,
+      height: 36,
+      child: TextButton(
+        onPressed: () {
+          ref.read(mypageProvider.notifier).pageChanged(index);
+          pageController.jumpToPage(index);
+        },
+        style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4.0), // 원하는 borderRadius 값을 지정
+          ),
+          backgroundColor: state.page == index ? DesignColor.Neutral : null,
+          foregroundColor:
+              state.page == index ? Colors.white : DesignColor.Neutral,
+        ),
+        child: Text(
+          menu,
+          style: DesignTextStyle(
+                  style: DesignStyle.Label_2_SemiBold,
+                  color:
+                      state.page == index ? Colors.white : DesignColor.Neutral)
+              .textStyle,
         ),
       ),
     );
