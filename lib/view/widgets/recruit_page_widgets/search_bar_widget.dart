@@ -29,7 +29,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       controller: controller,
       onSubmitted: (value) {},
       decoration: InputDecoration(
-        hintText: widget.hintText ?? '궁금한 포트폴리오 분야를 검색해주세요',
+        hintText: widget.hintText ?? '원하는 키워드를 입력해주세요.',
         hintStyle: FontStyle.Caption_1,
         suffixIcon: widget.hintText == null
             ? const Icon(

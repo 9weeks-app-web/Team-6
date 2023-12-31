@@ -15,7 +15,7 @@ class HeaderWidget extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                SvgPicture.asset('logo/sfac_logo.svg'),
+                SvgPicture.asset('assets/logo/sfac_logo.svg'),
                 //toggle folio-log
               ],
             ),

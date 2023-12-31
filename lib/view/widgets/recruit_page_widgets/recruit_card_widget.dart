@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 
+enum CardType {
+  minimum,
+  maximum,
+}
+
+enum CardWidth {
+  w300,
+  w320,
+}
+
 class RecruitCardWidget extends StatelessWidget {
   const RecruitCardWidget({
     super.key,
     this.recruitData,
-    required this.isActiveRecruit,
+    required this.type,
+    this.width,
   });
   final dynamic recruitData;
-  final bool isActiveRecruit;
+  final CardType type;
+  final CardWidth? width;
 
   @override
   Widget build(BuildContext context) {
@@ -18,28 +30,41 @@ class RecruitCardWidget extends StatelessWidget {
     String due = '~01.19(금)';
 
     return Container(
-      width: isActiveRecruit ? MediaQuery.of(context).size.width : 155,
+      width: type == CardType.maximum
+          ? (width == CardWidth.w300 ? 300 : MediaQuery.of(context).size.width)
+          : 155,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: isActiveRecruit ? Colors.black : Colors.transparent,
+          color: DesignColor.Neutral.shade20,
         ),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          isActiveRecruit == true
+          // img section
+          type == CardType.maximum
               ? Container(
-                  height: 155,
-                  decoration: const BoxDecoration(
-                    color: Colors.grey,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
+                    color: DesignColor.Neutral.shade20,
                   ),
                 )
               : Stack(
                   children: [
                     Container(
                       width: 155,
-                      height: 155,
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: DesignColor.Neutral.shade20,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                        ),
                       ),
                     ),
                     const Positioned(
@@ -52,11 +77,13 @@ class RecruitCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
+          // description section
           Padding(
-            padding: isActiveRecruit
-                ? const EdgeInsets.all(12)
-                : const EdgeInsets.only(top: 8),
+            padding: type == CardType.maximum
+                ? const EdgeInsets.all(16)
+                : const EdgeInsets.all(12),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -64,44 +91,56 @@ class RecruitCardWidget extends StatelessWidget {
                     Expanded(
                       child: Text(
                         title,
-                        style: FontStyle.Label_3_Bold,
+                        style: type == CardType.maximum
+                            ? FontStyle.SubTitle_SemiBold
+                            : FontStyle.Body_SemiBold,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    isActiveRecruit == false
+                    type != CardType.maximum
                         ? Container()
                         : const Icon(Icons.star_border),
                   ],
                 ),
+                type == CardType.maximum
+                    ? const SizedBox(height: 8)
+                    : const SizedBox(height: 6),
                 Text(
                   companyName,
-                  style: FontStyle.Caption_1_Medium,
+                  style: type == CardType.maximum
+                      ? FontStyle.Label_2_regular
+                      : FontStyle.Caption_1,
+                  // color: DesignColor.Neutral.shade40,
                   overflow: TextOverflow.ellipsis,
                 ),
+                const SizedBox(height: 4),
                 Row(
                   children: [
                     Expanded(
                       child: Text(
                         '$locationGu | $due',
-                        style: FontStyle.Caption_1_Medium,
+                        style: FontStyle.Caption_1,
+                        // color: DesignColor.Neutral.shade40,
                       ),
                     ),
-                    isActiveRecruit == false
+                    type != CardType.maximum
                         ? Container()
                         : Container(
                             padding: const EdgeInsets.symmetric(
-                              vertical: 2.5,
-                              horizontal: 10,
+                              vertical: 5,
+                              horizontal: 8,
                             ),
                             decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
                               border: Border.all(
                                 width: 1,
-                                color: Colors.black,
+                                color: DesignColor.Neutral.shade30,
                               ),
                             ),
                             child: Text(
                               '바로지원',
-                              style: FontStyle.Caption_1_Medium,
+                              style: FontStyle.Caption_1,
+                              // color: DesignColor.Neutral.shade60,
                             ),
                           ),
                   ],
