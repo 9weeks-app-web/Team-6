@@ -30,7 +30,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       onSubmitted: (value) {},
       decoration: InputDecoration(
         hintText: widget.hintText ?? '원하는 키워드를 입력해주세요.',
-        hintStyle: FontStyle.Caption_1,
+        hintStyle: DesignTextStyle(
+          style: DesignStyle.Caption_1,
+          color: DesignColor.Neutral.shade30,
+        ).textStyle,
         suffixIcon: widget.hintText == null
             ? const Icon(
                 Icons.search,

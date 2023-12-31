@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_app/view/pages/community_page.dart';
+import 'package:flutter_app/view/pages/community_pages/community_page.dart';
 import 'package:flutter_app/view/pages/main_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_page.dart';
 import 'package:flutter_app/view/pages/portfolio_page.dart';

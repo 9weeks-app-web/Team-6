@@ -26,15 +26,14 @@ class RecruitPage extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(right: 20),
                 title: Text(
                   '이 회사는 지금 적극 채용 중!',
-                  style: FontStyle.SubTitle_Bold,
+                  style: DesignTextStyle.SubTitle_Bold,
                 ),
                 trailing: Text(
                   '${activeRecruits.indexOf(curActiveRecruit)}/${activeRecruits.length}',
-                  style: TextStyle(
+                  style: DesignTextStyle(
+                    style: DesignStyle.Caption_1,
                     color: DesignColor.Neutral.shade20,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  ).textStyle,
                 ),
               ),
               SizedBox(
@@ -68,7 +67,7 @@ class RecruitPage extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(left: 0, right: 20),
                 title: Text(
                   '지원자가 많은 회사',
-                  style: FontStyle.SubTitle_Bold,
+                  style: DesignTextStyle.SubTitle_Bold,
                 ),
                 trailing: MoreButtonWidget(
                   onPressed: () {},
@@ -108,7 +107,7 @@ class RecruitPage extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(left: 0, right: 20),
                 title: Text(
                   '지역별 인기있는 회사',
-                  style: FontStyle.SubTitle_Bold,
+                  style: DesignTextStyle.SubTitle_Bold,
                 ),
                 trailing: MoreButtonWidget(
                   onPressed: () {},

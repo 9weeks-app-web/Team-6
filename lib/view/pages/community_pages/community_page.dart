@@ -30,7 +30,7 @@ class CommunityPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   '커뮤니티',
-                  style: FontStyle.HeadLine_Bold,
+                  style: DesignTextStyle.HeadLine_Bold,
                 ),
               ),
               const SizedBox(height: 8),

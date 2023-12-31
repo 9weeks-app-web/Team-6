@@ -37,8 +37,8 @@ class TabWidget extends StatelessWidget {
                   indicatorColor: DesignColor.Neutral,
                   labelColor: DesignColor.Neutral,
                   unselectedLabelColor: DesignColor.Neutral.shade20,
-                  unselectedLabelStyle: FontStyle.Label_2_regular,
-                  labelStyle: FontStyle.Label_2_SemiBold,
+                  unselectedLabelStyle: DesignTextStyle.Label_2_regular,
+                  labelStyle: DesignTextStyle.Label_2_SemiBold,
                   indicatorSize: TabBarIndicatorSize.label,
                   isScrollable: true,
                   tabs: tabContents
