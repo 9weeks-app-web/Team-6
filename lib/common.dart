@@ -22,6 +22,7 @@ enum DesignStyle {
   Body,
   Label_1_SemiBold,
   Label_2_SemiBold,
+  Label_2,
   Label_3_SemiBold,
   Label_3_Bold,
   Caption_1_Medium,
@@ -123,6 +124,8 @@ class DesignTextStyle {
         return Label_1_SemiBold!;
       case DesignStyle.Label_2_SemiBold:
         return Label_2_SemiBold!;
+      case DesignStyle.Label_2:
+        return Label_2_regular!;
       case DesignStyle.Label_3_SemiBold:
         return Label_3_SemiBold!;
       case DesignStyle.Label_3_Bold:
