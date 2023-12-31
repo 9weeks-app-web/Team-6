@@ -92,8 +92,14 @@ class RecruitCardWidget extends StatelessWidget {
                       child: Text(
                         title,
                         style: type == CardType.maximum
-                            ? FontStyle.SubTitle_SemiBold
-                            : FontStyle.Body_SemiBold,
+                            ? DesignTextStyle(
+                                    style: DesignStyle.SubTitle_SemiBold,
+                                    color: DesignColor.Neutral)
+                                .textStyle
+                            : DesignTextStyle(
+                                    style: DesignStyle.Body_SemiBold,
+                                    color: DesignColor.Neutral)
+                                .textStyle,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -108,9 +114,14 @@ class RecruitCardWidget extends StatelessWidget {
                 Text(
                   companyName,
                   style: type == CardType.maximum
-                      ? FontStyle.Label_2_regular
-                      : FontStyle.Caption_1,
-                  // color: DesignColor.Neutral.shade40,
+                      ? DesignTextStyle(
+                              style: DesignStyle.Label_2,
+                              color: DesignColor.Neutral.shade40)
+                          .textStyle
+                      : DesignTextStyle(
+                              style: DesignStyle.Caption_1,
+                              color: DesignColor.Neutral.shade40)
+                          .textStyle,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4),
@@ -119,8 +130,10 @@ class RecruitCardWidget extends StatelessWidget {
                     Expanded(
                       child: Text(
                         '$locationGu | $due',
-                        style: FontStyle.Caption_1,
-                        // color: DesignColor.Neutral.shade40,
+                        style: DesignTextStyle(
+                                style: DesignStyle.Caption_1,
+                                color: DesignColor.Neutral.shade40)
+                            .textStyle,
                       ),
                     ),
                     type != CardType.maximum
@@ -139,8 +152,10 @@ class RecruitCardWidget extends StatelessWidget {
                             ),
                             child: Text(
                               '바로지원',
-                              style: FontStyle.Caption_1,
-                              // color: DesignColor.Neutral.shade60,
+                              style: DesignTextStyle(
+                                      style: DesignStyle.Caption_1,
+                                      color: DesignColor.Neutral.shade60)
+                                  .textStyle,
                             ),
                           ),
                   ],
