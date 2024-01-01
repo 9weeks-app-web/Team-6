@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/view/widgets/common_widgets/custom_drop_down_widget.dart';
+import 'package:flutter_app/view/widgets/common_widgets/toast_widget.dart';
 
 class MyInfoDeleteAccountContentWidget extends StatefulWidget {
   const MyInfoDeleteAccountContentWidget({super.key});
@@ -33,24 +35,155 @@ class _MyInfoDeleteAccountContentWidgetState
         Text(
           '무엇이 불편하셨나요?',
           style: DesignTextStyle(
-                  style: DesignStyle.SubTitle_Bold, color: DesignColor.Neutral)
+                  style: DesignStyle.Label_1_SemiBold,
+                  color: DesignColor.Neutral)
               .textStyle,
         ),
-        DropdownButton(
-          hint: const Text('무엇이 불편하셨나요?'),
-          value: selectedDropdown,
-          items: menuList.map((String item) {
-            return DropdownMenuItem<String>(
-              value: item,
-              child: Text(item),
-            );
-          }).toList(),
-          onChanged: (dynamic value) {
-            setState(() {
-              selectedDropdown = value ?? '';
-            });
-          },
-        )
+        // DropdownButtonFormField(
+        //   icon: const Icon(
+        //     Icons.expand_more,
+        //     color: Color(0xFF2E2E2E),
+        //   ),
+        //   decoration: InputDecoration(
+        //     border: OutlineInputBorder(
+        //       borderRadius: const BorderRadius.all(
+        //         Radius.circular(8.0),
+        //       ),
+        //       borderSide: BorderSide(color: DesignColor.Neutral.shade10),
+        //     ),
+        //     enabledBorder: OutlineInputBorder(
+        //       // 활성화되었을 때의 테두리
+        //       borderRadius: BorderRadius.circular(8.0),
+        //       borderSide: BorderSide(color: DesignColor.Neutral.shade10),
+        //     ),
+        //     focusedBorder: OutlineInputBorder(
+        //       // 포커스를 받았을 때의 테두리
+        //       borderRadius: BorderRadius.circular(8.0),
+        //       borderSide: BorderSide(color: DesignColor.Neutral.shade10),
+        //     ),
+        //     hintStyle: DesignTextStyle(
+        //       style: DesignStyle.Body,
+        //       color: DesignColor.Neutral.shade50,
+        //     ).textStyle,
+        //     hintText: '무엇이 불편하셨나요?',
+        //   ),
+        //   value: selectedDropdown,
+        // onChanged: (dynamic value) {
+        //   setState(() {
+        //     selectedDropdown = value ?? '';
+        //   });
+        // },
+        //   items: menuList.map((item) {
+        //     return DropdownMenuItem(
+        //         value: item,
+        //         child: Container(
+        //           padding: const EdgeInsets.all(8.0), // 패딩 추가
+        //           color: Colors.lightBlue, // 배경색 설정
+        //           child: Text(
+        //             item,
+        //             style: const TextStyle(color: Colors.white), // 텍스트 스타일 설정
+        //           ),
+        //         ));
+        //   }).toList(),
+        // ),
+        const SizedBox(
+          height: 16,
+        ),
+        CustomDropdownButton(
+            hintText: '무엇이 불편하셨나요?',
+            items: menuList,
+            onChanged: (dynamic value) {
+              setState(() {
+                selectedDropdown = value ?? '';
+              });
+            }),
+        const SizedBox(
+          height: 26,
+        ),
+
+        const MyEditFieldWidget(
+          fieldHintText: '현재 비밀번호를 입력해주세요.',
+          fieldName: '비밀번호 입력',
+        ),
+        const SizedBox(
+          height: 80,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 35.0),
+          child: SizedBox(
+            width: 320,
+            height: 48,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                backgroundColor: DesignColor.Primary,
+                shape: DesignButtonStyle.BorderStyle08,
+              ),
+              onPressed: () {
+                showToast(context, '저장되었습니다!');
+              },
+              child: Text(
+                '저장하기',
+                style: DesignTextStyle(
+                        color: Colors.white,
+                        style: DesignStyle.Label_2_SemiBold)
+                    .textStyle,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class MyEditFieldWidget extends StatelessWidget {
+  final String fieldName;
+  final String fieldHintText;
+  const MyEditFieldWidget({
+    Key? key,
+    required this.fieldName,
+    required this.fieldHintText,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Text(
+            fieldName,
+            style: DesignTextStyle(
+                    color: DesignColor.Neutral,
+                    style: DesignStyle.Label_1_SemiBold)
+                .textStyle,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: SizedBox(
+            width: 320,
+            child: TextField(
+              decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: DesignColor.Neutral.shade10),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: DesignColor.Neutral.shade10),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  hintText: fieldHintText,
+                  hintStyle: DesignTextStyle(
+                          style: DesignStyle.Body,
+                          color: DesignColor.Neutral.shade50)
+                      .textStyle,
+                  contentPadding: const EdgeInsets.all(16.0)),
+            ),
+          ),
+        ),
       ],
     );
   }

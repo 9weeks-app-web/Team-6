@@ -21,6 +21,9 @@ class MyInfoDeleteAccountPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MyInfoDeleteAccountHeaderWidget(),
+              SizedBox(
+                height: 26,
+              ),
               MyInfoDeleteAccountContentWidget(),
             ],
           ),
