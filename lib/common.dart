@@ -21,6 +21,7 @@ enum DesignStyle {
   Body_SemiBold,
   Body,
   Label_1_SemiBold,
+  Label_2,
   Label_2_SemiBold,
   Label_3_SemiBold,
   Label_3_Bold,
@@ -77,6 +78,8 @@ class DesignTextStyle {
       const TextStyle(fontSize: _labelSize1, fontWeight: _semiBold);
   static TextStyle? get Label_2_SemiBold =>
       const TextStyle(fontSize: _labelSize2, fontWeight: _semiBold);
+  static TextStyle? get Label_2 =>
+      const TextStyle(fontSize: _labelSize2, fontWeight: _regular);
   static TextStyle? get Label_3_SemiBold =>
       const TextStyle(fontSize: _labelSize3, fontWeight: _semiBold);
   static TextStyle? get Label_3_Bold =>
@@ -119,6 +122,8 @@ class DesignTextStyle {
         return Body!;
       case DesignStyle.Label_1_SemiBold:
         return Label_1_SemiBold!;
+      case DesignStyle.Label_2:
+        return Label_2!;
       case DesignStyle.Label_2_SemiBold:
         return Label_2_SemiBold!;
       case DesignStyle.Label_3_SemiBold:
@@ -186,6 +191,18 @@ class DesignColor {
       'warning': Color(0xFFFF0000),
       'success': Color(0xFF07A320),
     },
+  );
+}
+
+class DesignButtonStyle {
+  static OutlinedBorder BorderStyle04 = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(4),
+  );
+  static OutlinedBorder BorderStyle05 = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(5),
+  );
+  static OutlinedBorder BorderStyle08 = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(8),
   );
 }
 
