@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class MyProfileWidget extends StatelessWidget {
   const MyProfileWidget({super.key});
@@ -30,7 +31,10 @@ class MyProfileWidget extends StatelessWidget {
             top: 20,
             left: MediaQuery.of(context).size.width - 45,
             child: IconButton(
-                onPressed: () {}, icon: const Icon(Icons.more_horiz_outlined)),
+                onPressed: () {
+                  context.push('/mypage/deleteaccount');
+                },
+                icon: const Icon(Icons.more_horiz_outlined)),
           ),
           Positioned(
             top: top,
