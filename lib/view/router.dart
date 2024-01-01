@@ -1,10 +1,10 @@
 import 'package:flutter_app/view/app_wrapper.dart';
+import 'package:flutter_app/view/pages/community_pages/community_page.dart';
 import 'package:flutter_app/view/pages/login_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_delete_account_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_edit_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_sns_link_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_page.dart';
-import 'package:flutter_app/view/pages/recruit_page.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(initialLocation: '/home', routes: [
@@ -35,7 +35,7 @@ final router = GoRouter(initialLocation: '/home', routes: [
     ],
   ),
   GoRoute(
-    path: '/recruit',
-    builder: (context, state) => const RecruitPage(),
+    path: '/community',
+    builder: (context, state) => const CommunityPage(),
   )
 ]);

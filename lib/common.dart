@@ -23,6 +23,7 @@ enum DesignStyle {
   Label_1_SemiBold,
   Label_2,
   Label_2_SemiBold,
+  Label_2_Regular,
   Label_3_SemiBold,
   Label_3_Bold,
   Caption_1_Medium,
@@ -78,7 +79,7 @@ class DesignTextStyle {
       const TextStyle(fontSize: _labelSize1, fontWeight: _semiBold);
   static TextStyle? get Label_2_SemiBold =>
       const TextStyle(fontSize: _labelSize2, fontWeight: _semiBold);
-  static TextStyle? get Label_2 =>
+  static TextStyle? get Label_2_Regular =>
       const TextStyle(fontSize: _labelSize2, fontWeight: _regular);
   static TextStyle? get Label_3_SemiBold =>
       const TextStyle(fontSize: _labelSize3, fontWeight: _semiBold);
@@ -122,10 +123,10 @@ class DesignTextStyle {
         return Body!;
       case DesignStyle.Label_1_SemiBold:
         return Label_1_SemiBold!;
-      case DesignStyle.Label_2:
-        return Label_2!;
       case DesignStyle.Label_2_SemiBold:
         return Label_2_SemiBold!;
+      case DesignStyle.Label_2_Regular:
+        return Label_2_Regular!;
       case DesignStyle.Label_3_SemiBold:
         return Label_3_SemiBold!;
       case DesignStyle.Label_3_Bold:
