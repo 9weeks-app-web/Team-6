@@ -67,9 +67,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             child: Material(
               color: Colors.white,
               child: Container(
-                height: (22.0 * widget.items.length) +
-                    (21 * (widget.items.length - 1)) +
-                    20,
+                height: (48.0 * widget.items.length),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                 ),
@@ -87,19 +85,17 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                       },
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          widget.items.elementAt(index),
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
-                        ),
+                        child: Text(widget.items.elementAt(index),
+                            style: DesignTextStyle(
+                                    color: DesignColor.Neutral,
+                                    style: DesignStyle.Body_SemiBold)
+                                .textStyle),
                       ),
                     );
                   },
                   separatorBuilder: (context, index) {
-                    return const Divider(
-                      color: Colors.grey,
+                    return Divider(
+                      color: DesignColor.Neutral.shade10,
                       height: 1,
                     );
                   },

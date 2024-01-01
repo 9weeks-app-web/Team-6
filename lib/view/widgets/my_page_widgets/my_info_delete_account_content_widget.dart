@@ -106,10 +106,10 @@ class _MyInfoDeleteAccountContentWidgetState
           fieldName: '비밀번호 입력',
         ),
         const SizedBox(
-          height: 200,
+          height: 190,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 25.0),
+          padding: const EdgeInsets.symmetric(vertical: 21.0),
           child: SizedBox(
             width: 320,
             height: 48,
