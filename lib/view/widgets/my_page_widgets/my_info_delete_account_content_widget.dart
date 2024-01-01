@@ -98,7 +98,7 @@ class _MyInfoDeleteAccountContentWidgetState
               });
             }),
         const SizedBox(
-          height: 26,
+          height: 18,
         ),
 
         const MyEditFieldWidget(
@@ -106,10 +106,10 @@ class _MyInfoDeleteAccountContentWidgetState
           fieldName: '비밀번호 입력',
         ),
         const SizedBox(
-          height: 80,
+          height: 200,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 35.0),
+          padding: const EdgeInsets.symmetric(vertical: 25.0),
           child: SizedBox(
             width: 320,
             height: 48,
@@ -120,10 +120,10 @@ class _MyInfoDeleteAccountContentWidgetState
                 shape: DesignButtonStyle.BorderStyle08,
               ),
               onPressed: () {
-                showToast(context, '저장되었습니다!');
+                showToast(context, '탈퇴가 완료되었습니다!');
               },
               child: Text(
-                '저장하기',
+                '탈퇴하기',
                 style: DesignTextStyle(
                         color: Colors.white,
                         style: DesignStyle.Label_2_SemiBold)

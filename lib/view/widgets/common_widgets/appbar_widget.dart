@@ -12,7 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       surfaceTintColor: Colors.transparent,
       title: Text(
-        '프로필 편집',
+        titleText,
         style: DesignTextStyle(
                 style: DesignStyle.Body_SemiBold, color: DesignColor.Neutral)
             .textStyle,
