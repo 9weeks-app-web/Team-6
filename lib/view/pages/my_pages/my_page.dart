@@ -113,7 +113,7 @@ class MyMenuNavigateWidget extends ConsumerWidget {
         },
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4.0), // 원하는 borderRadius 값을 지정
+            borderRadius: BorderRadius.circular(4.0),
           ),
           backgroundColor: state.page == index ? DesignColor.Neutral : null,
           foregroundColor:
