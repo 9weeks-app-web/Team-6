@@ -11,12 +11,11 @@ import 'package:flutter_app/view/pages/my_pages/my_portfolio_page.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_profile_content_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_profile_widget.dart';
 import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_notifier.dart';
-import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_state.dart';
 
 class MyPage extends ConsumerWidget {
   MyPage({super.key});
 
-  PageController pageController = PageController(initialPage: 0);
+  final PageController pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -30,7 +29,7 @@ class MyPage extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 1.25,
+                width: 500,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -113,7 +112,7 @@ class MyMenuNavigateWidget extends ConsumerWidget {
         },
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4.0), // 원하는 borderRadius 값을 지정
+            borderRadius: BorderRadius.circular(4.0),
           ),
           backgroundColor: state.page == index ? DesignColor.Neutral : null,
           foregroundColor:
