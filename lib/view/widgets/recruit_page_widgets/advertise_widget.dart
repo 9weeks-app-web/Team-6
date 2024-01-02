@@ -9,8 +9,12 @@ class AdvertiseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 99,
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      height: 100,
       child: image != null
           ? Image.asset(image!)
           : Container(
