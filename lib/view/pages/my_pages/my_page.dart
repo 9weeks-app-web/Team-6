@@ -5,6 +5,7 @@ import 'package:flutter_app/view/pages/my_pages/my_info_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_interest_portfolio_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_portfolio_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_project_page.dart';
+import 'package:flutter_app/view/widgets/my_page_widgets/custom_menu_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_profile_content_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_profile_widget.dart';
 import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_notifier.dart';
@@ -13,8 +14,13 @@ import 'package:go_router/go_router.dart';
 // 다른 필요한 패키지와 위젯들을 여기에 추가하세요.
 
 class MyPage extends ConsumerWidget {
-  const MyPage({super.key});
-
+  MyPage({super.key});
+  List<String> menuList = [
+    '프로필 편집',
+    '배너 이미지 교체',
+    '배너 이미지 삭제',
+    '공유',
+  ];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(mypageProvider);
@@ -79,11 +85,12 @@ class MyPage extends ConsumerWidget {
         ),
         Positioned(
           right: 0, // MediaQuery를 사용하지 않고 오른쪽 정렬
-          child: IconButton(
-              onPressed: () {
-                context.push('/mypage/deleteaccount');
-              },
-              icon: const Icon(Icons.more_horiz_outlined)),
+          // child: IconButton(
+          //     onPressed: () {
+          //       context.push('/mypage/deleteaccount');
+          //     },
+          //     icon: const Icon(Icons.more_horiz_outlined)),
+          child: CustomMenuWidget(items: menuList, page: 'edit'),
         ),
       ],
     );
@@ -91,13 +98,13 @@ class MyPage extends ConsumerWidget {
 
   Widget _buildAppBarBackground() {
     // AppBar의 배경을 여기에 구현하세요.
-    return const Column(
+    return Column(
       children: [
         MyProfileWidget(),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
-        MyProfileContentWidget(),
+        const MyProfileContentWidget(),
       ],
     );
   }
@@ -161,7 +168,7 @@ class MyPage extends ConsumerWidget {
       case 2:
         return const MyProjectPage();
       case 3:
-        return MyCommunityPortfolioPage();
+        return const MyCommunityPortfolioPage();
       case 4:
         return const MyInfoPage();
       default:
