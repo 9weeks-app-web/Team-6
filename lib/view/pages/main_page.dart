@@ -3,7 +3,7 @@ import 'package:flutter_app/view/pages/notice_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
-  runApp(const MainPage());
+  runApp(MainPage());
 }
 
 class Category {
