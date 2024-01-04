@@ -23,8 +23,6 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController();
   bool _isEmailValid = true;
   bool _isPasswordValid = true;
-  bool _emailBorderError = false;
-  bool _passwordBorderError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 50),
                   CustomTextFormField(
-                    borderError: _emailBorderError,
+                    borderError: _isEmailValid,
                     controller: _emailController,
                     hintText: "이메일",
                   ),
@@ -55,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _emailErrorController,
                   ),
                   CustomTextFormField(
-                    borderError: _passwordBorderError,
+                    borderError: _isPasswordValid,
                     controller: _passwordController,
                     hintText: "비밀번호",
                     obscureText: true,
@@ -165,18 +163,14 @@ class _LoginPageState extends State<LoginPage> {
     FocusScope.of(context).unfocus();
 
     if (_emailController.text.isEmpty) {
-      setState(() {
         _isEmailValid = false;
         _emailErrorController.text = '이메일을 입력해주세요.';
-      });
     } else {
       _isEmailValid = true;
     }
     if (_passwordController.text.isEmpty) {
-      setState(() {
         _isPasswordValid = false;
         _passwordErrorController.text = '비밀번호를 입력해주세요.';
-      });
     } else {
       _isPasswordValid = true;
     }
@@ -185,11 +179,10 @@ class _LoginPageState extends State<LoginPage> {
       // Valid credentials - Navigate to next screen or perform action
       print('Login successful');
     } else {
-      _emailBorderError = true;
-      _passwordBorderError = true;
       _isPasswordValid = false;
       _passwordErrorController.text = '잘못된 이메일 혹은 비밀번호입니다. 다시 입력해주세요.';
     }
+    setState(() {});
   }
 }
 
@@ -199,8 +192,8 @@ class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final bool borderError;
 
-  CustomTextFormField({
-    Key? key,
+  const CustomTextFormField({
+    super.key,
     this.hintText,
     this.obscureText = false,
     required this.controller,
@@ -220,19 +213,23 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
+    final baseBorder = OutlineInputBorder(
+      borderSide: BorderSide(
+        color: widget.borderError ? Colors.grey : Colors.red,
+        width: 1,
+      ),
+    );
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.obscureText,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-            width: 3,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
+        enabledBorder: baseBorder,
+        focusedBorder: baseBorder.copyWith(),
       ),
+      validator: (value) {
+        if (value == '123') print('123');
+      },
     );
   }
 }
