@@ -3,7 +3,7 @@ import 'package:flutter_app/view/pages/notice_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MainPage());
 }
 
 class Category {
@@ -19,12 +19,14 @@ class SubCategory {
   SubCategory(this.name);
 }
 
-class MyApp extends StatefulWidget {
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
 
   List<String> selectedCategories = [];
@@ -85,7 +87,7 @@ class _MyAppState extends State<MyApp> {
                   child: Container(
                       height: 26,
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
+                        color: const Color(0xFFF3F3F3),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
@@ -100,8 +102,8 @@ class _MyAppState extends State<MyApp> {
                             ),
                             decoration: ShapeDecoration(
                               color: _isPortfolioSelected
-                                  ? Color(0xFF337AFF)
-                                  : Color(0xFFE5EEFF),
+                                  ? const Color(0xFF337AFF)
+                                  : const Color(0xFFE5EEFF),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),
@@ -112,7 +114,7 @@ class _MyAppState extends State<MyApp> {
                                 style: TextStyle(
                                   color: _isPortfolioSelected
                                       ? Colors.white
-                                      : Color(0xFFB3B3B3),
+                                      : const Color(0xFFB3B3B3),
                                   fontSize: 14,
                                   fontFamily: 'Pretendard Variable',
                                   fontWeight: FontWeight.w600,
@@ -127,8 +129,8 @@ class _MyAppState extends State<MyApp> {
                             ),
                             decoration: ShapeDecoration(
                               color: !_isPortfolioSelected
-                                  ? Color(0xFF337AFF)
-                                  : Color(0xFFE5EEFF),
+                                  ? const Color(0xFF337AFF)
+                                  : const Color(0xFFE5EEFF),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),
@@ -138,7 +140,7 @@ class _MyAppState extends State<MyApp> {
                                 '로그',
                                 style: TextStyle(
                                   color: _isPortfolioSelected
-                                      ? Color(0xFFB3B3B3)
+                                      ? const Color(0xFFB3B3B3)
                                       : Colors.white,
                                   fontSize: 14,
                                   fontFamily: 'Pretendard Variable',
@@ -155,7 +157,7 @@ class _MyAppState extends State<MyApp> {
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.notifications_none),
+              icon: const Icon(Icons.notifications_none),
               onPressed: () {
                 // Navigator.push(
                 //   context,
@@ -167,29 +169,29 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Container(
           child: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               width: screenSize.width, // 전체 화면 너비
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 200.0, // 이미지 높이 조절
                     child: PageView.builder(
                       itemCount: 5,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          color: Color(0xFFD9D9D9),
+                          color: const Color(0xFFD9D9D9),
                           width: 360.0, // 이미지 너비 조절
                           height: 200.0, // 이미지 높이 조절
                         );
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Container(
                     alignment: Alignment.topLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -207,7 +209,7 @@ class _MyAppState extends State<MyApp> {
                             MaterialStateProperty.all(Colors.white),
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
-                            side: BorderSide(
+                            side: const BorderSide(
                               width: 1,
                               color: Color(0xFFCCCCCC),
                             ),
@@ -218,12 +220,12 @@ class _MyAppState extends State<MyApp> {
                       child: Container(
                         width: 107,
                         height: 36,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 6, horizontal: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               '카테고리',
                               style: TextStyle(
                                 color: Colors.black,
@@ -285,15 +287,15 @@ class _MyAppState extends State<MyApp> {
                   //     ),
                   //   ),
                   // ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           '오늘의 #스팩폴리오',
                           style: TextStyle(
                             color: Colors.black,
@@ -309,7 +311,7 @@ class _MyAppState extends State<MyApp> {
                           padding: const EdgeInsets.all(4),
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
+                              side: const BorderSide(
                                 width: 1,
                                 strokeAlign: BorderSide.strokeAlignCenter,
                                 color: Color(0xFFF3F3F3),
@@ -327,7 +329,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                             iconSize: 14,
                             elevation: 16,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 12,
                               fontFamily: 'Pretendard Variable',
@@ -345,7 +347,7 @@ class _MyAppState extends State<MyApp> {
                                 child: Text(
                                   value,
                                   textAlign: TextAlign.right,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color(0xFF272727),
                                     fontSize: 12,
                                     fontFamily: 'Pretendard Variable',
@@ -360,28 +362,28 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
                         Container(
                           width: 320,
                           height: 320,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: const Color(0xFFE6E6E6),
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 9,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Project',
                               style: TextStyle(
                                 color: Colors.black,
@@ -390,7 +392,7 @@ class _MyAppState extends State<MyApp> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 32,
                               height: 20,
                               child: Stack(
@@ -400,7 +402,7 @@ class _MyAppState extends State<MyApp> {
                                   Container(
                                     width: 20,
                                     height: 20,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Colors.blue,
                                       shape: BoxShape.circle,
                                     ),
@@ -411,7 +413,7 @@ class _MyAppState extends State<MyApp> {
                                     child: Container(
                                       width: 20,
                                       height: 20,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Colors.black,
                                         shape: BoxShape.circle,
                                       ),
@@ -428,7 +430,7 @@ class _MyAppState extends State<MyApp> {
                             Container(
                               child: Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 20,
                                     height: 20,
                                     child: Stack(
@@ -439,7 +441,7 @@ class _MyAppState extends State<MyApp> {
                                           child: Container(
                                             width: 20,
                                             height: 20,
-                                            decoration: ShapeDecoration(
+                                            decoration: const ShapeDecoration(
                                               color: Color(0xFFCCCCCC),
                                               shape: OvalBorder(),
                                             ),
@@ -448,10 +450,10 @@ class _MyAppState extends State<MyApp> {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 6,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Name',
                                     style: TextStyle(
                                       color: Colors.black,
@@ -465,9 +467,9 @@ class _MyAppState extends State<MyApp> {
                               ),
                             ),
                             Container(
-                              child: Row(
+                              child: const Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 24,
                                     height: 24,
                                     child: Icon(
@@ -487,7 +489,7 @@ class _MyAppState extends State<MyApp> {
                                   SizedBox(
                                     width: 3,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: 24,
                                     height: 24,
                                     child: Icon(
@@ -509,14 +511,14 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     width: 320,
                     //height: 376,
                     padding: const EdgeInsets.only(bottom: 16),
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 1),
@@ -530,7 +532,8 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 240,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
+                          decoration:
+                              const BoxDecoration(color: Color(0x7FD9D9D9)),
                         ),
                         Container(
                           //height: 120,
@@ -544,7 +547,7 @@ class _MyAppState extends State<MyApp> {
                                 width: 308,
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 12),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   border: Border(
                                     bottom: BorderSide(
                                       color: Colors.black,
@@ -569,12 +572,12 @@ class _MyAppState extends State<MyApp> {
                                             width: 24,
                                             height: 24,
                                             clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(),
-                                            child:
-                                                Icon(Icons.visibility_outlined),
+                                            decoration: const BoxDecoration(),
+                                            child: const Icon(
+                                                Icons.visibility_outlined),
                                           ),
                                           const SizedBox(width: 8),
-                                          Text(
+                                          const Text(
                                             '1234',
                                             style: TextStyle(
                                               color: Colors.black,
@@ -599,11 +602,12 @@ class _MyAppState extends State<MyApp> {
                                           width: 24,
                                           height: 24,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(),
-                                          child: Icon(Icons.favorite_border),
+                                          decoration: const BoxDecoration(),
+                                          child:
+                                              const Icon(Icons.favorite_border),
                                         ),
                                         const SizedBox(width: 8),
-                                        Text(
+                                        const Text(
                                           '1234',
                                           style: TextStyle(
                                             color: Colors.black,
@@ -619,17 +623,17 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.only(right: 12),
+                                padding: const EdgeInsets.only(right: 12),
                                 //height: 72,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin:
-                                          EdgeInsets.symmetric(vertical: 16),
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 16),
                                       //height: 21,
-                                      child: Text(
+                                      child: const Text(
                                         '포트폴리오 이름',
                                         style: TextStyle(
                                           color: Colors.black,
@@ -642,7 +646,7 @@ class _MyAppState extends State<MyApp> {
                                     ),
                                     Container(
                                       //height: 19,
-                                      child: Text(
+                                      child: const Text(
                                         '작성자',
                                         style: TextStyle(
                                           color: Colors.black,
@@ -665,7 +669,7 @@ class _MyAppState extends State<MyApp> {
                     width: 320,
                     //height: 376,
                     padding: const EdgeInsets.only(bottom: 16),
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 1),
@@ -679,7 +683,8 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 240,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
+                          decoration:
+                              const BoxDecoration(color: Color(0x7FD9D9D9)),
                         ),
                         Container(
                           //height: 120,
@@ -693,7 +698,7 @@ class _MyAppState extends State<MyApp> {
                                 width: 308,
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 12),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   border: Border(
                                     bottom: BorderSide(
                                       color: Colors.black,
@@ -718,12 +723,12 @@ class _MyAppState extends State<MyApp> {
                                             width: 24,
                                             height: 24,
                                             clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(),
-                                            child:
-                                                Icon(Icons.visibility_outlined),
+                                            decoration: const BoxDecoration(),
+                                            child: const Icon(
+                                                Icons.visibility_outlined),
                                           ),
                                           const SizedBox(width: 8),
-                                          Text(
+                                          const Text(
                                             '1234',
                                             style: TextStyle(
                                               color: Colors.black,
@@ -748,11 +753,12 @@ class _MyAppState extends State<MyApp> {
                                           width: 24,
                                           height: 24,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(),
-                                          child: Icon(Icons.favorite_border),
+                                          decoration: const BoxDecoration(),
+                                          child:
+                                              const Icon(Icons.favorite_border),
                                         ),
                                         const SizedBox(width: 8),
-                                        Text(
+                                        const Text(
                                           '1234',
                                           style: TextStyle(
                                             color: Colors.black,
@@ -768,17 +774,17 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.only(right: 12),
+                                padding: const EdgeInsets.only(right: 12),
                                 //height: 72,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin:
-                                          EdgeInsets.symmetric(vertical: 16),
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 16),
                                       //height: 21,
-                                      child: Text(
+                                      child: const Text(
                                         '포트폴리오 이름',
                                         style: TextStyle(
                                           color: Colors.black,
@@ -791,7 +797,7 @@ class _MyAppState extends State<MyApp> {
                                     ),
                                     Container(
                                       //height: 19,
-                                      child: Text(
+                                      child: const Text(
                                         '작성자',
                                         style: TextStyle(
                                           color: Colors.black,
@@ -811,7 +817,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(right: 20, top: 4),
+                    margin: const EdgeInsets.only(right: 20, top: 4),
                     //width: 173,
                     height: 24,
                     child: Row(
@@ -820,7 +826,7 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         Container(
                             //width: 129,
-                            child: Text(
+                            child: const Text(
                           '포트폴리오 더보기',
                           style: TextStyle(
                             color: Colors.black,
@@ -830,8 +836,8 @@ class _MyAppState extends State<MyApp> {
                           ),
                         )),
                         const SizedBox(width: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(1.5),
+                        const Padding(
+                          padding: EdgeInsets.all(1.5),
                           child: Icon(
                             Icons.arrow_forward,
                             size: 24,
@@ -840,13 +846,13 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 49.5,
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     alignment: Alignment.topLeft,
-                    child: Text(
+                    child: const Text(
                       '요즘 뜨는 포지션',
                       style: TextStyle(
                         color: Colors.black,
@@ -857,16 +863,16 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Container(
                     width: 320,
                     height: 188,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1),
+                        side: const BorderSide(width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -875,7 +881,7 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 80,
-                          decoration: ShapeDecoration(
+                          decoration: const ShapeDecoration(
                             color: Color(0xFFECECEC),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -889,8 +895,9 @@ class _MyAppState extends State<MyApp> {
                             children: [
                               Container(
                                 height: 24,
-                                margin: EdgeInsets.only(top: 16, left: 24),
-                                child: Text(
+                                margin:
+                                    const EdgeInsets.only(top: 16, left: 24),
+                                child: const Text(
                                   'UX/UI 디자인',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -902,8 +909,9 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 24, bottom: 20),
-                                child: Text(
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
                                   '지금 8개의 채용공고가 올라왔어요!',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -918,46 +926,46 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
                           child: Row(
                             children: [
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
@@ -965,12 +973,12 @@ class _MyAppState extends State<MyApp> {
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFF3F3F3),
+                                  color: const Color(0xFFF3F3F3),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
-                                child: Text(
+                                child: const Text(
                                   '더보기',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -990,10 +998,10 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 320,
                     height: 188,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1),
+                        side: const BorderSide(width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -1002,7 +1010,7 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 80,
-                          decoration: ShapeDecoration(
+                          decoration: const ShapeDecoration(
                             color: Color(0xFFECECEC),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -1016,8 +1024,9 @@ class _MyAppState extends State<MyApp> {
                             children: [
                               Container(
                                 height: 24,
-                                margin: EdgeInsets.only(top: 16, left: 24),
-                                child: Text(
+                                margin:
+                                    const EdgeInsets.only(top: 16, left: 24),
+                                child: const Text(
                                   'UX/UI 디자인',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -1029,8 +1038,9 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 24, bottom: 20),
-                                child: Text(
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
                                   '지금 8개의 채용공고가 올라왔어요!',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -1045,46 +1055,46 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
                           child: Row(
                             children: [
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
@@ -1092,12 +1102,12 @@ class _MyAppState extends State<MyApp> {
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFF3F3F3),
+                                  color: const Color(0xFFF3F3F3),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
-                                child: Text(
+                                child: const Text(
                                   '더보기',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -1117,10 +1127,10 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 320,
                     height: 188,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1),
+                        side: const BorderSide(width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -1129,7 +1139,7 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 80,
-                          decoration: ShapeDecoration(
+                          decoration: const ShapeDecoration(
                             color: Color(0xFFECECEC),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -1143,8 +1153,9 @@ class _MyAppState extends State<MyApp> {
                             children: [
                               Container(
                                 height: 24,
-                                margin: EdgeInsets.only(top: 16, left: 24),
-                                child: Text(
+                                margin:
+                                    const EdgeInsets.only(top: 16, left: 24),
+                                child: const Text(
                                   'UX/UI 디자인',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -1156,8 +1167,9 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 24, bottom: 20),
-                                child: Text(
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
                                   '지금 8개의 채용공고가 올라왔어요!',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -1172,46 +1184,46 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
                           child: Row(
                             children: [
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
@@ -1219,12 +1231,12 @@ class _MyAppState extends State<MyApp> {
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFF3F3F3),
+                                  color: const Color(0xFFF3F3F3),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
-                                child: Text(
+                                child: const Text(
                                   '더보기',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -1242,7 +1254,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(right: 20, top: 4),
+                    margin: const EdgeInsets.only(right: 20, top: 4),
                     //width: 173,
                     height: 24,
                     child: Row(
@@ -1251,7 +1263,7 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         Container(
                             //width: 129,
-                            child: Text(
+                            child: const Text(
                           '채용 정보 더보기',
                           style: TextStyle(
                             color: Colors.black,
@@ -1261,8 +1273,8 @@ class _MyAppState extends State<MyApp> {
                           ),
                         )),
                         const SizedBox(width: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(1.5),
+                        const Padding(
+                          padding: EdgeInsets.all(1.5),
                           child: Icon(
                             Icons.arrow_forward,
                             size: 24,
@@ -1272,16 +1284,16 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 95.5,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          child: Text(
+                          child: const Text(
                             '모여봐요, 사이드 프로젝트의 숲',
                             style: TextStyle(
                               color: Colors.black,
@@ -1298,7 +1310,7 @@ class _MyAppState extends State<MyApp> {
                           padding: const EdgeInsets.all(4),
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
+                              side: const BorderSide(
                                 width: 1,
                                 strokeAlign: BorderSide.strokeAlignCenter,
                                 color: Color(0xFFF3F3F3),
@@ -1316,7 +1328,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                             iconSize: 14,
                             elevation: 16,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 12,
                               fontFamily: 'Pretendard Variable',
@@ -1334,7 +1346,7 @@ class _MyAppState extends State<MyApp> {
                                 child: Text(
                                   value,
                                   textAlign: TextAlign.right,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color(0xFF272727),
                                     fontSize: 12,
                                     fontFamily: 'Pretendard Variable',
@@ -1349,18 +1361,18 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Container(
                     width: 320,
                     clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 20,
                     ),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
+                        side: const BorderSide(
                           width: 0.71,
                           strokeAlign: BorderSide.strokeAlignCenter,
                         ),
@@ -1375,10 +1387,11 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 180,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
+                          decoration:
+                              const BoxDecoration(color: Color(0x7FD9D9D9)),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1391,7 +1404,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1400,7 +1413,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '오프라인',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1411,7 +1424,7 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 8,
                                   ),
                                   Container(
@@ -1420,7 +1433,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1429,7 +1442,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '모집중',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1442,10 +1455,10 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '프로젝트 공고 제목',
                                 style: TextStyle(
                                   color: Colors.black,
@@ -1455,10 +1468,10 @@ class _MyAppState extends State<MyApp> {
                                   height: 0,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '2024. 01. 01',
                                 style: TextStyle(
                                   color: Color(0xFFCCCCCC),
@@ -1477,12 +1490,12 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 320,
                     clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 20,
                     ),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
+                        side: const BorderSide(
                           width: 0.71,
                           strokeAlign: BorderSide.strokeAlignCenter,
                         ),
@@ -1497,10 +1510,11 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 180,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
+                          decoration:
+                              const BoxDecoration(color: Color(0x7FD9D9D9)),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1513,7 +1527,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1522,7 +1536,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '오프라인',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1533,7 +1547,7 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 8,
                                   ),
                                   Container(
@@ -1542,7 +1556,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1551,7 +1565,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '모집중',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1564,10 +1578,10 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '프로젝트 공고 제목',
                                 style: TextStyle(
                                   color: Colors.black,
@@ -1577,10 +1591,10 @@ class _MyAppState extends State<MyApp> {
                                   height: 0,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '2024. 01. 01',
                                 style: TextStyle(
                                   color: Color(0xFFCCCCCC),
@@ -1599,12 +1613,12 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 320,
                     clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 20,
                     ),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
+                        side: const BorderSide(
                           width: 0.71,
                           strokeAlign: BorderSide.strokeAlignCenter,
                         ),
@@ -1619,10 +1633,11 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 180,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
+                          decoration:
+                              const BoxDecoration(color: Color(0x7FD9D9D9)),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1635,7 +1650,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1644,7 +1659,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '오프라인',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1655,7 +1670,7 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 8,
                                   ),
                                   Container(
@@ -1664,7 +1679,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1673,7 +1688,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '모집중',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1686,10 +1701,10 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '프로젝트 공고 제목',
                                 style: TextStyle(
                                   color: Colors.black,
@@ -1699,10 +1714,10 @@ class _MyAppState extends State<MyApp> {
                                   height: 0,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '2024. 01. 01',
                                 style: TextStyle(
                                   color: Color(0xFFCCCCCC),
@@ -1719,7 +1734,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(right: 20, top: 4),
+                    margin: const EdgeInsets.only(right: 20, top: 4),
                     //width: 173,
                     height: 24,
                     child: Row(
@@ -1728,7 +1743,7 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         Container(
                             //width: 129,
-                            child: Text(
+                            child: const Text(
                           '채용 정보 더보기',
                           style: TextStyle(
                             color: Colors.black,
@@ -1738,8 +1753,8 @@ class _MyAppState extends State<MyApp> {
                           ),
                         )),
                         const SizedBox(width: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(1.5),
+                        const Padding(
+                          padding: EdgeInsets.all(1.5),
                           child: Icon(
                             Icons.arrow_forward,
                             size: 24,
@@ -1748,7 +1763,7 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 97,
                   ),
                 ],
@@ -1767,7 +1782,7 @@ class _MyAppState extends State<MyApp> {
               _currentIndex = index;
             });
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: '홈',
@@ -1794,24 +1809,24 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  List _widgetOptions = [
-    Text(
+  final List _widgetOptions = [
+    const Text(
       '홈',
       style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
     ),
-    Text(
+    const Text(
       '커뮤니티',
       style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
     ),
-    Text(
+    const Text(
       '포트폴리오',
       style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
     ),
-    Text(
+    const Text(
       '프로젝트',
       style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
     ),
-    Text(
+    const Text(
       '마이',
       style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
     ),
@@ -1821,8 +1836,8 @@ class _MyAppState extends State<MyApp> {
       scrollDirection: Axis.horizontal,
       child: Container(
         height: 40,
-        padding: EdgeInsets.symmetric(horizontal: 4),
-        margin: EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        margin: const EdgeInsets.only(bottom: 24),
         child: Wrap(
           spacing: 8.0,
           runSpacing: 8.0,
@@ -1832,7 +1847,7 @@ class _MyAppState extends State<MyApp> {
                   const EdgeInsets.only(top: 8, left: 8, right: 12, bottom: 8),
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(
+                  side: const BorderSide(
                     width: 1,
                     strokeAlign: BorderSide.strokeAlignCenter,
                     color: Color(0xFFE6E6E6),
@@ -1840,6 +1855,7 @@ class _MyAppState extends State<MyApp> {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -1852,19 +1868,19 @@ class _MyAppState extends State<MyApp> {
                     child: Container(
                         width: 24,
                         height: 24,
-                        decoration: ShapeDecoration(
+                        decoration: const ShapeDecoration(
                           color: Color(0xFFE6E6E6),
                           shape: OvalBorder(),
                         ),
-                        child:
-                            Icon(Icons.clear, color: Colors.black, size: 18.0)),
+                        child: const Icon(Icons.clear,
+                            color: Colors.black, size: 18.0)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Text(
                     category,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 14,
                       fontFamily: 'Pretendard Variable',
@@ -1873,8 +1889,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ],
-              ),
-              clipBehavior: Clip.antiAliasWithSaveLayer, // 추가된 부분
+              ), // 추가된 부분
             );
           }).toList(),
         ),
@@ -1900,7 +1915,8 @@ class MultiLevelDropdownWidget extends StatefulWidget {
   final List<String> selectedCategories;
   final Function(List<String>) onCategoriesChanged;
 
-  MultiLevelDropdownWidget({
+  const MultiLevelDropdownWidget({
+    super.key,
     required this.categories,
     required this.selectedCategories,
     required this.onCategoriesChanged,
@@ -1927,11 +1943,11 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 12),
+      margin: const EdgeInsets.only(top: 12),
       width: 320,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          side: BorderSide(
+          side: const BorderSide(
             width: 1,
             strokeAlign: BorderSide.strokeAlignCenter,
             color: Color(0xFFE6E6E6),
@@ -1956,14 +1972,14 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                       });
                     },
                     child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             category.name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 16,
                               fontFamily: 'Pretendard Variable',
@@ -1982,11 +1998,11 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                       ),
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   if (categoryExpansionMap[category.name] ?? false)
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16, horizontal: 14),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16, horizontal: 14),
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemCount: (category.subCategories.length / 2).ceil(),
@@ -1999,10 +2015,10 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                           );
                           return Row(
                             children: subCategories.map((subCategory) {
-                              final fullCategory = '${subCategory.name}';
+                              final fullCategory = subCategory.name;
                               final isSelected = widget.selectedCategories
                                   .contains(fullCategory);
-                              return Container(
+                              return SizedBox(
                                 width: 145,
                                 child: Expanded(
                                   child: Row(
@@ -2023,16 +2039,16 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                                           });
                                         },
                                         activeColor: isSelected
-                                            ? Color(0xFF0059FF)
-                                            : Color(0xFF0059FF),
-                                        side: BorderSide(
+                                            ? const Color(0xFF0059FF)
+                                            : const Color(0xFF0059FF),
+                                        side: const BorderSide(
                                             color: Color(0xFFE6E6E6)),
                                       ),
                                       InkWell(
                                         onTap: () {
                                           setState(() {
                                             String fullCategory =
-                                                '${subCategory.name}';
+                                                subCategory.name;
                                             if (widget.selectedCategories
                                                 .contains(fullCategory)) {
                                               widget.selectedCategories
@@ -2053,8 +2069,8 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                                             fontWeight: FontWeight.w600,
                                             height: 0.07,
                                             color: isSelected
-                                                ? Color(0xFF0059FF)
-                                                : Color(0xFF333333),
+                                                ? const Color(0xFF0059FF)
+                                                : const Color(0xFF333333),
                                           ),
                                         ),
                                       ),
@@ -2067,7 +2083,7 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                         },
                       ),
                     ),
-                  Divider(),
+                  const Divider(),
                 ],
               );
             }).toList(),
@@ -2084,7 +2100,7 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
               width: 320,
               height: 54,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              decoration: ShapeDecoration(
+              decoration: const ShapeDecoration(
                 color: Color(0xFF0059FF),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -2093,7 +2109,7 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                   ),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
