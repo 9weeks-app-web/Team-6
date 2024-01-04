@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/view/widgets/community_page_widgets/community_card_widget.dart';
 
 class MyCommunityClubWidget extends StatelessWidget {
   const MyCommunityClubWidget({super.key});
@@ -17,30 +18,20 @@ class MyCommunityClubWidget extends StatelessWidget {
                   color: DesignColor.Neutral)
               .textStyle,
         ),
-        Container(
-          width: 320,
-          height: 320,
-          color: Colors.black,
-        ),
-        Container(
-          width: 320,
-          height: 320,
-          color: Colors.red,
-        ),
-        Container(
-          width: 320,
-          height: 320,
-          color: Colors.yellow,
-        ),
-        Container(
-          width: 320,
-          height: 320,
-          color: Colors.green,
-        ),
-        Container(
-          width: 320,
-          height: 320,
-          color: Colors.blue,
+        ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          shrinkWrap: true,
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return const Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: CommunityCardWidget(
+                width: CardWidth.wMax,
+                type: CardType.free,
+              ),
+            );
+          },
         ),
       ],
     );
