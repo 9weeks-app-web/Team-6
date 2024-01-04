@@ -4,6 +4,7 @@ import 'package:flutter_app/util/dummy_data/keyword_chatting_data.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/data.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/keyword_dialog_card_widget.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/subtitle_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class KeywordTab extends StatelessWidget {
   const KeywordTab({
@@ -43,8 +44,14 @@ class KeywordTab extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            return KeywordDialogCardWidget(
-              keywordChatData: keywordChatData[index],
+            return GestureDetector(
+              onTap: () {
+                context.go(
+                    '/community/club/:clubId/keyword/${keywordChatData[index]['id']}');
+              },
+              child: KeywordDialogCardWidget(
+                keywordChatData: keywordChatData[index],
+              ),
             );
           },
           separatorBuilder: (context, index) {
