@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/view/pages/notice_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
 class Category {
   final String name;
@@ -19,12 +16,12 @@ class SubCategory {
   SubCategory(this.name);
 }
 
-class MyApp extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
 
   List<String> selectedCategories = [];
