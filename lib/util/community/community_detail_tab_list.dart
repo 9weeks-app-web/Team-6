@@ -1,7 +1,7 @@
-import 'package:flutter_app/view/pages/community_pages/detail_pages/detail_tabs.dart/chatting_tab.dart';
-import 'package:flutter_app/view/pages/community_pages/detail_pages/detail_tabs.dart/keyword_tab.dart';
-import 'package:flutter_app/view/pages/community_pages/detail_pages/detail_tabs.dart/rounge_tab.dart';
-import 'package:flutter_app/view/pages/community_pages/detail_pages/detail_tabs.dart/vote_tab.dart';
+import 'package:flutter_app/view/pages/community_pages/detail_pages/detail_tabs/chatting_tab.dart';
+import 'package:flutter_app/view/pages/community_pages/detail_pages/detail_tabs/keyword_tab.dart';
+import 'package:flutter_app/view/pages/community_pages/detail_pages/detail_tabs/rounge_tab.dart';
+import 'package:flutter_app/view/pages/community_pages/detail_pages/detail_tabs/vote_tab.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/tab_item.dart';
 
 List<TabItem> communityDetailTabList = [
