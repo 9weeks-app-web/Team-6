@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/view/widgets/community_page_widgets/chip_widget.dart';
 
 class MyCommunityRecruitCardWidget extends StatelessWidget {
   const MyCommunityRecruitCardWidget({super.key});
@@ -16,31 +17,49 @@ class MyCommunityRecruitCardWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-              top: 4,
-              bottom: 4,
-              left: 16,
-            ),
+            padding: const EdgeInsets.all(16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Row(
                   children: [
-                    Text('스팩폴리오 지원'),
-                    Text('미열람'),
+                    ChipWidget(
+                      label: '스펙폴리오 지원',
+                      type: ChipType.apply,
+                    ),
+                    SizedBox(
+                      width: 6,
+                    ),
+                    ChipWidget(
+                      label: '열람',
+                      type: ChipType.viewState,
+                    ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text('공고상세'),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          size: 14,
-                        )),
-                  ],
+                InkWell(
+                  onTap: () {
+                    print('inkwellText');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '공고상세',
+                        style: DesignTextStyle(
+                                color: DesignColor.Neutral.shade40,
+                                style: DesignStyle.Caption_1_Medium)
+                            .textStyle,
+                      ),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: DesignColor.Neutral.shade40,
+                        size: 14,
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
