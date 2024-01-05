@@ -130,7 +130,7 @@ class CommunityCardWidget extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: RichText(
                       text: TextSpan(
-                        text: '$headcount',
+                        text: '$headcount명',
                         style: DesignTextStyle(
                           style: DesignStyle.Label_3_SemiBold,
                           color: DesignColor.Primary.shade80,
