@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/view/router.dart';
 import 'package:flutter_app/view/widgets/user_info_widget/custom_text_form_field.dart';
+import 'package:flutter_app/view/widgets/user_info_widget/error_messate_text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
@@ -248,36 +249,3 @@ class SnsDivider extends StatelessWidget {
   }
 }
 
-class ErrorMessageTextWidget extends StatelessWidget {
-  final TextEditingController controller;
-  final bool offstage;
-
-  const ErrorMessageTextWidget({
-    super.key,
-    this.offstage = true,
-    required this.controller,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Offstage(
-      offstage: offstage,
-      child: SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              controller.text,
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 14,
-              ),
-            ),
-            SizedBox(height: 10),
-          ],
-        ),
-      ),
-    );
-  }
-}
