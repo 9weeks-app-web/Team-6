@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/pages/my_pages/my_community_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_page.dart';
+import 'package:flutter_app/view/pages/my_pages/my_interest_portfolio_detail_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_interest_portfolio_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_portfolio_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_project_page.dart';
@@ -26,33 +27,42 @@ class MyPage extends ConsumerWidget {
     final state = ref.watch(mypageProvider);
 
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              elevation: 0,
-              surfaceTintColor: const Color(0xFFFFFBFE),
-              expandedHeight: 290.0,
-              floating: false,
-              pinned: true,
-              flexibleSpace: LayoutBuilder(
-                builder: (context, constraints) {
-                  bool isAppBarExpanded = constraints.maxHeight >
-                      kToolbarHeight + MediaQuery.of(context).padding.top;
-                  return FlexibleSpaceBar(
-                    titlePadding: const EdgeInsets.only(top: 16),
-                    title: isAppBarExpanded
-                        ? const SizedBox()
-                        : _buildAppBarContent(context),
-                    background: _buildAppBarBackground(),
-                  );
-                },
-              ),
-            ),
-            _buildSliverPersistentHeader(),
-          ];
-        },
-        body: _buildPageBody(context, state.page),
+      body: Stack(
+        children: [
+          NestedScrollView(
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return [
+                SliverAppBar(
+                  elevation: 0,
+                  surfaceTintColor: const Color(0xFFFFFBFE),
+                  expandedHeight: 290.0,
+                  floating: false,
+                  pinned: true,
+                  flexibleSpace: LayoutBuilder(
+                    builder: (context, constraints) {
+                      bool isAppBarExpanded = constraints.maxHeight >
+                          kToolbarHeight + MediaQuery.of(context).padding.top;
+                      return FlexibleSpaceBar(
+                        titlePadding: const EdgeInsets.only(top: 16),
+                        title: isAppBarExpanded
+                            ? const SizedBox()
+                            : _buildAppBarContent(context),
+                        background: _buildAppBarBackground(),
+                      );
+                    },
+                  ),
+                ),
+                _buildSliverPersistentHeader(),
+              ];
+            },
+            body: _buildPageBody(context, state.page),
+          ),
+          Visibility(
+            visible: state.isOverlayVisible, // 이 값에 따라 Overlay의 표시 여부를 결정합니다.
+            child: const MyInterestPortfolioDetailPage(),
+          ),
+        ],
       ),
     );
   }
