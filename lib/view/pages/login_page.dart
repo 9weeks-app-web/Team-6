@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/router.dart';
+import 'package:flutter_app/view/widgets/user_info_widget/custom_text_form_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
-// 개발용 테스트 메인 함수.
-void main() {
-  runApp(MaterialApp(
-    home: LoginPage(),
-  ));
-}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -41,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   SizedBox(height: 100),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       router.go('/home');
                     },
                     child: SvgPicture.asset(
@@ -94,23 +87,53 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 10),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
                         onPressed: () {
-                          context.push('/signup');
+                          router.go('/findid');
                         },
                         child: Text(
-                          '회원가입 하기',
+                          '아이디 찾기',
                           style: TextStyle(
                             color: Colors.black,
                           ),
                         ),
                       ),
                       Text(
-                        ' | ',
+                        '|',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          router.go('/findpw');
+                        },
+                        child: Text(
+                          '비밀번호 찾기',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        '|',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          router.go('/signup');
+                        },
+                        child: Text(
+                          '회원가입 하기',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ],
@@ -186,14 +209,14 @@ class _LoginPageState extends State<LoginPage> {
     FocusScope.of(context).unfocus();
 
     if (_emailController.text.isEmpty) {
-        _isEmailValid = false;
-        _emailErrorController.text = '이메일을 입력해주세요.';
+      _isEmailValid = false;
+      _emailErrorController.text = '이메일을 입력해주세요.';
     } else {
       _isEmailValid = true;
     }
     if (_passwordController.text.isEmpty) {
-        _isPasswordValid = false;
-        _passwordErrorController.text = '비밀번호를 입력해주세요.';
+      _isPasswordValid = false;
+      _passwordErrorController.text = '비밀번호를 입력해주세요.';
     } else {
       _isPasswordValid = true;
     }
@@ -209,53 +232,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class CustomTextFormField extends StatefulWidget {
-  final bool obscureText;
-  final String? hintText;
-  final TextEditingController controller;
-  final bool borderError;
 
-  const CustomTextFormField({
-    super.key,
-    this.hintText,
-    this.obscureText = false,
-    required this.controller,
-    required this.borderError,
-  });
-
-  @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
-}
-
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  @override
-  void dispose() {
-    widget.controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final baseBorder = OutlineInputBorder(
-      borderSide: BorderSide(
-        color: widget.borderError ? Colors.grey : Colors.red,
-        width: 1,
-      ),
-    );
-    return TextFormField(
-      controller: widget.controller,
-      obscureText: widget.obscureText,
-      decoration: InputDecoration(
-        hintText: widget.hintText,
-        enabledBorder: baseBorder,
-        focusedBorder: baseBorder.copyWith(),
-      ),
-      validator: (value) {
-        if (value == '123') print('123');
-      },
-    );
-  }
-}
 
 class SnsDivider extends StatelessWidget {
   const SnsDivider({super.key});
