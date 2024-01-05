@@ -5,8 +5,10 @@ class DescriptionWidget extends StatelessWidget {
   const DescriptionWidget({
     super.key,
     required this.child,
+    this.withBorder = true,
   });
   final Widget child;
+  final bool? withBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,9 @@ class DescriptionWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(9),
         border: Border.all(
-          color: DesignColor.Primary.shade20,
+          color: withBorder == true
+              ? DesignColor.Primary.shade20
+              : Colors.transparent,
         ),
         color: DesignColor.Primary.shade5,
       ),
