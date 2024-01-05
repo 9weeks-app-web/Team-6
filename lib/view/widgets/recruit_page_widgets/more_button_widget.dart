@@ -5,8 +5,10 @@ class MoreButtonWidget extends StatelessWidget {
   const MoreButtonWidget({
     super.key,
     this.onPressed,
+    this.label,
   });
   final void Function()? onPressed;
+  final String? label;
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +18,16 @@ class MoreButtonWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '더보기',
-            style: TextStyle(
-              color: DesignColor.Neutral.shade20,
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-            ),
+            label ?? '더보기',
+            style: DesignTextStyle(
+              style: DesignStyle.Label_2_SemiBold,
+              color: DesignColor.Neutral.shade60,
+            ).textStyle,
           ),
           Icon(
             Icons.chevron_right,
-            size: 16,
-            color: DesignColor.Neutral.shade20,
+            size: 20,
+            color: DesignColor.Neutral.shade60,
           ),
         ],
       ),

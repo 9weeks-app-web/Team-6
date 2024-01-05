@@ -8,7 +8,30 @@ class Common {
   static String url = 'https://gryvwzkrovajqvswgvsd.supabase.co';
 }
 
-class FontStyle {
+enum DesignStyle {
+  HeadLine_Bold,
+  HeadLine_SemiBold,
+  Title_Bold,
+  Title_SemiBold,
+  Title,
+  SubTitle_Bold,
+  SubTitle_SemiBold,
+  SubTitle,
+  Body_Bold,
+  Body_SemiBold,
+  Body,
+  Label_1_SemiBold,
+  Label_2,
+  Label_2_SemiBold,
+  Label_2_Regular,
+  Label_3_SemiBold,
+  Label_3_Bold,
+  Caption_1_Medium,
+  Caption_1,
+  // 나머지 스타일도 이와 같이 추가...
+}
+
+class DesignTextStyle {
   // Font Sizes
   static const double _headLineSize = 24.0;
   static const double _titleSize = 22.0;
@@ -56,6 +79,8 @@ class FontStyle {
       const TextStyle(fontSize: _labelSize1, fontWeight: _semiBold);
   static TextStyle? get Label_2_SemiBold =>
       const TextStyle(fontSize: _labelSize2, fontWeight: _semiBold);
+  static TextStyle? get Label_2_Regular =>
+      const TextStyle(fontSize: _labelSize2, fontWeight: _regular);
   static TextStyle? get Label_3_SemiBold =>
       const TextStyle(fontSize: _labelSize3, fontWeight: _semiBold);
   static TextStyle? get Label_3_Bold =>
@@ -65,6 +90,57 @@ class FontStyle {
       const TextStyle(fontSize: _captionSize, fontWeight: _medium);
   static TextStyle? get Caption_1 =>
       const TextStyle(fontSize: _captionSize, fontWeight: _regular);
+
+  final TextStyle style;
+  final Color color;
+
+  DesignTextStyle({DesignStyle? style, this.color = Colors.black})
+      : style = _getStyle(style ?? DesignStyle.Body);
+
+  static TextStyle _getStyle(DesignStyle style) {
+    switch (style) {
+      case DesignStyle.HeadLine_Bold:
+        return HeadLine_Bold!;
+      case DesignStyle.HeadLine_SemiBold:
+        return HeadLine_SemiBold!;
+      case DesignStyle.Title_Bold:
+        return Title_Bold!;
+      case DesignStyle.Title_SemiBold:
+        return Title_SemiBold!;
+      case DesignStyle.Title:
+        return Title!;
+      case DesignStyle.SubTitle_Bold:
+        return SubTitle_Bold!;
+      case DesignStyle.SubTitle_SemiBold:
+        return SubTitle_SemiBold!;
+      case DesignStyle.SubTitle:
+        return SubTitle!;
+      case DesignStyle.Body_Bold:
+        return Body_Bold!;
+      case DesignStyle.Body_SemiBold:
+        return Body_SemiBold!;
+      case DesignStyle.Body:
+        return Body!;
+      case DesignStyle.Label_1_SemiBold:
+        return Label_1_SemiBold!;
+      case DesignStyle.Label_2_SemiBold:
+        return Label_2_SemiBold!;
+      case DesignStyle.Label_2_Regular:
+        return Label_2_Regular!;
+      case DesignStyle.Label_3_SemiBold:
+        return Label_3_SemiBold!;
+      case DesignStyle.Label_3_Bold:
+        return Label_3_Bold!;
+      case DesignStyle.Caption_1_Medium:
+        return Caption_1_Medium!;
+      case DesignStyle.Caption_1:
+        return Caption_1!;
+      default:
+        return Body!;
+    }
+  }
+
+  TextStyle get textStyle => style.copyWith(color: color);
 }
 
 class DesignColor {
@@ -116,6 +192,18 @@ class DesignColor {
       'warning': Color(0xFFFF0000),
       'success': Color(0xFF07A320),
     },
+  );
+}
+
+class DesignButtonStyle {
+  static OutlinedBorder BorderStyle04 = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(4),
+  );
+  static OutlinedBorder BorderStyle05 = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(5),
+  );
+  static OutlinedBorder BorderStyle08 = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(8),
   );
 }
 
