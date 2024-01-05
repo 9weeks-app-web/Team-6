@@ -14,27 +14,45 @@ class UserProfileTile extends StatelessWidget {
     this.job,
     this.company,
     this.type,
+    this.imageSize = 15,
+    this.time,
   });
   final ProfileType? type;
   final String nickname;
   final String? avatar;
   final String? job;
   final String? company;
+  final double? imageSize;
+  final String? time;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
-          radius: 16,
+        CircleAvatar(
+          radius: imageSize,
         ),
         const SizedBox(width: 8),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              nickname,
-              style: DesignTextStyle.Label_2_SemiBold,
+            Row(
+              children: [
+                Text(
+                  nickname,
+                  style: DesignTextStyle.Label_2_SemiBold,
+                ),
+                const SizedBox(width: 8),
+                time != null
+                    ? Text(
+                        time!,
+                        style: DesignTextStyle(
+                          color: DesignColor.Neutral.shade50,
+                          style: DesignStyle.Label_2_Regular,
+                        ).textStyle,
+                      )
+                    : Container(),
+              ],
             ),
             type == ProfileType.max
                 ? RichText(
