@@ -20,7 +20,7 @@ final router = GoRouter(initialLocation: '/home', routes: [
   ),
   GoRoute(
     path: '/mypage',
-    builder: (context, state) => const MyPage(),
+    builder: (context, state) => MyPage(),
     routes: [
       GoRoute(
         path: 'edit',
