@@ -13,10 +13,10 @@ class CustomMenuWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CustomMenuWidget> createState() => _CustomDropdownButtonState();
+  State<CustomMenuWidget> createState() => _CustomMenuState();
 }
 
-class _CustomDropdownButtonState extends State<CustomMenuWidget> {
+class _CustomMenuState extends State<CustomMenuWidget> {
   OverlayEntry? _overlayEntry;
   final LayerLink _layerLink = LayerLink();
   static const double _dropdownWidth = 200;
