@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common.dart';
+import 'package:flutter_app/view/router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 // 개발용 테스트 메인 함수.
 void main() {
@@ -37,9 +40,14 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 100),
-                  SvgPicture.asset(
-                    'assets/logo/sfac_logo.svg',
-                    width: 180,
+                  GestureDetector(
+                    onTap: (){
+                      router.go('/home');
+                    },
+                    child: SvgPicture.asset(
+                      'assets/logo/sfac_logo.svg',
+                      width: 180,
+                    ),
                   ),
                   SizedBox(height: 50),
                   CustomTextFormField(
@@ -85,12 +93,27 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    '아이디 찾기 | 비밀번호 찾기 | 회원가입 하기',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          context.push('/signup');
+                        },
+                        child: Text(
+                          '회원가입 하기',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        ' | ',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 90,
