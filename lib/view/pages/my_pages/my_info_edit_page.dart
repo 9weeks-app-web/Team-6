@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/common_widgets/appbar_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_info_edit_content_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_info_edit_profile_widget.dart';

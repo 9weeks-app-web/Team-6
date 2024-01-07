@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/pages/my_pages/my_interest_portfolio_detail_page.dart';
 import 'package:flutter_app/view/widgets/my_interest_portfolio_widgets/my_interest_portfolio_card_widget.dart';
 import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class MyInterestPortfolioPage extends ConsumerWidget {
   const MyInterestPortfolioPage({super.key});

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
-import 'package:flutter_app/view/widgets/my_interest_portfolio_widgets/custom_board_edit_widget.dart';
+import 'package:flutter_app/model/menu_model.dart';
+import 'package:flutter_app/view/widgets/common_widgets/custom_menu_widget.dart';
 import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,7 +10,11 @@ class MyInterestPortfolioDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<String> menuList = ['보드 편집', '보드 삭제', '공유'];
+    List<MenuModel> menuList = [
+      MenuModel(iconImg: Icons.edit, title: '보드 편집'),
+      MenuModel(iconImg: Icons.delete, title: '보드 삭제'),
+      MenuModel(iconImg: Icons.share, title: '공유'),
+    ];
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
@@ -38,11 +43,7 @@ class MyInterestPortfolioDetailPage extends ConsumerWidget {
             ref.read(mypageProvider.notifier).overlayVisibilityChange(false);
           },
         ),
-        actions: [
-          CustomBoardEditWidget(
-            items: menuList,
-          )
-        ],
+        actions: [CustomMenuWidget(items: menuList)],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

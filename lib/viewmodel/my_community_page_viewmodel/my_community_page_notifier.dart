@@ -1,5 +1,4 @@
 import 'package:flutter_app/viewmodel/my_community_page_viewmodel/my_community_page_state.dart';
-import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyCommunityPageNotifier extends StateNotifier<MyCommunityPageState> {

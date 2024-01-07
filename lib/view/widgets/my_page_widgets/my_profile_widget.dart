@@ -1,18 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_app/view/widgets/my_page_widgets/custom_menu_widget.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_app/model/menu_model.dart';
+import 'package:flutter_app/view/widgets/common_widgets/custom_menu_widget.dart';
 
 class MyProfileWidget extends StatelessWidget {
   MyProfileWidget({super.key});
   final double coverHeight = 180;
-  final double profileHeight = 90;
-  List<String> menuList = [
-    '프로필 편집',
-    '배너 이미지 교체',
-    '배너 이미지 삭제',
-    '공유',
+  final double profileHeight = 100;
+  List<MenuModel> menuList = [
+    MenuModel(iconImg: Icons.edit, title: '프로필 편집'),
+    MenuModel(iconImg: Icons.image, title: '배너 이미지 교체'),
+    MenuModel(iconImg: Icons.delete, title: '배너 이미지 삭제'),
+    MenuModel(iconImg: Icons.share, title: '공유'),
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,16 +32,10 @@ class MyProfileWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 20,
-            left: MediaQuery.of(context).size.width - 45,
-            // child: IconButton(
-            //     onPressed: () {
-            //       context.push('/mypage/deleteaccount');
-            //     },
-            //     icon: const Icon(Icons.more_horiz_outlined)),
+            top: 0,
+            right: 0,
             child: CustomMenuWidget(
               items: menuList,
-              page: 'edit',
             ),
           ),
           Positioned(

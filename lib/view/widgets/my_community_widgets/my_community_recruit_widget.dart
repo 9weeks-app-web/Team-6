@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recruit_card_widget.dart';
@@ -6,14 +5,12 @@ import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recru
 import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart';
 import 'package:flutter_app/viewmodel/my_community_page_viewmodel/my_community_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class MyCommunityRecruitWidget extends ConsumerWidget {
   const MyCommunityRecruitWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(myCommunitypageProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

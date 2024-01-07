@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/pages/notice_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Category {
