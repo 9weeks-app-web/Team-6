@@ -46,7 +46,7 @@ class KeywordTab extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                context.go(
+                context.push(
                     '/community/club/:clubId/keyword/${keywordChatData[index]['id']}');
               },
               child: KeywordDialogCardWidget(

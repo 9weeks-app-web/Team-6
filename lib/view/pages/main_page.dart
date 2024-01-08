@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_app/view/widgets/header_widget.dart';
+import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Category {
@@ -15,12 +19,19 @@ class SubCategory {
 }
 
 class MainPage extends StatefulWidget {
+
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
+  List<String> imagePaths = [
+    'assets/images/main/main1.png',
+    'assets/images/main/main2.png',
+    'assets/images/main/main3.png',
+    'assets/images/main/main4.png',
+  ];
 
   List<String> selectedCategories = [];
   List<Category> categories = [
@@ -45,7 +56,6 @@ class _MainPageState extends State<MainPage> {
   bool _dropdownVisible = false;
 
   String selectedSortOption = '인기순';
-  bool _isPortfolioSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -53,112 +63,9 @@ class _MainPageState extends State<MainPage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Row(
-            children: [
-              Container(
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                    'assets/logo/sfac_logo.svg',
-                    width: 77,
-                    height: 20,
-                    fit: BoxFit.contain,
-                    // 원하는 높이 설정
-                  ),
-                  onPressed: () {
-                    print('메인페이지로 이동');
-                  },
-                ),
-              ),
-              Container(
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isPortfolioSelected = !_isPortfolioSelected;
-                    });
-                  },
-                  child: Container(
-                      height: 26,
-                      decoration: ShapeDecoration(
-                        color: const Color(0xFFF3F3F3),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            height: 26,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                            ),
-                            decoration: ShapeDecoration(
-                              color: _isPortfolioSelected
-                                  ? const Color(0xFF337AFF)
-                                  : const Color(0xFFE5EEFF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '폴리오',
-                                style: TextStyle(
-                                  color: _isPortfolioSelected
-                                      ? Colors.white
-                                      : const Color(0xFFB3B3B3),
-                                  fontSize: 14,
-                                  fontFamily: 'Pretendard Variable',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 26,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                            ),
-                            decoration: ShapeDecoration(
-                              color: !_isPortfolioSelected
-                                  ? const Color(0xFF337AFF)
-                                  : const Color(0xFFE5EEFF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '로그',
-                                style: TextStyle(
-                                  color: _isPortfolioSelected
-                                      ? const Color(0xFFB3B3B3)
-                                      : Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Pretendard Variable',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.notifications_none),
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => NoticePage()),
-                // );
-              },
-            ),
-          ],
+
+          title: const HeaderWidget(),
+
         ),
         body: Container(
           child: SingleChildScrollView(
@@ -169,12 +76,17 @@ class _MainPageState extends State<MainPage> {
                   SizedBox(
                     height: 200.0, // 이미지 높이 조절
                     child: PageView.builder(
-                      itemCount: 5,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: imagePaths.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
                           color: const Color(0xFFD9D9D9),
-                          width: 360.0, // 이미지 너비 조절
-                          height: 200.0, // 이미지 높이 조절
+                          width: 360.0,
+                          height: 200.0,
+                          child: Image.asset(
+                            imagePaths[index % imagePaths.length],
+                            fit: BoxFit.cover,
+                          ),
                         );
                       },
                     ),
@@ -358,489 +270,19 @@ class _MainPageState extends State<MainPage> {
                   const SizedBox(
                     height: 16,
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 320,
-                          height: 320,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFE6E6E6),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Project',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontFamily: 'Pretendard Variable',
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 32,
-                              height: 20,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  // 첫 번째 원 (왼쪽에 그리기)
-                                  Container(
-                                    width: 20,
-                                    height: 20,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.blue,
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                  // 겹치는 부분
-                                  Positioned(
-                                    right: 12,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.black,
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: 0,
-                                          top: 0,
-                                          child: Container(
-                                            width: 20,
-                                            height: 20,
-                                            decoration: const ShapeDecoration(
-                                              color: Color(0xFFCCCCCC),
-                                              shape: OvalBorder(),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 6,
-                                  ),
-                                  const Text(
-                                    'Name',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w700,
-                                      height: 0.09,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              child: const Row(
-                                children: [
-                                  SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: Icon(
-                                      Icons.visibility_outlined,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 2,
-                                  ),
-                                  Text(
-                                    "918",
-                                    style: TextStyle(
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: Icon(
-                                      Icons.favorite_outline,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  Text(
-                                    "918",
-                                    style: TextStyle(
-                                      color: Color(0xFF808080),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+
+                  PortfolioCard(
+                    index: 0,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    width: 320,
-                    //height: 376,
-                    padding: const EdgeInsets.only(bottom: 16),
-                    margin: const EdgeInsets.only(bottom: 20),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 320,
-                          height: 240,
-                          decoration:
-                              const BoxDecoration(color: Color(0x7FD9D9D9)),
-                        ),
-                        Container(
-                          //height: 120,
-                          padding: const EdgeInsets.only(left: 12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 308,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                decoration: const BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 24,
-                                            height: 24,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: const BoxDecoration(),
-                                            child: const Icon(
-                                                Icons.visibility_outlined),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          const Text(
-                                            '1234',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: 'Pretendard',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(),
-                                          child:
-                                              const Icon(Icons.favorite_border),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        const Text(
-                                          '1234',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
-                                            fontFamily: 'Pretendard',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.only(right: 12),
-                                //height: 72,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 16),
-                                      //height: 21,
-                                      child: const Text(
-                                        '포트폴리오 이름',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontFamily: 'Pretendard',
-                                          fontWeight: FontWeight.w600,
-                                          height: 0,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      //height: 19,
-                                      child: const Text(
-                                        '작성자',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontFamily: 'Pretendard',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 320,
-                    //height: 376,
-                    padding: const EdgeInsets.only(bottom: 16),
-                    margin: const EdgeInsets.only(bottom: 20),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 320,
-                          height: 240,
-                          decoration:
-                              const BoxDecoration(color: Color(0x7FD9D9D9)),
-                        ),
-                        Container(
-                          //height: 120,
-                          padding: const EdgeInsets.only(left: 12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 308,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                decoration: const BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 24,
-                                            height: 24,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: const BoxDecoration(),
-                                            child: const Icon(
-                                                Icons.visibility_outlined),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          const Text(
-                                            '1234',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: 'Pretendard',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(),
-                                          child:
-                                              const Icon(Icons.favorite_border),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        const Text(
-                                          '1234',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
-                                            fontFamily: 'Pretendard',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.only(right: 12),
-                                //height: 72,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 16),
-                                      //height: 21,
-                                      child: const Text(
-                                        '포트폴리오 이름',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontFamily: 'Pretendard',
-                                          fontWeight: FontWeight.w600,
-                                          height: 0,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      //height: 19,
-                                      child: const Text(
-                                        '작성자',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontFamily: 'Pretendard',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 20, top: 4),
-                    //width: 173,
-                    height: 24,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            //width: 129,
-                            child: const Text(
-                          '포트폴리오 더보기',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'Pretendard Variable',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )),
-                        const SizedBox(width: 20),
-                        const Padding(
-                          padding: EdgeInsets.all(1.5),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ),
+
+                  PortfolioCard(
+                    index: 1,
                   ),
                   const SizedBox(
-                    height: 49.5,
+                    height: 70,
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -875,7 +317,7 @@ class _MainPageState extends State<MainPage> {
                           width: 320,
                           height: 80,
                           decoration: const ShapeDecoration(
-                            color: Color(0xFFECECEC),
+                            color: Color(0xFFFDECC8),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
@@ -891,394 +333,372 @@ class _MainPageState extends State<MainPage> {
                                 margin:
                                     const EdgeInsets.only(top: 16, left: 24),
                                 child: const Text(
-                                  'UX/UI 디자인',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 18,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin:
-                                    const EdgeInsets.only(left: 24, bottom: 20),
-                                child: const Text(
-                                  '지금 8개의 채용공고가 올라왔어요!',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 14,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFF3F3F3),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                                child: const Text(
-                                  '더보기',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 14,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.07,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 320,
-                    height: 188,
-                    margin: const EdgeInsets.only(bottom: 20),
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(width: 1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 320,
-                          height: 80,
-                          decoration: const ShapeDecoration(
-                            color: Color(0xFFECECEC),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10),
-                              ),
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 24,
-                                margin:
-                                    const EdgeInsets.only(top: 16, left: 24),
-                                child: const Text(
-                                  'UX/UI 디자인',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 18,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin:
-                                    const EdgeInsets.only(left: 24, bottom: 20),
-                                child: const Text(
-                                  '지금 8개의 채용공고가 올라왔어요!',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 14,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFF3F3F3),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                                child: const Text(
-                                  '더보기',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 14,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.07,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 320,
-                    height: 188,
-                    margin: const EdgeInsets.only(bottom: 20),
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(width: 1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 320,
-                          height: 80,
-                          decoration: const ShapeDecoration(
-                            color: Color(0xFFECECEC),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10),
-                              ),
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 24,
-                                margin:
-                                    const EdgeInsets.only(top: 16, left: 24),
-                                child: const Text(
-                                  'UX/UI 디자인',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 18,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin:
-                                    const EdgeInsets.only(left: 24, bottom: 20),
-                                child: const Text(
-                                  '지금 8개의 채용공고가 올라왔어요!',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 14,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 64,
-                                height: 64,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFF3F3F3),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-                                child: const Text(
-                                  '더보기',
-                                  style: TextStyle(
-                                    color: Color(0xFF020202),
-                                    fontSize: 14,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.07,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 20, top: 4),
-                    //width: 173,
-                    height: 24,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            //width: 129,
-                            child: const Text(
-                          '채용 정보 더보기',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'Pretendard Variable',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )),
-                        const SizedBox(width: 20),
-                        const Padding(
-                          padding: EdgeInsets.all(1.5),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                                  '서비스 기획자',
 
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 18,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
+
+                                  '지금 112개의 채용공고가 올라왔어요!',
+
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 14,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFF3F3F3),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                                child: const Text(
+                                  '더보기',
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 14,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.07,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 320,
+                    height: 188,
+                    margin: const EdgeInsets.only(bottom: 20),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 320,
+                          height: 80,
+                          decoration: const ShapeDecoration(
+                            color: Color(0xFFDBEDDB),
+
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 24,
+                                margin:
+                                    const EdgeInsets.only(top: 16, left: 24),
+                                child: const Text(
+                                  '영상·모션그래픽',
+
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 18,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
+
+                                  '지금 18개의 채용공고가 올라왔어요!',
+
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 14,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFF3F3F3),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                                child: const Text(
+                                  '더보기',
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 14,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.07,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 320,
+                    height: 188,
+                    margin: const EdgeInsets.only(bottom: 20),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 320,
+                          height: 80,
+                          decoration: const ShapeDecoration(
+
+                            color: Color(0xFFDBEDDB),
+
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 24,
+                                margin:
+                                    const EdgeInsets.only(top: 16, left: 24),
+                                child: const Text(
+                                  '웹 디자인',
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 18,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
+                                  '지금 68개의 채용공고가 올라왔어요!',
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 14,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                width: 64,
+                                height: 64,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFF3F3F3),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                                child: const Text(
+                                  '더보기',
+                                  style: TextStyle(
+                                    color: Color(0xFF020202),
+                                    fontSize: 14,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.07,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(
-                    height: 95.5,
+                    height: 68,
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -1726,38 +1146,8 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 20, top: 4),
-                    //width: 173,
-                    height: 24,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            //width: 129,
-                            child: const Text(
-                          '채용 정보 더보기',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'Pretendard Variable',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )),
-                        const SizedBox(width: 20),
-                        const Padding(
-                          padding: EdgeInsets.all(1.5),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                   const SizedBox(
-                    height: 97,
+                    height: 35,
                   ),
                 ],
               ),
@@ -1766,7 +1156,7 @@ class _MainPageState extends State<MainPage> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          fixedColor: Colors.black,
+          fixedColor: Color(0xFF196AFF),
           selectedFontSize: 10,
           unselectedFontSize: 10,
           currentIndex: _currentIndex,
@@ -1777,23 +1167,23 @@ class _MainPageState extends State<MainPage> {
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
               label: '홈',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
+              icon: Icon(Icons.sms_outlined),
               label: '커뮤니티',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.portrait),
+              icon: Icon(Icons.folder_outlined),
               label: '포트폴리오',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.work),
+              icon: Icon(Icons.group_outlined),
               label: '프로젝트',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.account_circle_outlined),
               label: '마이',
             ),
           ],
@@ -1802,28 +1192,6 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  final List _widgetOptions = [
-    const Text(
-      '홈',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-    const Text(
-      '커뮤니티',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-    const Text(
-      '포트폴리오',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-    const Text(
-      '프로젝트',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-    const Text(
-      '마이',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-  ];
   Widget _buildSelectedCategories() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -1995,7 +1363,7 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                   if (categoryExpansionMap[category.name] ?? false)
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 14),
+                          vertical: 16, horizontal: 3),
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemCount: (category.subCategories.length / 2).ceil(),
@@ -2011,8 +1379,9 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                               final fullCategory = subCategory.name;
                               final isSelected = widget.selectedCategories
                                   .contains(fullCategory);
-                              return SizedBox(
-                                width: 145,
+                              return Container(
+                                margin: EdgeInsets.only(top: 24),
+                                width: 146,
                                 child: Expanded(
                                   child: Row(
                                     children: [
@@ -2036,6 +1405,9 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                                             : const Color(0xFF0059FF),
                                         side: const BorderSide(
                                             color: Color(0xFFE6E6E6)),
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                        visualDensity: VisualDensity.compact,
                                       ),
                                       InkWell(
                                         onTap: () {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/view/widgets/community_page_widgets/rich_text_with_divider_widget.dart';
 
 enum CardType {
   minimum,
@@ -24,6 +25,7 @@ class RecruitCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String recruitId = '1';
     String title = '채용 공고 제목';
     String companyName = '[회사이름 주식회사 코리아]';
     String locationGu = '서초구';
@@ -90,7 +92,7 @@ class RecruitCardWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        title,
+                        recruitData != null ? recruitData['title'] : title,
                         style: type == CardType.maximum
                             ? DesignTextStyle(
                                     style: DesignStyle.SubTitle_SemiBold,
@@ -112,7 +114,9 @@ class RecruitCardWidget extends StatelessWidget {
                     ? const SizedBox(height: 8)
                     : const SizedBox(height: 6),
                 Text(
-                  companyName,
+                  recruitData != null
+                      ? recruitData['companyName']
+                      : companyName,
                   style: type == CardType.maximum
                       ? DesignTextStyle(
                               style: DesignStyle.Label_2,
@@ -128,13 +132,15 @@ class RecruitCardWidget extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: Text(
-                        '$locationGu | $due',
-                        style: DesignTextStyle(
-                                style: DesignStyle.Caption_1,
-                                color: DesignColor.Neutral.shade40)
-                            .textStyle,
-                      ),
+                      child: recruitData != null
+                          ? RichTextWithDividerWidget(
+                              frontText: recruitData['location_Gu'],
+                              secondText: recruitData['due'],
+                            )
+                          : RichTextWithDividerWidget(
+                              frontText: locationGu,
+                              secondText: due,
+                            ),
                     ),
                     type != CardType.maximum
                         ? Container()
