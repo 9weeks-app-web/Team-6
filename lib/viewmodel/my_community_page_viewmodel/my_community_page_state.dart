@@ -1,15 +1,21 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_app/model/recruitment_post.dart';
 
 class MyCommunityPageState extends Equatable {
   final int page;
-  const MyCommunityPageState({this.page = 0});
+  final List<RecruitmentPostModel>? recruitmentPostModel;
+  const MyCommunityPageState({this.recruitmentPostModel, this.page = 0});
 
   MyCommunityPageState copyWith({
     int? page,
+    List<RecruitmentPostModel>? recruitmentPostModel,
   }) {
-    return MyCommunityPageState(page: page ?? this.page);
+    return MyCommunityPageState(
+      page: page ?? this.page,
+      recruitmentPostModel: recruitmentPostModel ?? this.recruitmentPostModel,
+    );
   }
 
   @override
-  List<Object> get props => [page];
+  List<Object?> get props => [page, recruitmentPostModel];
 }
