@@ -31,6 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
           onPressed: () {
             router.go('/login');
@@ -38,7 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.black,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text(
           '회원가입',
@@ -131,13 +132,16 @@ class _SignUpPageState extends State<SignUpPage> {
                   CustomTextFormField(
                     hintText: '인증번호 입력',
                   ),
-                  SizedBox(height: 12),
-
+                  SizedBox(height: 27),
+                  CustomCheckBoxList(),
+                  SizedBox(height: 43),
                   SizedBox(
                     width: double.infinity,
                     height: 54,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        router.go('/signupmore');
+                      },
                       child: Text(
                         '다음',
                         style: TextStyle(
@@ -152,12 +156,114 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 120),
+                  SizedBox(height: 30),
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CustomCheckBoxCircle extends StatefulWidget {
+  const CustomCheckBoxCircle({
+    super.key,
+  });
+
+  @override
+  State<CustomCheckBoxCircle> createState() => _CustomCheckBoxState();
+}
+
+class _CustomCheckBoxState extends State<CustomCheckBoxCircle> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 24,
+      height: 24,
+      child: Transform.scale(
+        scale: 1.2,
+        child: Checkbox(
+          shape: CircleBorder(),
+          side: BorderSide(width: 1.5, color: Colors.grey),
+          activeColor: Colors.grey,
+          value: isChecked,
+          onChanged: (bool? value) {
+            setState(() {
+              isChecked = value!;
+            });
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class CustomCheckBoxText extends StatelessWidget {
+  final String text;
+
+  const CustomCheckBoxText({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text, style: TextStyle(fontSize: 15));
+  }
+}
+
+class CustomCheckBoxList extends StatelessWidget {
+  const CustomCheckBoxList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Row(
+            children: [
+              CustomCheckBoxCircle(),
+              SizedBox(width: 8),
+              CustomCheckBoxText(text: '본인인증 약관 전체동의 (필수)'),
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              CustomCheckBoxCircle(),
+              SizedBox(width: 8),
+              CustomCheckBoxText(text: '개인정보 수집 이용 동의'),
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              CustomCheckBoxCircle(),
+              SizedBox(width: 8),
+              CustomCheckBoxText(text: '고유식별 정보처리 동의'),
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              CustomCheckBoxCircle(),
+              SizedBox(width: 8),
+              CustomCheckBoxText(text: '통신사 이용약관동의'),
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              CustomCheckBoxCircle(),
+              SizedBox(width: 8),
+              CustomCheckBoxText(text: '서비스 이용약관 동의'),
+            ],
+          ),
+        ],
       ),
     );
   }
