@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common.dart';
-
-//@TabType을 받아서 타입에 따라 suffixIcon을 다르게 줄 것
 
 class SearchBarWidget extends StatefulWidget {
-  const SearchBarWidget({
-    super.key,
-    this.hintText,
-  });
-  final String? hintText;
+  const SearchBarWidget({super.key});
 
   @override
   State<SearchBarWidget> createState() => _SearchBarWidgetState();
@@ -29,35 +22,31 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       controller: controller,
       onSubmitted: (value) {},
       decoration: InputDecoration(
-        hintText: widget.hintText ?? '원하는 키워드를 입력해주세요.',
-        hintStyle: DesignTextStyle(
-          style: DesignStyle.Caption_1,
-          color: DesignColor.Neutral.shade30,
-        ).textStyle,
-        suffixIcon: widget.hintText == null
+        prefixIcon: const Icon(
+          Icons.search, //@todo: 아이콘 추후 디자이너와 이야기 필요
+        ),
+        suffixIcon: controller.text.isNotEmpty
             ? const Icon(
-                Icons.search,
-                color: DesignColor.Neutral,
+                Icons.close,
               )
             : null,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(22),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.zero,
           borderSide: BorderSide(
-            color: DesignColor.Neutral.shade20,
+            color: Colors.grey, //Color(0x00e5e5e5),
             width: 1.0,
           ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(22),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.zero,
           borderSide: BorderSide(
-            color: DesignColor.Primary.shade50,
+            color: Colors.grey, //Color(0x00e5e5e5),
             width: 1.0,
           ),
         ),
-        contentPadding: const EdgeInsets.only(
-          left: 12,
-          top: 10,
-          bottom: 10,
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 4,
         ),
       ),
     );

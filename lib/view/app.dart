@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/view/router.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class SFACApp extends StatelessWidget {
   const SFACApp({super.key});
@@ -8,7 +7,6 @@ class SFACApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      builder: FToastBuilder(),
       theme: ThemeData(fontFamily: 'Pretendard'),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
