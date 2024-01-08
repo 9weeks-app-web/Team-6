@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const NoticePage());
-}
-
 class NoticePage extends StatelessWidget {
   const NoticePage({Key? key}) : super(key: key);
 
@@ -45,7 +41,9 @@ class NoticePage extends StatelessWidget {
               ),
               indicator: CustomTabIndicator(),
               labelColor: Colors.black, // 선택된 탭의 텍스트 색상
-              unselectedLabelColor: const Color(0xFFB3B3B3), // 선택되지 않은 탭의 텍스트 색상
+              unselectedLabelColor:
+                  const Color(0xFFB3B3B3), // 선택되지 않은 탭의 텍스트 색상
+
             ),
           ),
           body: TabBarView(
