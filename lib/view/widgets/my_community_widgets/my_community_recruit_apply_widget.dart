@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recruit_card_widget.dart';
-import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart';
 import 'package:flutter_app/viewmodel/my_community_page_viewmodel/my_community_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

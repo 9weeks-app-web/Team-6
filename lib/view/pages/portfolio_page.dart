@@ -43,7 +43,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   child: Container(
                       height: 26,
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
+                        color: const Color(0xFFF3F3F3),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
@@ -58,8 +58,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                             ),
                             decoration: ShapeDecoration(
                               color: _isPortfolioSelected
-                                  ? Color(0xFF337AFF)
-                                  : Color(0xFFE5EEFF),
+                                  ? const Color(0xFF337AFF)
+                                  : const Color(0xFFE5EEFF),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),
@@ -70,7 +70,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                 style: TextStyle(
                                   color: _isPortfolioSelected
                                       ? Colors.white
-                                      : Color(0xFFB3B3B3),
+                                      : const Color(0xFFB3B3B3),
                                   fontSize: 14,
                                   fontFamily: 'Pretendard Variable',
                                   fontWeight: FontWeight.w600,
@@ -85,8 +85,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                             ),
                             decoration: ShapeDecoration(
                               color: !_isPortfolioSelected
-                                  ? Color(0xFF337AFF)
-                                  : Color(0xFFE5EEFF),
+                                  ? const Color(0xFF337AFF)
+                                  : const Color(0xFFE5EEFF),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),
@@ -96,7 +96,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                 '로그',
                                 style: TextStyle(
                                   color: _isPortfolioSelected
-                                      ? Color(0xFFB3B3B3)
+                                      ? const Color(0xFFB3B3B3)
                                       : Colors.white,
                                   fontSize: 14,
                                   fontFamily: 'Pretendard Variable',
@@ -113,7 +113,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.notifications_none),
+              icon: const Icon(Icons.notifications_none),
               onPressed: () {
                 // Navigator.push(
                 //   context,
@@ -124,9 +124,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
           ],
         ),
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Column(
+            child: const Column(
               children: [],
             ),
           ),

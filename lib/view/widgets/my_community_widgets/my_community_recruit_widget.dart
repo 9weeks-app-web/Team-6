@@ -1,18 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recruit_card_widget.dart';
+import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recruit_resume_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart';
 import 'package:flutter_app/viewmodel/my_community_page_viewmodel/my_community_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class MyCommunityRecruitWidget extends ConsumerWidget {
   const MyCommunityRecruitWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(myCommunitypageProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -95,6 +93,29 @@ class MyCommunityRecruitWidget extends ConsumerWidget {
             },
           ),
         ),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 20),
+          child: Divider(
+            height: 1,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                '이력서 업로드',
+                style: DesignTextStyle(
+                        style: DesignStyle.Label_1_SemiBold,
+                        color: DesignColor.Neutral)
+                    .textStyle,
+              ),
+            ],
+          ),
+        ),
+        const MyCommunityRecruitResumeWidget(),
       ],
     );
   }

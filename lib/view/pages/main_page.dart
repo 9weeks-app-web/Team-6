@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/pages/notice_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-void main() {
-  runApp(const MainPage());
-}
 
 class Category {
   final String name;
@@ -20,8 +15,6 @@ class SubCategory {
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
-
   @override
   _MainPageState createState() => _MainPageState();
 }
