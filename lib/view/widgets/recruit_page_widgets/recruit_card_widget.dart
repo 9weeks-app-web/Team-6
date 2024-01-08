@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 
-enum CardType {
-  minimum,
-  maximum,
-}
-
-enum CardWidth {
-  w300,
-  w320,
-}
-
 class RecruitCardWidget extends StatelessWidget {
   const RecruitCardWidget({
     super.key,
     this.recruitData,
-    required this.type,
-    this.width,
+    required this.isActiveRecruit,
   });
   final dynamic recruitData;
-  final CardType type;
-  final CardWidth? width;
+  final bool isActiveRecruit;
 
   @override
   Widget build(BuildContext context) {
@@ -30,41 +18,28 @@ class RecruitCardWidget extends StatelessWidget {
     String due = '~01.19(금)';
 
     return Container(
-      width: type == CardType.maximum
-          ? (width == CardWidth.w300 ? 300 : MediaQuery.of(context).size.width)
-          : 155,
+      width: isActiveRecruit ? MediaQuery.of(context).size.width : 155,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: DesignColor.Neutral.shade20,
+          color: isActiveRecruit ? Colors.black : Colors.transparent,
         ),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
-          // img section
-          type == CardType.maximum
+          isActiveRecruit == true
               ? Container(
-                  height: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
-                    color: DesignColor.Neutral.shade20,
+                  height: 155,
+                  decoration: const BoxDecoration(
+                    color: Colors.grey,
                   ),
                 )
               : Stack(
                   children: [
                     Container(
                       width: 155,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: DesignColor.Neutral.shade20,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8),
-                        ),
+                      height: 155,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
                       ),
                     ),
                     const Positioned(
@@ -77,13 +52,11 @@ class RecruitCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-          // description section
           Padding(
-            padding: type == CardType.maximum
-                ? const EdgeInsets.all(16)
-                : const EdgeInsets.all(12),
+            padding: isActiveRecruit
+                ? const EdgeInsets.all(12)
+                : const EdgeInsets.only(top: 8),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -91,71 +64,44 @@ class RecruitCardWidget extends StatelessWidget {
                     Expanded(
                       child: Text(
                         title,
-                        style: type == CardType.maximum
-                            ? DesignTextStyle(
-                                    style: DesignStyle.SubTitle_SemiBold,
-                                    color: DesignColor.Neutral)
-                                .textStyle
-                            : DesignTextStyle(
-                                    style: DesignStyle.Body_SemiBold,
-                                    color: DesignColor.Neutral)
-                                .textStyle,
+                        style: FontStyle.Label_3_Bold,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    type != CardType.maximum
+                    isActiveRecruit == false
                         ? Container()
                         : const Icon(Icons.star_border),
                   ],
                 ),
-                type == CardType.maximum
-                    ? const SizedBox(height: 8)
-                    : const SizedBox(height: 6),
                 Text(
                   companyName,
-                  style: type == CardType.maximum
-                      ? DesignTextStyle(
-                              style: DesignStyle.Label_2,
-                              color: DesignColor.Neutral.shade40)
-                          .textStyle
-                      : DesignTextStyle(
-                              style: DesignStyle.Caption_1,
-                              color: DesignColor.Neutral.shade40)
-                          .textStyle,
+                  style: FontStyle.Caption_1_Medium,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 4),
                 Row(
                   children: [
                     Expanded(
                       child: Text(
                         '$locationGu | $due',
-                        style: DesignTextStyle(
-                                style: DesignStyle.Caption_1,
-                                color: DesignColor.Neutral.shade40)
-                            .textStyle,
+                        style: FontStyle.Caption_1_Medium,
                       ),
                     ),
-                    type != CardType.maximum
+                    isActiveRecruit == false
                         ? Container()
                         : Container(
                             padding: const EdgeInsets.symmetric(
-                              vertical: 5,
-                              horizontal: 8,
+                              vertical: 2.5,
+                              horizontal: 10,
                             ),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
                               border: Border.all(
                                 width: 1,
-                                color: DesignColor.Neutral.shade30,
+                                color: Colors.black,
                               ),
                             ),
                             child: Text(
                               '바로지원',
-                              style: DesignTextStyle(
-                                      style: DesignStyle.Caption_1,
-                                      color: DesignColor.Neutral.shade60)
-                                  .textStyle,
+                              style: FontStyle.Caption_1_Medium,
                             ),
                           ),
                   ],

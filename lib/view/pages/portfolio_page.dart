@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PortfolioPage extends StatefulWidget {
@@ -43,7 +42,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   child: Container(
                       height: 26,
                       decoration: ShapeDecoration(
-                        color: const Color(0xFFF3F3F3),
+                        color: Color(0xFFF3F3F3),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
@@ -58,8 +57,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                             ),
                             decoration: ShapeDecoration(
                               color: _isPortfolioSelected
-                                  ? const Color(0xFF337AFF)
-                                  : const Color(0xFFE5EEFF),
+                                  ? Color(0xFF337AFF)
+                                  : Color(0xFFE5EEFF),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),
@@ -70,7 +69,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                 style: TextStyle(
                                   color: _isPortfolioSelected
                                       ? Colors.white
-                                      : const Color(0xFFB3B3B3),
+                                      : Color(0xFFB3B3B3),
                                   fontSize: 14,
                                   fontFamily: 'Pretendard Variable',
                                   fontWeight: FontWeight.w600,
@@ -85,8 +84,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                             ),
                             decoration: ShapeDecoration(
                               color: !_isPortfolioSelected
-                                  ? const Color(0xFF337AFF)
-                                  : const Color(0xFFE5EEFF),
+                                  ? Color(0xFF337AFF)
+                                  : Color(0xFFE5EEFF),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),
@@ -96,7 +95,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                 '로그',
                                 style: TextStyle(
                                   color: _isPortfolioSelected
-                                      ? const Color(0xFFB3B3B3)
+                                      ? Color(0xFFB3B3B3)
                                       : Colors.white,
                                   fontSize: 14,
                                   fontFamily: 'Pretendard Variable',
@@ -113,7 +112,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.notifications_none),
+              icon: Icon(Icons.notifications_none),
               onPressed: () {
                 // Navigator.push(
                 //   context,
@@ -124,9 +123,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
           ],
         ),
         body: SingleChildScrollView(
-          child: SizedBox(
+          child: Container(
             width: MediaQuery.of(context).size.width,
-            child: const Column(
+            child: Column(
               children: [],
             ),
           ),
