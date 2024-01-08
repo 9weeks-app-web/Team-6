@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_app/common.dart';
 
 class MyProfileContentWidget extends StatelessWidget {
@@ -14,7 +12,7 @@ class MyProfileContentWidget extends StatelessWidget {
         Text(
           'Name',
           style: DesignTextStyle(
-                  style: DesignStyle.Title, color: DesignColor.Neutral)
+                  style: DesignStyle.Title_Bold, color: DesignColor.Neutral)
               .textStyle,
         ),
         const SizedBox(
@@ -37,6 +35,9 @@ class MyProfileContentWidget extends StatelessWidget {
             )
           ],
         ),
+        const SizedBox(
+          height: 20,
+        ),
       ],
     );
   }
@@ -55,11 +56,11 @@ class MyProfileInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 3),
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.all(2.0),
+              padding: const EdgeInsets.symmetric(horizontal: 2),
               child: Icon(
                 iconData,
                 color: DesignColor.Neutral.shade40,

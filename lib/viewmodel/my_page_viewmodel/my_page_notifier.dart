@@ -7,6 +7,10 @@ class MyPageNotifier extends StateNotifier<MyPageState> {
   void pageChanged(int page) {
     state = state.copyWith(page: page);
   }
+
+  void overlayVisibilityChange(bool overlayVisibility) {
+    state = state.copyWith(isOverlayVisible: overlayVisibility);
+  }
 }
 
 final mypageProvider =

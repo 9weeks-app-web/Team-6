@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
-import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recruit_card_widget.dart';
-import 'package:flutter_app/viewmodel/my_community_page_viewmodel/my_community_page_notifier.dart';
+import 'package:flutter_app/view/widgets/my_page_widgets/my_sns_link_content_widget.dart';
+import 'package:flutter_app/view/widgets/my_page_widgets/my_sns_link_header_widget.dart';
+import 'package:flutter_app/viewmodel/my_info_page_viewmodel/my_info_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyCommunityRecruitApplyWidget extends ConsumerWidget {
-  const MyCommunityRecruitApplyWidget({super.key});
+class MyInfoSNSLinkWidget extends ConsumerWidget {
+  const MyInfoSNSLinkWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,14 +23,14 @@ class MyCommunityRecruitApplyWidget extends ConsumerWidget {
                 IconButton(
                     iconSize: 24,
                     onPressed: () {
-                      ref.read(myCommunitypageProvider.notifier).pageChanged(1);
+                      ref.read(myInfopageProvider.notifier).pageChanged(0);
                     },
                     icon: const Icon(Icons.arrow_back_ios_new_outlined)),
                 const SizedBox(
                   width: 80,
                 ),
                 Text(
-                  '지원 현황',
+                  'SNS 연동 링크 편집',
                   style: DesignTextStyle(
                           style: DesignStyle.Body_SemiBold,
                           color: DesignColor.Neutral)
@@ -39,17 +40,17 @@ class MyCommunityRecruitApplyWidget extends ConsumerWidget {
             ),
           ),
         ),
-        ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: MyCommunityRecruitCardWidget(),
-            );
-          },
-        ),
+        const SingleChildScrollView(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            MySnsLinkHeaderWidget(),
+            SizedBox(
+              height: 18,
+            ),
+            MySnsLinkContentWidget(),
+          ],
+        )),
       ],
     );
   }

@@ -7,7 +7,7 @@ import 'package:flutter_app/view/pages/find_pw_page.dart';
 import 'package:flutter_app/view/pages/login_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_delete_account_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_edit_page.dart';
-import 'package:flutter_app/view/pages/my_pages/my_info_sns_link_page.dart';
+import 'package:flutter_app/view/pages/my_pages/my_interest_portfolio_detail_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_page.dart';
 import 'package:flutter_app/view/pages/sign_up_page.dart';
 import 'package:flutter_app/view/pages/splash_page.dart';
@@ -47,12 +47,12 @@ final router = GoRouter(initialLocation: '/splash', routes: [
         builder: (context, state) => const MyInfoEditPage(),
       ),
       GoRoute(
-        path: 'snslink',
-        builder: (context, state) => const MyInfoSnsLinkPage(),
-      ),
-      GoRoute(
         path: 'deleteaccount',
         builder: (context, state) => const MyInfoDeleteAccountPage(),
+      ),
+      GoRoute(
+        path: 'interestdetail',
+        builder: (context, state) => const MyInterestPortfolioDetailPage(),
       ),
     ],
   ),
