@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/util/community/recruit_detail_data.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/advertise_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/more_button_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class RecruitPage extends StatelessWidget {
-  const RecruitPage({super.key});
+  const RecruitPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    List<String> filterList = ["지역", "직무", "분야", "경력", "기술스택"];
-    List<dynamic> activeRecruits = [];
-    dynamic curActiveRecruit;
-    List<dynamic> allRecruits = [];
+    PageController pageController = PageController(
+      initialPage: 1,
+      viewportFraction: 0.85,
+    );
+
+    int curIdx = 0;
 
     return ListView(
       shrinkWrap: true,
@@ -29,7 +35,7 @@ class RecruitPage extends StatelessWidget {
                   style: DesignTextStyle.SubTitle_Bold,
                 ),
                 trailing: Text(
-                  '${activeRecruits.indexOf(curActiveRecruit)}/${activeRecruits.length}',
+                  '${curIdx + 1}/${recruitDetailData.length}',
                   style: DesignTextStyle(
                     style: DesignStyle.Caption_1,
                     color: DesignColor.Neutral.shade20,
@@ -38,17 +44,28 @@ class RecruitPage extends StatelessWidget {
               ),
               SizedBox(
                 height: 240,
-                child: ListView.builder(
-                  padding: const EdgeInsets.only(right: 20),
+                child: PageView.builder(
+                  padEnds: false,
+                  controller: pageController,
+                  onPageChanged: (value) {
+                    curIdx = value;
+                  },
                   scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: 5,
+                  itemCount: recruitDetailData.length,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.only(right: 10.0),
-                      child: RecruitCardWidget(
-                        type: CardType.maximum,
-                        width: CardWidth.w300,
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.push(
+                            '/community/recruit/${recruitDetailData[index]['id']}',
+                          );
+                        },
+                        child: RecruitCardWidget(
+                          recruitData: recruitDetailData[index],
+                          type: CardType.maximum,
+                          width: CardWidth.w300,
+                        ),
                       ),
                     );
                   },
@@ -74,17 +91,25 @@ class RecruitPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 204,
+                height: 206,
                 child: ListView.builder(
                   padding: const EdgeInsets.only(right: 20),
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.only(right: 8.0),
-                      child: RecruitCardWidget(
-                        type: CardType.minimum,
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.push(
+                            '/community/recruit/${recruitDetailData[index]['id']}',
+                          );
+                        },
+                        child: RecruitCardWidget(
+                          recruitData: recruitDetailData[index],
+                          type: CardType.minimum,
+                        ),
                       ),
                     );
                   },
@@ -114,17 +139,25 @@ class RecruitPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 204,
+                height: 206,
                 child: ListView.builder(
                   padding: const EdgeInsets.only(right: 20),
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.only(right: 8.0),
-                      child: RecruitCardWidget(
-                        type: CardType.minimum,
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.push(
+                            '/community/recruit/${recruitDetailData[index]['id']}',
+                          );
+                        },
+                        child: RecruitCardWidget(
+                          recruitData: recruitDetailData[index],
+                          type: CardType.minimum,
+                        ),
                       ),
                     );
                   },
