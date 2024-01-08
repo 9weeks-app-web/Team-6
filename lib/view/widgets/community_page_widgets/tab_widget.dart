@@ -32,15 +32,15 @@ class TabWidget extends StatelessWidget {
                   ),
                 ),
                 TabBar(
-                  labelPadding: const EdgeInsets.only(right: 29),
                   indicatorWeight: 3,
-                  indicatorColor: DesignColor.Neutral,
-                  labelColor: DesignColor.Neutral,
+                  indicatorColor: DesignColor.Primary.shade80,
+                  labelColor: DesignColor.Primary.shade80,
                   unselectedLabelColor: DesignColor.Neutral.shade20,
                   unselectedLabelStyle: DesignTextStyle.Label_2_Regular,
                   labelStyle: DesignTextStyle.Label_2_SemiBold,
                   indicatorSize: TabBarIndicatorSize.label,
                   isScrollable: true,
+                  tabAlignment: TabAlignment.start,
                   tabs: tabContents
                       .map(
                         (tabItem) => Padding(

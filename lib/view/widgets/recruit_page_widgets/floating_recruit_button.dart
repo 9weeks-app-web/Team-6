@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/rich_text_with_divider_widget.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/shadows.dart';
+import 'package:go_router/go_router.dart';
 
 class FloatingRecruitButton extends StatelessWidget {
   const FloatingRecruitButton({
@@ -68,7 +69,9 @@ class FloatingRecruitButton extends StatelessWidget {
                         DesignColor.Primary,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push('/community/apply/${recruitInfo['id']}');
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 16,
