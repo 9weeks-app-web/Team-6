@@ -2,6 +2,7 @@ import 'package:flutter_app/view/app_wrapper.dart';
 import 'package:flutter_app/view/pages/community_pages/community_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/club_detail_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/keyword_card_detail_page.dart';
+import 'package:flutter_app/view/pages/community_pages/detail_pages/recruit_detail_page.dart';
 import 'package:flutter_app/view/pages/login_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_delete_account_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_edit_page.dart';
@@ -20,7 +21,7 @@ final router = GoRouter(initialLocation: '/home', routes: [
   ),
   GoRoute(
     path: '/mypage',
-    builder: (context, state) => const MyPage(),
+    builder: (context, state) => MyPage(),
     routes: [
       GoRoute(
         path: 'edit',
@@ -51,6 +52,14 @@ final router = GoRouter(initialLocation: '/home', routes: [
             ),
           ),
         ],
+      ),
+      GoRoute(
+        path: 'recruit/:recruitId',
+        builder: (context, state) {
+          return RecruitDetailPage(
+            recruitId: state.pathParameters['recruitId'] ?? '',
+          );
+        },
       ),
     ],
   ),
