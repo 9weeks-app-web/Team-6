@@ -15,6 +15,9 @@ class ClubDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: DesignColor.Neutral,
+        ),
         title: Text(
           club['clubName'],
           style: DesignTextStyle(
