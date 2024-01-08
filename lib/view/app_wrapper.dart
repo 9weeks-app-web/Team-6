@@ -16,7 +16,7 @@ class AppWrapper extends ConsumerWidget {
     var pageIndex = ref.watch(appwrapperProvider);
 
     final List<Widget> pageOptions = <Widget>[
-      const MainPage(),
+      MainPage(),
       const CommunityPage(),
       const PortfolioPage(),
       const ProjectPage(),
