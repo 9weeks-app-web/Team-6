@@ -8,18 +8,21 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Row(
-            children: [
-              SvgPicture.asset('logo/sfac_logo.svg'),
-              //toggle folio-log
-            ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Row(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                SvgPicture.asset('assets/logo/sfac_logo.svg'),
+                //toggle folio-log
+              ],
+            ),
           ),
-        ),
-        const Icon(Icons.notifications_none_outlined),
-      ],
+          const Icon(Icons.notifications_none_outlined),
+        ],
+      ),
     );
   }
 }

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(NoticePage());
-}
-
 class NoticePage extends StatelessWidget {
   const NoticePage({Key? key}) : super(key: key);
 
@@ -15,7 +11,7 @@ class NoticePage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -32,33 +28,34 @@ class NoticePage extends StatelessWidget {
               ),
             ),
             bottom: TabBar(
-              tabs: [
+              tabs: const [
                 Tab(text: '좋아요'),
                 Tab(text: '프로젝트'),
                 Tab(text: '채용'),
                 Tab(text: '의견'),
               ],
-              labelStyle: TextStyle(
+              labelStyle: const TextStyle(
                 fontSize: 14,
                 fontFamily: 'Pretendard Variable',
                 fontWeight: FontWeight.w700,
               ),
               indicator: CustomTabIndicator(),
               labelColor: Colors.black, // 선택된 탭의 텍스트 색상
-              unselectedLabelColor: Color(0xFFB3B3B3), // 선택되지 않은 탭의 텍스트 색상
+              unselectedLabelColor:
+                  const Color(0xFFB3B3B3), // 선택되지 않은 탭의 텍스트 색상
             ),
           ),
           body: TabBarView(
             children: [
               // 좋아요 탭에 해당하는 위젯을 추가하세요.
-              LikeTabContent(),
+              const LikeTabContent(),
               // 나머지 탭에 해당하는 내용을 추가하세요.
-              ProjectTapContent(),
+              const ProjectTapContent(),
               Container(
-                child: Text('채용 탭 내용'),
+                child: const Text('채용 탭 내용'),
               ),
               Container(
-                child: Text('의견 탭 내용'),
+                child: const Text('의견 탭 내용'),
               ),
             ],
           ),
@@ -85,7 +82,7 @@ class _CustomTabIndicatorPainter extends BoxPainter {
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
     final double indicatorWidth =
         configuration.size!.width + 20.0; // 커스텀 밑줄의 길이
-    final double indicatorHeight = 3.0; // 커스텀 밑줄의 높이
+    const double indicatorHeight = 3.0; // 커스텀 밑줄의 높이
 
     final Rect rect = Rect.fromCenter(
       center: Offset(
@@ -112,12 +109,14 @@ class _CustomTabIndicatorPainter extends BoxPainter {
 
 // 새로운 위젯을 만듭니다.
 class LikeTabContent extends StatelessWidget {
+  const LikeTabContent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 32, left: 19, right: 20),
+      padding: const EdgeInsets.only(top: 32, left: 19, right: 20),
       child: ListView(
-        padding: EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.only(bottom: 12),
         children: [
           ListTile(
             title: Row(
@@ -125,15 +124,15 @@ class LikeTabContent extends StatelessWidget {
                 Container(
                   width: 15.5,
                   height: 15.5,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.blue, // 컨테이너의 색상
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Expanded(
+                const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -170,15 +169,15 @@ class LikeTabContent extends StatelessWidget {
                 Container(
                   width: 15.5,
                   height: 15.5,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.blue, // 컨테이너의 색상
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Expanded(
+                const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -215,15 +214,15 @@ class LikeTabContent extends StatelessWidget {
                 Container(
                   width: 15.5, // 예시로 40의 너비를 지정합니다. 필요에 따라 조절하세요.
                   height: 15.5, // 예시로 40의 높이를 지정합니다. 필요에 따라 조절하세요.
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFC4C4C4), // 컨테이너의 색상
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Expanded(
+                const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -260,15 +259,15 @@ class LikeTabContent extends StatelessWidget {
                 Container(
                   width: 15.5, // 예시로 40의 너비를 지정합니다. 필요에 따라 조절하세요.
                   height: 15.5, // 예시로 40의 높이를 지정합니다. 필요에 따라 조절하세요.
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFC4C4C4), // 컨테이너의 색상
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Expanded(
+                const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -311,9 +310,9 @@ class ProjectTapContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 32, left: 20),
+      padding: const EdgeInsets.only(top: 32, left: 20),
       child: ListView(
-        padding: EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.only(bottom: 12),
         children: [
           ListTile(
             title: Row(
@@ -321,15 +320,15 @@ class ProjectTapContent extends StatelessWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFC4C4C4),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -364,15 +363,15 @@ class ProjectTapContent extends StatelessWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFC4C4C4),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -407,15 +406,15 @@ class ProjectTapContent extends StatelessWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFC4C4C4),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -450,15 +449,15 @@ class ProjectTapContent extends StatelessWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFC4C4C4),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -493,15 +492,15 @@ class ProjectTapContent extends StatelessWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFC4C4C4),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 21,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(

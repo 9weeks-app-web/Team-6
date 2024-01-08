@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/pages/notice_page.dart';
+import 'package:flutter_app/view/widgets/header_widget.dart';
+import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-void main() {
-  runApp(MyApp());
-}
 
 class Category {
   final String name;
@@ -19,13 +16,21 @@ class SubCategory {
   SubCategory(this.name);
 }
 
-class MyApp extends StatefulWidget {
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
+  List<String> imagePaths = [
+    'assets/images/main/main1.png',
+    'assets/images/main/main2.png',
+    'assets/images/main/main3.png',
+    'assets/images/main/main4.png',
+  ];
 
   List<String> selectedCategories = [];
   List<Category> categories = [
@@ -50,7 +55,6 @@ class _MyAppState extends State<MyApp> {
   bool _dropdownVisible = false;
 
   String selectedSortOption = '인기순';
-  bool _isPortfolioSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -58,138 +62,38 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Row(
-            children: [
-              Container(
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                    'assets/logo/sfac_logo.svg',
-                    width: 77,
-                    height: 20,
-                    fit: BoxFit.contain,
-                    // 원하는 높이 설정
-                  ),
-                  onPressed: () {
-                    print('메인페이지로 이동');
-                  },
-                ),
-              ),
-              Container(
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isPortfolioSelected = !_isPortfolioSelected;
-                    });
-                  },
-                  child: Container(
-                      height: 26,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            height: 26,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                            ),
-                            decoration: ShapeDecoration(
-                              color: _isPortfolioSelected
-                                  ? Color(0xFF337AFF)
-                                  : Color(0xFFE5EEFF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '폴리오',
-                                style: TextStyle(
-                                  color: _isPortfolioSelected
-                                      ? Colors.white
-                                      : Color(0xFFB3B3B3),
-                                  fontSize: 14,
-                                  fontFamily: 'Pretendard Variable',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 26,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                            ),
-                            decoration: ShapeDecoration(
-                              color: !_isPortfolioSelected
-                                  ? Color(0xFF337AFF)
-                                  : Color(0xFFE5EEFF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '로그',
-                                style: TextStyle(
-                                  color: _isPortfolioSelected
-                                      ? Color(0xFFB3B3B3)
-                                      : Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Pretendard Variable',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.notifications_none),
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => NoticePage()),
-                // );
-              },
-            ),
-          ],
+          title: const HeaderWidget(),
         ),
         body: Container(
           child: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               width: screenSize.width, // 전체 화면 너비
               child: Column(
                 children: [
-                  Container(
-                    height: 200.0, // 이미지 높이 조절
+                  SizedBox(
+                    height: 200.0,
                     child: PageView.builder(
-                      itemCount: 5,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: imagePaths.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          color: Color(0xFFD9D9D9),
-                          width: 360.0, // 이미지 너비 조절
-                          height: 200.0, // 이미지 높이 조절
+                          color: const Color(0xFFD9D9D9),
+                          width: 360.0,
+                          height: 200.0,
+                          child: Image.asset(
+                            imagePaths[index % imagePaths.length],
+                            fit: BoxFit.cover,
+                          ),
                         );
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Container(
                     alignment: Alignment.topLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -207,7 +111,7 @@ class _MyAppState extends State<MyApp> {
                             MaterialStateProperty.all(Colors.white),
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
-                            side: BorderSide(
+                            side: const BorderSide(
                               width: 1,
                               color: Color(0xFFCCCCCC),
                             ),
@@ -218,12 +122,12 @@ class _MyAppState extends State<MyApp> {
                       child: Container(
                         width: 107,
                         height: 36,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 6, horizontal: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               '카테고리',
                               style: TextStyle(
                                 color: Colors.black,
@@ -285,15 +189,15 @@ class _MyAppState extends State<MyApp> {
                   //     ),
                   //   ),
                   // ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           '오늘의 #스팩폴리오',
                           style: TextStyle(
                             color: Colors.black,
@@ -309,7 +213,7 @@ class _MyAppState extends State<MyApp> {
                           padding: const EdgeInsets.all(4),
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
+                              side: const BorderSide(
                                 width: 1,
                                 strokeAlign: BorderSide.strokeAlignCenter,
                                 color: Color(0xFFF3F3F3),
@@ -327,7 +231,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                             iconSize: 14,
                             elevation: 16,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 12,
                               fontFamily: 'Pretendard Variable',
@@ -345,7 +249,7 @@ class _MyAppState extends State<MyApp> {
                                 child: Text(
                                   value,
                                   textAlign: TextAlign.right,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color(0xFF272727),
                                     fontSize: 12,
                                     fontFamily: 'Pretendard Variable',
@@ -360,493 +264,26 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 320,
-                          height: 320,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 9,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Project',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontFamily: 'Pretendard Variable',
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Container(
-                              width: 32,
-                              height: 20,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  // 첫 번째 원 (왼쪽에 그리기)
-                                  Container(
-                                    width: 20,
-                                    height: 20,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                  // 겹치는 부분
-                                  Positioned(
-                                    right: 12,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 20,
-                                    height: 20,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: 0,
-                                          top: 0,
-                                          child: Container(
-                                            width: 20,
-                                            height: 20,
-                                            decoration: ShapeDecoration(
-                                              color: Color(0xFFCCCCCC),
-                                              shape: OvalBorder(),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 6,
-                                  ),
-                                  Text(
-                                    'Name',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w700,
-                                      height: 0.09,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 24,
-                                    height: 24,
-                                    child: Icon(
-                                      Icons.visibility_outlined,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 2,
-                                  ),
-                                  Text(
-                                    "918",
-                                    style: TextStyle(
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  Container(
-                                    width: 24,
-                                    height: 24,
-                                    child: Icon(
-                                      Icons.favorite_outline,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  Text(
-                                    "918",
-                                    style: TextStyle(
-                                      color: Color(0xFF808080),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  PortfolioCard(
+                    index: 0,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    width: 320,
-                    //height: 376,
-                    padding: const EdgeInsets.only(bottom: 16),
-                    margin: EdgeInsets.only(bottom: 20),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 320,
-                          height: 240,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
-                        ),
-                        Container(
-                          //height: 120,
-                          padding: const EdgeInsets.only(left: 12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 308,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 24,
-                                            height: 24,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(),
-                                            child:
-                                                Icon(Icons.visibility_outlined),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            '1234',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: 'Pretendard',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(),
-                                          child: Icon(Icons.favorite_border),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          '1234',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
-                                            fontFamily: 'Pretendard',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(right: 12),
-                                //height: 72,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.symmetric(vertical: 16),
-                                      //height: 21,
-                                      child: Text(
-                                        '포트폴리오 이름',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontFamily: 'Pretendard',
-                                          fontWeight: FontWeight.w600,
-                                          height: 0,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      //height: 19,
-                                      child: Text(
-                                        '작성자',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontFamily: 'Pretendard',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  PortfolioCard(
+                    index: 1,
+                  ),
+
+                  const SizedBox(
+                    height: 70,
                   ),
                   Container(
-                    width: 320,
-                    //height: 376,
-                    padding: const EdgeInsets.only(bottom: 16),
-                    margin: EdgeInsets.only(bottom: 20),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 320,
-                          height: 240,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
-                        ),
-                        Container(
-                          //height: 120,
-                          padding: const EdgeInsets.only(left: 12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 308,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 24,
-                                            height: 24,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(),
-                                            child:
-                                                Icon(Icons.visibility_outlined),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            '1234',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: 'Pretendard',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 24,
-                                          height: 24,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(),
-                                          child: Icon(Icons.favorite_border),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          '1234',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
-                                            fontFamily: 'Pretendard',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(right: 12),
-                                //height: 72,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.symmetric(vertical: 16),
-                                      //height: 21,
-                                      child: Text(
-                                        '포트폴리오 이름',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontFamily: 'Pretendard',
-                                          fontWeight: FontWeight.w600,
-                                          height: 0,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      //height: 19,
-                                      child: Text(
-                                        '작성자',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontFamily: 'Pretendard',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(right: 20, top: 4),
-                    //width: 173,
-                    height: 24,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            //width: 129,
-                            child: Text(
-                          '포트폴리오 더보기',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'Pretendard Variable',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )),
-                        const SizedBox(width: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(1.5),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 49.5,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     alignment: Alignment.topLeft,
-                    child: Text(
+                    child: const Text(
                       '요즘 뜨는 포지션',
                       style: TextStyle(
                         color: Colors.black,
@@ -857,16 +294,16 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Container(
                     width: 320,
                     height: 188,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1),
+                        side: const BorderSide(width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -875,8 +312,8 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 80,
-                          decoration: ShapeDecoration(
-                            color: Color(0xFFECECEC),
+                          decoration: const ShapeDecoration(
+                            color: Color(0xFFFDECC8),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
@@ -889,9 +326,10 @@ class _MyAppState extends State<MyApp> {
                             children: [
                               Container(
                                 height: 24,
-                                margin: EdgeInsets.only(top: 16, left: 24),
-                                child: Text(
-                                  'UX/UI 디자인',
+                                margin:
+                                    const EdgeInsets.only(top: 16, left: 24),
+                                child: const Text(
+                                  '서비스 기획자',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 18,
@@ -902,9 +340,10 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 24, bottom: 20),
-                                child: Text(
-                                  '지금 8개의 채용공고가 올라왔어요!',
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
+                                  '지금 112개의 채용공고가 올라왔어요!',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 14,
@@ -918,46 +357,46 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
                           child: Row(
                             children: [
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
@@ -965,12 +404,12 @@ class _MyAppState extends State<MyApp> {
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFF3F3F3),
+                                  color: const Color(0xFFF3F3F3),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
-                                child: Text(
+                                child: const Text(
                                   '더보기',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -990,10 +429,10 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 320,
                     height: 188,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1),
+                        side: const BorderSide(width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -1002,8 +441,8 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 80,
-                          decoration: ShapeDecoration(
-                            color: Color(0xFFECECEC),
+                          decoration: const ShapeDecoration(
+                            color: Color(0xFFDBEDDB),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
@@ -1016,9 +455,10 @@ class _MyAppState extends State<MyApp> {
                             children: [
                               Container(
                                 height: 24,
-                                margin: EdgeInsets.only(top: 16, left: 24),
-                                child: Text(
-                                  'UX/UI 디자인',
+                                margin:
+                                    const EdgeInsets.only(top: 16, left: 24),
+                                child: const Text(
+                                  '영상·모션그래픽',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 18,
@@ -1029,9 +469,10 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 24, bottom: 20),
-                                child: Text(
-                                  '지금 8개의 채용공고가 올라왔어요!',
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
+                                  '지금 18개의 채용공고가 올라왔어요!',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 14,
@@ -1045,46 +486,46 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
                           child: Row(
                             children: [
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
@@ -1092,12 +533,12 @@ class _MyAppState extends State<MyApp> {
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFF3F3F3),
+                                  color: const Color(0xFFF3F3F3),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
-                                child: Text(
+                                child: const Text(
                                   '더보기',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -1117,10 +558,10 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 320,
                     height: 188,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1),
+                        side: const BorderSide(width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -1129,8 +570,8 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 80,
-                          decoration: ShapeDecoration(
-                            color: Color(0xFFECECEC),
+                          decoration: const ShapeDecoration(
+                            color: Color(0xFFDBEDDB),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
@@ -1143,9 +584,10 @@ class _MyAppState extends State<MyApp> {
                             children: [
                               Container(
                                 height: 24,
-                                margin: EdgeInsets.only(top: 16, left: 24),
-                                child: Text(
-                                  'UX/UI 디자인',
+                                margin:
+                                    const EdgeInsets.only(top: 16, left: 24),
+                                child: const Text(
+                                  '웹 디자인',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 18,
@@ -1156,9 +598,10 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 24, bottom: 20),
-                                child: Text(
-                                  '지금 8개의 채용공고가 올라왔어요!',
+                                margin:
+                                    const EdgeInsets.only(left: 24, bottom: 20),
+                                child: const Text(
+                                  '지금 68개의 채용공고가 올라왔어요!',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 14,
@@ -1172,46 +615,46 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(13, 19, 13, 23),
+                          margin: const EdgeInsets.fromLTRB(13, 19, 13, 23),
                           child: Row(
                             children: [
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFD9D9D9),
+                                  color: const Color(0xFFD9D9D9),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Container(
@@ -1219,12 +662,12 @@ class _MyAppState extends State<MyApp> {
                                 width: 64,
                                 height: 64,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFF3F3F3),
+                                  color: const Color(0xFFF3F3F3),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
-                                child: Text(
+                                child: const Text(
                                   '더보기',
                                   style: TextStyle(
                                     color: Color(0xFF020202),
@@ -1236,52 +679,22 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ),
                             ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(right: 20, top: 4),
-                    //width: 173,
-                    height: 24,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            //width: 129,
-                            child: Text(
-                          '채용 정보 더보기',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'Pretendard Variable',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )),
-                        const SizedBox(width: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(1.5),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            size: 24,
                           ),
                         ),
                       ],
                     ),
                   ),
 
-                  SizedBox(
-                    height: 95.5,
+                  const SizedBox(
+                    height: 68,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          child: Text(
+                          child: const Text(
                             '모여봐요, 사이드 프로젝트의 숲',
                             style: TextStyle(
                               color: Colors.black,
@@ -1298,7 +711,7 @@ class _MyAppState extends State<MyApp> {
                           padding: const EdgeInsets.all(4),
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
+                              side: const BorderSide(
                                 width: 1,
                                 strokeAlign: BorderSide.strokeAlignCenter,
                                 color: Color(0xFFF3F3F3),
@@ -1316,7 +729,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                             iconSize: 14,
                             elevation: 16,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 12,
                               fontFamily: 'Pretendard Variable',
@@ -1334,7 +747,7 @@ class _MyAppState extends State<MyApp> {
                                 child: Text(
                                   value,
                                   textAlign: TextAlign.right,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color(0xFF272727),
                                     fontSize: 12,
                                     fontFamily: 'Pretendard Variable',
@@ -1349,18 +762,18 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Container(
                     width: 320,
                     clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 20,
                     ),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
+                        side: const BorderSide(
                           width: 0.71,
                           strokeAlign: BorderSide.strokeAlignCenter,
                         ),
@@ -1375,10 +788,11 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 180,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
+                          decoration:
+                              const BoxDecoration(color: Color(0x7FD9D9D9)),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1391,7 +805,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1400,7 +814,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '오프라인',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1411,7 +825,7 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 8,
                                   ),
                                   Container(
@@ -1420,7 +834,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1429,7 +843,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '모집중',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1442,10 +856,10 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '프로젝트 공고 제목',
                                 style: TextStyle(
                                   color: Colors.black,
@@ -1455,10 +869,10 @@ class _MyAppState extends State<MyApp> {
                                   height: 0,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '2024. 01. 01',
                                 style: TextStyle(
                                   color: Color(0xFFCCCCCC),
@@ -1477,12 +891,12 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 320,
                     clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 20,
                     ),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
+                        side: const BorderSide(
                           width: 0.71,
                           strokeAlign: BorderSide.strokeAlignCenter,
                         ),
@@ -1497,10 +911,11 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 180,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
+                          decoration:
+                              const BoxDecoration(color: Color(0x7FD9D9D9)),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1513,7 +928,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1522,7 +937,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '오프라인',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1533,7 +948,7 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 8,
                                   ),
                                   Container(
@@ -1542,7 +957,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1551,7 +966,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '모집중',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1564,10 +979,10 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '프로젝트 공고 제목',
                                 style: TextStyle(
                                   color: Colors.black,
@@ -1577,10 +992,10 @@ class _MyAppState extends State<MyApp> {
                                   height: 0,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '2024. 01. 01',
                                 style: TextStyle(
                                   color: Color(0xFFCCCCCC),
@@ -1599,12 +1014,12 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 320,
                     clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 20,
                     ),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
+                        side: const BorderSide(
                           width: 0.71,
                           strokeAlign: BorderSide.strokeAlignCenter,
                         ),
@@ -1619,10 +1034,11 @@ class _MyAppState extends State<MyApp> {
                         Container(
                           width: 320,
                           height: 180,
-                          decoration: BoxDecoration(color: Color(0x7FD9D9D9)),
+                          decoration:
+                              const BoxDecoration(color: Color(0x7FD9D9D9)),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1635,7 +1051,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1644,7 +1060,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '오프라인',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1655,7 +1071,7 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 8,
                                   ),
                                   Container(
@@ -1664,7 +1080,7 @@ class _MyAppState extends State<MyApp> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                           width: 0.71,
                                           strokeAlign:
                                               BorderSide.strokeAlignCenter,
@@ -1673,7 +1089,7 @@ class _MyAppState extends State<MyApp> {
                                             BorderRadius.circular(15.64),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '모집중',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -1686,10 +1102,10 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '프로젝트 공고 제목',
                                 style: TextStyle(
                                   color: Colors.black,
@@ -1699,10 +1115,10 @@ class _MyAppState extends State<MyApp> {
                                   height: 0,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
-                              Text(
+                              const Text(
                                 '2024. 01. 01',
                                 style: TextStyle(
                                   color: Color(0xFFCCCCCC),
@@ -1718,38 +1134,9 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(right: 20, top: 4),
-                    //width: 173,
-                    height: 24,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            //width: 129,
-                            child: Text(
-                          '채용 정보 더보기',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'Pretendard Variable',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )),
-                        const SizedBox(width: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(1.5),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            size: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 97,
+
+                  const SizedBox(
+                    height: 35,
                   ),
                 ],
               ),
@@ -1758,7 +1145,7 @@ class _MyAppState extends State<MyApp> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          fixedColor: Colors.black,
+          fixedColor: Color(0xFF196AFF),
           selectedFontSize: 10,
           unselectedFontSize: 10,
           currentIndex: _currentIndex,
@@ -1767,25 +1154,25 @@ class _MyAppState extends State<MyApp> {
               _currentIndex = index;
             });
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
               label: '홈',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
+              icon: Icon(Icons.sms_outlined),
               label: '커뮤니티',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.portrait),
+              icon: Icon(Icons.folder_outlined),
               label: '포트폴리오',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.work),
+              icon: Icon(Icons.group_outlined),
               label: '프로젝트',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.account_circle_outlined),
               label: '마이',
             ),
           ],
@@ -1794,35 +1181,13 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  List _widgetOptions = [
-    Text(
-      '홈',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-    Text(
-      '커뮤니티',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-    Text(
-      '포트폴리오',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-    Text(
-      '프로젝트',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-    Text(
-      '마이',
-      style: TextStyle(fontSize: 10, fontFamily: 'Pretendard Variable'),
-    ),
-  ];
   Widget _buildSelectedCategories() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         height: 40,
-        padding: EdgeInsets.symmetric(horizontal: 4),
-        margin: EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        margin: const EdgeInsets.only(bottom: 24),
         child: Wrap(
           spacing: 8.0,
           runSpacing: 8.0,
@@ -1832,7 +1197,7 @@ class _MyAppState extends State<MyApp> {
                   const EdgeInsets.only(top: 8, left: 8, right: 12, bottom: 8),
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(
+                  side: const BorderSide(
                     width: 1,
                     strokeAlign: BorderSide.strokeAlignCenter,
                     color: Color(0xFFE6E6E6),
@@ -1840,6 +1205,7 @@ class _MyAppState extends State<MyApp> {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -1852,19 +1218,19 @@ class _MyAppState extends State<MyApp> {
                     child: Container(
                         width: 24,
                         height: 24,
-                        decoration: ShapeDecoration(
+                        decoration: const ShapeDecoration(
                           color: Color(0xFFE6E6E6),
                           shape: OvalBorder(),
                         ),
-                        child:
-                            Icon(Icons.clear, color: Colors.black, size: 18.0)),
+                        child: const Icon(Icons.clear,
+                            color: Colors.black, size: 18.0)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Text(
                     category,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 14,
                       fontFamily: 'Pretendard Variable',
@@ -1873,8 +1239,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ],
-              ),
-              clipBehavior: Clip.antiAliasWithSaveLayer, // 추가된 부분
+              ), // 추가된 부분
             );
           }).toList(),
         ),
@@ -1900,7 +1265,8 @@ class MultiLevelDropdownWidget extends StatefulWidget {
   final List<String> selectedCategories;
   final Function(List<String>) onCategoriesChanged;
 
-  MultiLevelDropdownWidget({
+  const MultiLevelDropdownWidget({
+    super.key,
     required this.categories,
     required this.selectedCategories,
     required this.onCategoriesChanged,
@@ -1927,11 +1293,11 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 12),
+      margin: const EdgeInsets.only(top: 12),
       width: 320,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          side: BorderSide(
+          side: const BorderSide(
             width: 1,
             strokeAlign: BorderSide.strokeAlignCenter,
             color: Color(0xFFE6E6E6),
@@ -1956,14 +1322,14 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                       });
                     },
                     child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             category.name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 16,
                               fontFamily: 'Pretendard Variable',
@@ -1982,11 +1348,11 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                       ),
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   if (categoryExpansionMap[category.name] ?? false)
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16, horizontal: 14),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16, horizontal: 3),
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemCount: (category.subCategories.length / 2).ceil(),
@@ -1999,11 +1365,12 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                           );
                           return Row(
                             children: subCategories.map((subCategory) {
-                              final fullCategory = '${subCategory.name}';
+                              final fullCategory = subCategory.name;
                               final isSelected = widget.selectedCategories
                                   .contains(fullCategory);
                               return Container(
-                                width: 145,
+                                margin: EdgeInsets.only(top: 24),
+                                width: 146,
                                 child: Expanded(
                                   child: Row(
                                     children: [
@@ -2023,16 +1390,19 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                                           });
                                         },
                                         activeColor: isSelected
-                                            ? Color(0xFF0059FF)
-                                            : Color(0xFF0059FF),
-                                        side: BorderSide(
+                                            ? const Color(0xFF0059FF)
+                                            : const Color(0xFF0059FF),
+                                        side: const BorderSide(
                                             color: Color(0xFFE6E6E6)),
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                        visualDensity: VisualDensity.compact,
                                       ),
                                       InkWell(
                                         onTap: () {
                                           setState(() {
                                             String fullCategory =
-                                                '${subCategory.name}';
+                                                subCategory.name;
                                             if (widget.selectedCategories
                                                 .contains(fullCategory)) {
                                               widget.selectedCategories
@@ -2053,8 +1423,8 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                                             fontWeight: FontWeight.w600,
                                             height: 0.07,
                                             color: isSelected
-                                                ? Color(0xFF0059FF)
-                                                : Color(0xFF333333),
+                                                ? const Color(0xFF0059FF)
+                                                : const Color(0xFF333333),
                                           ),
                                         ),
                                       ),
@@ -2067,7 +1437,7 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                         },
                       ),
                     ),
-                  Divider(),
+                  const Divider(),
                 ],
               );
             }).toList(),
@@ -2084,7 +1454,7 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
               width: 320,
               height: 54,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              decoration: ShapeDecoration(
+              decoration: const ShapeDecoration(
                 color: Color(0xFF0059FF),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -2093,7 +1463,7 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                   ),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
