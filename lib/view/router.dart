@@ -2,6 +2,7 @@ import 'package:flutter_app/view/app_wrapper.dart';
 import 'package:flutter_app/view/pages/auth_pages/find_id_done_page.dart';
 import 'package:flutter_app/view/pages/auth_pages/find_pw_done_page.dart';
 import 'package:flutter_app/view/pages/community_pages/community_page.dart';
+import 'package:flutter_app/view/pages/community_pages/detail_pages/apply_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/club_detail_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/keyword_card_detail_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/recruit_detail_page.dart';
@@ -100,6 +101,12 @@ final router = GoRouter(initialLocation: '/splash', routes: [
             recruitId: state.pathParameters['recruitId'] ?? '',
           );
         },
+      ),
+      GoRoute(
+        path: 'apply/:recruitId',
+        builder: (context, state) => ApplyPage(
+          recruitId: state.pathParameters['recruitId'] ?? '',
+        ),
       ),
     ],
   ),
