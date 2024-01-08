@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/view/widgets/common_widgets/appbar_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_info_delete_account_content_widget.dart';

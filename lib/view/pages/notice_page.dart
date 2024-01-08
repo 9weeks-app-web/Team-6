@@ -43,6 +43,7 @@ class NoticePage extends StatelessWidget {
               labelColor: Colors.black, // 선택된 탭의 텍스트 색상
               unselectedLabelColor:
                   const Color(0xFFB3B3B3), // 선택되지 않은 탭의 텍스트 색상
+
             ),
           ),
           body: TabBarView(

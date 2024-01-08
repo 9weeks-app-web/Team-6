@@ -2,14 +2,19 @@ import 'package:equatable/equatable.dart';
 
 class MyPageState extends Equatable {
   final int page;
-  const MyPageState({this.page = 0});
+  final bool isOverlayVisible;
+  const MyPageState({this.page = 0, this.isOverlayVisible = false});
 
   MyPageState copyWith({
     int? page,
+    bool? isOverlayVisible,
   }) {
-    return MyPageState(page: page ?? this.page);
+    return MyPageState(
+      page: page ?? this.page,
+      isOverlayVisible: isOverlayVisible ?? this.isOverlayVisible,
+    );
   }
 
   @override
-  List<Object> get props => [page];
+  List<Object> get props => [page, isOverlayVisible];
 }

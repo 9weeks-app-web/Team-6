@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 
@@ -20,6 +19,7 @@ class CustomDropdownButton extends StatefulWidget {
 
 class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   OverlayEntry? _overlayEntry;
+  bool _isOverlayActive = false;
   final LayerLink _layerLink = LayerLink();
   static const double _dropdownWidth = 320;
   static const double _dropdownHeight = 48;
@@ -38,6 +38,9 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
     }
     _overlayEntry = _customDropdown();
     Overlay.of(context).insert(_overlayEntry!);
+    setState(() {
+      _isOverlayActive = true;
+    });
   }
 
   void _removeOverlay() {
@@ -45,6 +48,9 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
       _overlayEntry?.remove();
       _overlayEntry = null;
     }
+    setState(() {
+      _isOverlayActive = false;
+    });
   }
 
   OverlayEntry _customDropdown() {
@@ -55,7 +61,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           child: GestureDetector(
             onTap: _removeOverlay, // 배경 탭 시 드롭다운 메뉴 닫기
             child: Container(
-              color: Colors.black.withOpacity(0.5), // 반투명 배경
+              color: Colors.black.withOpacity(0), // 반투명 배경
             ),
           ),
         ),
@@ -69,11 +75,18 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
               child: Container(
                 height: (48.0 * widget.items.length),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
+                  borderRadius: _isOverlayActive
+                      ? const BorderRadius.only(
+                          bottomLeft: Radius.circular(8.0),
+                          bottomRight: Radius.circular(8.0),
+                        )
+                      : null,
+                  border: Border.all(color: DesignColor.Neutral.shade10),
+                  color: Colors.white.withOpacity(1),
                 ),
                 child: ListView.separated(
                   padding: EdgeInsets.zero,
-                  physics: const ClampingScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: widget.items.length,
                   itemBuilder: (context, index) {
                     return TextButton(
@@ -83,13 +96,16 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                         });
                         _removeOverlay();
                       },
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(widget.items.elementAt(index),
-                            style: DesignTextStyle(
-                                    color: DesignColor.Neutral,
-                                    style: DesignStyle.Body_SemiBold)
-                                .textStyle),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(widget.items.elementAt(index),
+                              style: DesignTextStyle(
+                                      color: DesignColor.Neutral,
+                                      style: DesignStyle.Body_SemiBold)
+                                  .textStyle),
+                        ),
                       ),
                     );
                   },
@@ -121,10 +137,14 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           height: _dropdownHeight,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
-              border: Border.all(
-                color: DesignColor.Neutral.shade10,
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(8.0))),
+            border: Border.all(color: DesignColor.Neutral.shade10),
+            borderRadius: _isOverlayActive
+                ? const BorderRadius.only(
+                    topLeft: Radius.circular(8.0),
+                    topRight: Radius.circular(8.0),
+                  )
+                : const BorderRadius.all(Radius.circular(8.0)),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

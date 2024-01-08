@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_app/view/widgets/header_widget.dart';
 import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Category {
@@ -17,7 +19,6 @@ class SubCategory {
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -62,7 +63,9 @@ class _MainPageState extends State<MainPage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+
           title: const HeaderWidget(),
+
         ),
         body: Container(
           child: SingleChildScrollView(
@@ -71,7 +74,7 @@ class _MainPageState extends State<MainPage> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 200.0,
+                    height: 200.0, // 이미지 높이 조절
                     child: PageView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: imagePaths.length,
@@ -267,16 +270,17 @@ class _MainPageState extends State<MainPage> {
                   const SizedBox(
                     height: 16,
                   ),
+
                   PortfolioCard(
                     index: 0,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
+
                   PortfolioCard(
                     index: 1,
                   ),
-
                   const SizedBox(
                     height: 70,
                   ),
@@ -330,6 +334,7 @@ class _MainPageState extends State<MainPage> {
                                     const EdgeInsets.only(top: 16, left: 24),
                                 child: const Text(
                                   '서비스 기획자',
+
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 18,
@@ -343,7 +348,9 @@ class _MainPageState extends State<MainPage> {
                                 margin:
                                     const EdgeInsets.only(left: 24, bottom: 20),
                                 child: const Text(
+
                                   '지금 112개의 채용공고가 올라왔어요!',
+
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 14,
@@ -443,6 +450,7 @@ class _MainPageState extends State<MainPage> {
                           height: 80,
                           decoration: const ShapeDecoration(
                             color: Color(0xFFDBEDDB),
+
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
@@ -459,6 +467,7 @@ class _MainPageState extends State<MainPage> {
                                     const EdgeInsets.only(top: 16, left: 24),
                                 child: const Text(
                                   '영상·모션그래픽',
+
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 18,
@@ -472,7 +481,9 @@ class _MainPageState extends State<MainPage> {
                                 margin:
                                     const EdgeInsets.only(left: 24, bottom: 20),
                                 child: const Text(
+
                                   '지금 18개의 채용공고가 올라왔어요!',
+
                                   style: TextStyle(
                                     color: Color(0xFF020202),
                                     fontSize: 14,
@@ -571,7 +582,9 @@ class _MainPageState extends State<MainPage> {
                           width: 320,
                           height: 80,
                           decoration: const ShapeDecoration(
+
                             color: Color(0xFFDBEDDB),
+
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
@@ -684,7 +697,6 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
-
                   const SizedBox(
                     height: 68,
                   ),
@@ -1134,7 +1146,6 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
-
                   const SizedBox(
                     height: 35,
                   ),

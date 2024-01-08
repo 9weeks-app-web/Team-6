@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/common_widgets/custom_drop_down_widget.dart';
@@ -120,7 +119,167 @@ class _MyInfoDeleteAccountContentWidgetState
                 shape: DesignButtonStyle.BorderStyle08,
               ),
               onPressed: () {
-                showToast(context, '탈퇴가 완료되었습니다!');
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      insetPadding: EdgeInsets.zero,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        height: 206,
+                        width: 320,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 24),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                '회원탈퇴',
+                                style: DesignTextStyle(
+                                        style: DesignStyle.SubTitle_Bold,
+                                        color: DesignColor.Primary)
+                                    .textStyle,
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                                '정말 탈퇴하시겠습니까?\n회원님의 정보가 삭제됩니다.',
+                                style: DesignTextStyle(
+                                        style: DesignStyle.Body,
+                                        color: DesignColor.Neutral.shade70)
+                                    .textStyle,
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(
+                                height: 28,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 120,
+                                    height: 46,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor:
+                                            DesignColor.Primary.shade10,
+                                        shape: DesignButtonStyle.BorderStyle04,
+                                      ),
+                                      onPressed: () {},
+                                      child: Text(
+                                        '아니오',
+                                        style: DesignTextStyle(
+                                                style: DesignStyle
+                                                    .Label_1_SemiBold,
+                                                color:
+                                                    DesignColor.Neutral.shade50)
+                                            .textStyle,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 16,
+                                  ),
+                                  SizedBox(
+                                    width: 120,
+                                    height: 46,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: DesignColor.Primary,
+                                        shape: DesignButtonStyle.BorderStyle04,
+                                      ),
+                                      onPressed: () {},
+                                      child: Text(
+                                        '탈퇴하기',
+                                        style: DesignTextStyle(
+                                                style: DesignStyle
+                                                    .Label_1_SemiBold,
+                                                color: Colors.white)
+                                            .textStyle,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                    // Dialog(
+                    //   shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(8.0)),
+                    //   child: const SizedBox(
+                    //     height: 200,
+                    //     width: 360, // 너비 조정
+                    //     child: AlertDialog(
+                    //       title: Text(
+                    //         '회원탈퇴',
+                    //         style: DesignTextStyle(
+                    //                 style: DesignStyle.SubTitle_Bold,
+                    //                 color: DesignColor.Primary)
+                    //             .textStyle,
+                    //       ),
+                    //       content: Text(
+                    //         '정말 탈퇴하시겠습니까?\n회원님의 정보가 삭제됩니다.',
+                    //         style: DesignTextStyle(
+                    //                 style: DesignStyle.Body,
+                    //                 color: DesignColor.Neutral.shade70)
+                    //             .textStyle,
+                    //       ),
+                    //       actions: [
+                    //         SizedBox(
+                    //           width: 120,
+                    //           height: 46,
+                    //           child: ElevatedButton(
+                    //             style: ElevatedButton.styleFrom(
+                    //               elevation: 0,
+                    //               backgroundColor: DesignColor.Primary.shade10,
+                    //               shape: DesignButtonStyle.BorderStyle04,
+                    //             ),
+                    //             onPressed: () {},
+                    //             child: Text(
+                    //               '아니오',
+                    //               style: DesignTextStyle(
+                    //                       style: DesignStyle.Label_1_SemiBold,
+                    //                       color: DesignColor.Neutral.shade50)
+                    //                   .textStyle,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         SizedBox(
+                    //           width: 120,
+                    //           height: 46,
+                    //           child: ElevatedButton(
+                    //             style: ElevatedButton.styleFrom(
+                    //               elevation: 0,
+                    //               backgroundColor: DesignColor.Primary,
+                    //               shape: DesignButtonStyle.BorderStyle04,
+                    //             ),
+                    //             onPressed: () {},
+                    //             child: Text(
+                    //               '탈퇴하기',
+                    //               style: DesignTextStyle(
+                    //                       style: DesignStyle.Label_1_SemiBold,
+                    //                       color: Colors.white)
+                    //                   .textStyle,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // );
+                  },
+                );
+
+                //showToast(context, '탈퇴가 완료되었습니다!');
               },
               child: Text(
                 '탈퇴하기',
