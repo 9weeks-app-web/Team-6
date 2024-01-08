@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/widgets/header_widget.dart';
 import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +12,7 @@ class PortfolioPage extends StatefulWidget {
 }
 
 class _PortfolioPageState extends State<PortfolioPage> {
-  bool _isPortfolioSelected = true;
+  final bool _isPortfolioSelected = true;
   bool showGridView = false;
   List<String> imageUrls = [
     'assets/images/portfolio/1.png',
@@ -47,1067 +48,1066 @@ class _PortfolioPageState extends State<PortfolioPage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Row(
+    return Scaffold(
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        title: const HeaderWidget(),
+      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   title: Row(
+      //     children: [
+      //       Container(
+      //         child: IconButton(
+      //           icon: SvgPicture.asset(
+      //             'assets/logo/sfac_logo.svg',
+      //             width: 77,
+      //             height: 20,
+      //             fit: BoxFit.contain,
+      //             // 원하는 높이 설정
+      //           ),
+      //           onPressed: () {
+      //             print('메인페이지로 이동');
+      //           },
+      //         ),
+      //       ),
+      //       Container(
+      //         child: GestureDetector(
+      //           onTap: () {
+      //             setState(() {
+      //               _isPortfolioSelected = !_isPortfolioSelected;
+      //             });
+      //           },
+      //           child: Container(
+      //               height: 26,
+      //               decoration: ShapeDecoration(
+      //                 color: const Color(0xFFF3F3F3),
+      //                 shape: RoundedRectangleBorder(
+      //                   borderRadius: BorderRadius.circular(14),
+      //                 ),
+      //               ),
+      //               child: Row(
+      //                 mainAxisSize: MainAxisSize.min,
+      //                 children: [
+      //                   Container(
+      //                     height: 26,
+      //                     padding: const EdgeInsets.symmetric(
+      //                       horizontal: 8,
+      //                     ),
+      //                     decoration: ShapeDecoration(
+      //                       color: _isPortfolioSelected
+      //                           ? const Color(0xFF337AFF)
+      //                           : const Color(0xFFE5EEFF),
+      //                       shape: RoundedRectangleBorder(
+      //                         borderRadius: BorderRadius.circular(14),
+      //                       ),
+      //                     ),
+      //                     child: Center(
+      //                       child: Text(
+      //                         '폴리오',
+      //                         style: TextStyle(
+      //                           color: _isPortfolioSelected
+      //                               ? Colors.white
+      //                               : const Color(0xFFB3B3B3),
+      //                           fontSize: 14,
+      //                           fontFamily: 'Pretendard Variable',
+      //                           fontWeight: FontWeight.w600,
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   ),
+      //                   Container(
+      //                     height: 26,
+      //                     padding: const EdgeInsets.symmetric(
+      //                       horizontal: 8,
+      //                     ),
+      //                     decoration: ShapeDecoration(
+      //                       color: !_isPortfolioSelected
+      //                           ? const Color(0xFF337AFF)
+      //                           : const Color(0xFFE5EEFF),
+      //                       shape: RoundedRectangleBorder(
+      //                         borderRadius: BorderRadius.circular(14),
+      //                       ),
+      //                     ),
+      //                     child: Center(
+      //                       child: Text(
+      //                         '로그',
+      //                         style: TextStyle(
+      //                           color: _isPortfolioSelected
+      //                               ? const Color(0xFFB3B3B3)
+      //                               : Colors.white,
+      //                           fontSize: 14,
+      //                           fontFamily: 'Pretendard Variable',
+      //                           fontWeight: FontWeight.w600,
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   ),
+      //                 ],
+      //               )),
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.notifications_none),
+      //       onPressed: () {
+      //         // Navigator.push(
+      //         //   context,
+      //         //   MaterialPageRoute(builder: (context) => NoticePage()),
+      //         // );
+      //       },
+      //     ),
+      //   ],
+      // ),
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: Column(
             children: [
               Container(
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                    'assets/logo/sfac_logo.svg',
-                    width: 77,
-                    height: 20,
-                    fit: BoxFit.contain,
-                    // 원하는 높이 설정
+                alignment: Alignment.topLeft,
+                margin: const EdgeInsets.only(top: 4, bottom: 12, left: 20),
+                child: const Text(
+                  '스팩폴리오',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontFamily: 'Pretendard Variable',
+                    fontWeight: FontWeight.w700,
                   ),
-                  onPressed: () {
-                    print('메인페이지로 이동');
-                  },
                 ),
               ),
               Container(
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isPortfolioSelected = !_isPortfolioSelected;
-                    });
-                  },
-                  child: Container(
-                      height: 26,
+                width: 320,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(22),
+                  border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
+                ),
+                child: const TextField(
+                  decoration: InputDecoration(
+                    hintText: '궁금한 포트폴리오 분야를 검색해주세요',
+                    hintStyle: TextStyle(
+                      color: Color(0xFFCCCCCC),
+                      fontSize: 12,
+                      fontFamily: 'Pretendard Variable',
+                      fontWeight: FontWeight.w400,
+                    ),
+                    border: InputBorder.none,
+                    suffixIcon: Icon(Icons.search),
+                    contentPadding:
+                        EdgeInsets.only(left: 12, top: 14, bottom: 14),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 6, bottom: 18, left: 20),
+                height: 40,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Container(
+                      height: 40,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 8),
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFF3F3F3)),
+                          borderRadius: BorderRadius.circular(24),
                         ),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            height: 26,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                            ),
-                            decoration: ShapeDecoration(
-                              color: _isPortfolioSelected
-                                  ? Color(0xFF337AFF)
-                                  : Color(0xFFE5EEFF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '폴리오',
-                                style: TextStyle(
-                                  color: _isPortfolioSelected
-                                      ? Colors.white
-                                      : Color(0xFFB3B3B3),
-                                  fontSize: 14,
-                                  fontFamily: 'Pretendard Variable',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                            width: 24,
+                            height: 24,
+                            decoration: const ShapeDecoration(
+                              color: Color(0xFFE6E6E6),
+                              shape: OvalBorder(),
                             ),
                           ),
-                          Container(
-                            height: 26,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                            ),
-                            decoration: ShapeDecoration(
-                              color: !_isPortfolioSelected
-                                  ? Color(0xFF337AFF)
-                                  : Color(0xFFE5EEFF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '로그',
-                                style: TextStyle(
-                                  color: _isPortfolioSelected
-                                      ? Color(0xFFB3B3B3)
-                                      : Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Pretendard Variable',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            '직군/분야',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Pretendard Variable',
+                              fontWeight: FontWeight.w700,
+                              height: 0.12,
                             ),
                           ),
                         ],
-                      )),
+                      ),
+                    ),
+                    Container(
+                      height: 40,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 8),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFF3F3F3)),
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 24,
+                            height: 24,
+                            decoration: const ShapeDecoration(
+                              color: Color(0xFFE6E6E6),
+                              shape: OvalBorder(),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            '직군/분야',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Pretendard Variable',
+                              fontWeight: FontWeight.w700,
+                              height: 0.12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 40,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 8),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFF3F3F3)),
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 24,
+                            height: 24,
+                            decoration: const ShapeDecoration(
+                              color: Color(0xFFE6E6E6),
+                              shape: OvalBorder(),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            '직군/분야',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Pretendard Variable',
+                              fontWeight: FontWeight.w700,
+                              height: 0.12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 40,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 8),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFF3F3F3)),
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 24,
+                            height: 24,
+                            decoration: const ShapeDecoration(
+                              color: Color(0xFFE6E6E6),
+                              shape: OvalBorder(),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            '직군/분야',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Pretendard Variable',
+                              fontWeight: FontWeight.w700,
+                              height: 0.12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.notifications_none),
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => NoticePage()),
-                // );
-              },
-            ),
-          ],
-        ),
-        body: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            color: Colors.white,
-            child: Column(
-              children: [
-                Container(
-                  alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(top: 4, bottom: 12, left: 20),
-                  child: Text(
-                    '스팩폴리오',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: 'Pretendard Variable',
-                      fontWeight: FontWeight.w700,
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.only(bottom: 18),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: const Row(
+                        children: [
+                          Text("스팩폴리오 픽"),
+                          Icon(Icons.expand_more),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                Container(
-                  width: 320,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(22),
-                    border: Border.all(width: 1, color: Color(0xFFCCCCCC)),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: '궁금한 포트폴리오 분야를 검색해주세요',
-                      hintStyle: TextStyle(
-                        color: Color(0xFFCCCCCC),
-                        fontSize: 12,
-                        fontFamily: 'Pretendard Variable',
-                        fontWeight: FontWeight.w400,
+                    Container(
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.grid_view),
+                            onPressed: () {
+                              setState(() {
+                                showGridView = true;
+                              });
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.splitscreen),
+                            onPressed: () {
+                              setState(() {
+                                showGridView = false;
+                              });
+                            },
+                          ),
+                        ],
                       ),
-                      border: InputBorder.none,
-                      suffixIcon: Icon(Icons.search),
-                      contentPadding:
-                          EdgeInsets.only(left: 12, top: 14, bottom: 14),
                     ),
-                  ),
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 6, bottom: 18, left: 20),
-                  height: 40,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Container(
-                        height: 40,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 8),
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side:
-                                BorderSide(width: 1, color: Color(0xFFF3F3F3)),
-                            borderRadius: BorderRadius.circular(24),
-                          ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: showGridView
+                    ? GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 20,
+                          childAspectRatio: 155 / 235.5,
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 24,
-                              height: 24,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFE6E6E6),
-                                shape: OvalBorder(),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              '직군/분야',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily: 'Pretendard Variable',
-                                fontWeight: FontWeight.w700,
-                                height: 0.12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 40,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 8),
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side:
-                                BorderSide(width: 1, color: Color(0xFFF3F3F3)),
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 24,
-                              height: 24,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFE6E6E6),
-                                shape: OvalBorder(),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              '직군/분야',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily: 'Pretendard Variable',
-                                fontWeight: FontWeight.w700,
-                                height: 0.12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 40,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 8),
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side:
-                                BorderSide(width: 1, color: Color(0xFFF3F3F3)),
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 24,
-                              height: 24,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFE6E6E6),
-                                shape: OvalBorder(),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              '직군/분야',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily: 'Pretendard Variable',
-                                fontWeight: FontWeight.w700,
-                                height: 0.12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 40,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 8),
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side:
-                                BorderSide(width: 1, color: Color(0xFFF3F3F3)),
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 24,
-                              height: 24,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFE6E6E6),
-                                shape: OvalBorder(),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              '직군/분야',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily: 'Pretendard Variable',
-                                fontWeight: FontWeight.w700,
-                                height: 0.12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  margin: EdgeInsets.only(bottom: 18),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            Text("스팩폴리오 픽"),
-                            Icon(Icons.expand_more),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: Row(
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.grid_view),
-                              onPressed: () {
-                                setState(() {
-                                  showGridView = true;
-                                });
-                              },
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.splitscreen),
-                              onPressed: () {
-                                setState(() {
-                                  showGridView = false;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: showGridView
-                      ? GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 20,
-                            childAspectRatio: 155 / 235.5,
-                          ),
-                          itemCount: 4,
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: 155,
-                                    height: 155,
-                                    margin: EdgeInsets.only(bottom: 8),
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFFE6E6E6),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(6)),
-                                      image: DecorationImage(
-                                        image: AssetImage(imageUrls[index]),
-                                        fit: BoxFit.cover,
-                                      ),
+                        itemCount: 4,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 155,
+                                  height: 155,
+                                  margin: const EdgeInsets.only(bottom: 8),
+                                  decoration: ShapeDecoration(
+                                    color: const Color(0xFFE6E6E6),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6)),
+                                    image: DecorationImage(
+                                      image: AssetImage(imageUrls[index]),
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Container(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      'Project',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  child: const Text(
+                                    'Project',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontFamily: 'Pretendard Variable',
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        width: 72.33,
-                                        height: 20,
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    width: 20,
-                                                    height: 20,
-                                                    child: Stack(
-                                                      children: [
-                                                        Positioned(
-                                                          left: 0,
-                                                          top: 0,
-                                                          child: Container(
-                                                            width: 20,
-                                                            height: 20,
-                                                            decoration:
-                                                                ShapeDecoration(
-                                                              color: Color(
-                                                                  0xFFCCCCCC),
-                                                              shape:
-                                                                  OvalBorder(),
-                                                            ),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: 72.33,
+                                      height: 20,
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            child: Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 20,
+                                                  height: 20,
+                                                  child: Stack(
+                                                    children: [
+                                                      Positioned(
+                                                        left: 0,
+                                                        top: 0,
+                                                        child: Container(
+                                                          width: 20,
+                                                          height: 20,
+                                                          decoration:
+                                                              const ShapeDecoration(
+                                                            color: Color(
+                                                                0xFFCCCCCC),
+                                                            shape: OvalBorder(),
                                                           ),
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  const SizedBox(width: 4),
-                                                  Text(
-                                                    'Name',
-                                                    style: TextStyle(
-                                                      color: Colors.black
-                                                          .withOpacity(
-                                                              0.20000000298023224),
-                                                      fontSize: 12,
-                                                      fontFamily:
-                                                          'Pretendard Variable',
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      height: 0.11,
-                                                    ),
+                                                ),
+                                                const SizedBox(width: 4),
+                                                Text(
+                                                  'Name',
+                                                  style: TextStyle(
+                                                    color: Colors.black
+                                                        .withOpacity(
+                                                            0.20000000298023224),
+                                                    fontSize: 12,
+                                                    fontFamily:
+                                                        'Pretendard Variable',
+                                                    fontWeight: FontWeight.w700,
+                                                    height: 0.11,
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      Container(
-                                        color: Colors.black,
-                                        width: 33.1,
-                                        height: 20,
+                                    ),
+                                    Container(
+                                      color: Colors.black,
+                                      width: 33.1,
+                                      height: 20,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 5.5,
+                                ),
+                                const Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: Icon(
+                                        Icons.visibility_outlined,
+                                        color: Color(0xFF808080),
                                       ),
-                                    ],
+                                    ),
+                                    Text(
+                                      "918",
+                                      style: TextStyle(
+                                        color: Color(0xFF7F7F7F),
+                                        fontSize: 12,
+                                        fontFamily: 'Pretendard Variable',
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 4,
+                                    ),
+                                    SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: Icon(
+                                        Icons.favorite_outline,
+                                        color: Color(0xFF808080),
+                                      ),
+                                    ),
+                                    Text(
+                                      "918",
+                                      style: TextStyle(
+                                        color: Color(0xFF7F7F7F),
+                                        fontSize: 12,
+                                        fontFamily: 'Pretendard Variable',
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      )
+                    : const Column(
+                        children: [
+                          PortfolioCard(
+                            index: 0,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          PortfolioCard(
+                            index: 1,
+                          ),
+                        ],
+                      ),
+              ),
+              Container(
+                width: 360,
+                height: 200,
+                margin: const EdgeInsets.only(top: 30, bottom: 25),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/main/main3.png'),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              Container(
+                width: 320,
+                height: 46,
+                decoration: const BoxDecoration(color: Colors.white),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '채용 정보도 스팩폴리오에서!',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontFamily: 'Pretendard Variable',
+                        fontWeight: FontWeight.w700,
+                        height: 0.07,
+                      ),
+                    ),
+                    Icon(Icons.arrow_forward_ios),
+                  ],
+                ),
+              ),
+              Container(
+                height: 238,
+                color: Colors.black,
+                padding: const EdgeInsets.only(top: 16, left: 20, right: 20),
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const ClampingScrollPhysics(),
+                  children: [
+                    Container(
+                      width: 200,
+                      margin: const EdgeInsets.only(right: 20),
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 200,
+                            height: 150,
+                            decoration: ShapeDecoration(
+                              color: const Color(0xFFD9D9D9),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6)),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 32,
+                                height: 32,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(3)),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "직군 채용",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'Pretendard Variable',
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                   SizedBox(
-                                    height: 5.5,
+                                    height: 3,
                                   ),
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 24,
-                                        height: 24,
-                                        child: Icon(
-                                          Icons.visibility_outlined,
-                                          color: Color(0xFF808080),
+                                  Text(
+                                    '회사명',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontFamily: 'Pretendard Variable',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 16),
+                            width: 200,
+                            height: 150,
+                            decoration: ShapeDecoration(
+                              color: const Color(0xFFD9D9D9),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6)),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 32,
+                                height: 32,
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFD9D9D9),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(3)),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "직군 채용",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'Pretendard Variable',
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 3,
+                                  ),
+                                  Text(
+                                    '회사명',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontFamily: 'Pretendard Variable',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 30, bottom: 42),
+                child: showGridView
+                    ? GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 20,
+                          childAspectRatio: 155 / 235.5,
+                        ),
+                        itemCount: 4,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              Container(
+                                width: 155,
+                                height: 155,
+                                margin: const EdgeInsets.only(bottom: 8),
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFE6E6E6),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  image: DecorationImage(
+                                    image: AssetImage(imageUrls[index + 4]),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                child: const Text(
+                                  'Project',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: 72.33,
+                                    height: 20,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 20,
+                                                height: 20,
+                                                child: Stack(
+                                                  children: [
+                                                    Positioned(
+                                                      left: 0,
+                                                      top: 0,
+                                                      child: Container(
+                                                        width: 20,
+                                                        height: 20,
+                                                        decoration:
+                                                            const ShapeDecoration(
+                                                          color:
+                                                              Color(0xFFCCCCCC),
+                                                          shape: OvalBorder(),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(width: 4),
+                                              Text(
+                                                'Name',
+                                                style: TextStyle(
+                                                  color: Colors.black
+                                                      .withOpacity(
+                                                          0.20000000298023224),
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      'Pretendard Variable',
+                                                  fontWeight: FontWeight.w700,
+                                                  height: 0.11,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "918",
-                                        style: TextStyle(
-                                          color: Color(0xFF7F7F7F),
-                                          fontSize: 12,
-                                          fontFamily: 'Pretendard Variable',
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      SizedBox(
-                                        width: 24,
-                                        height: 24,
-                                        child: Icon(
-                                          Icons.favorite_outline,
-                                          color: Color(0xFF808080),
-                                        ),
-                                      ),
-                                      Text(
-                                        "918",
-                                        style: TextStyle(
-                                          color: Color(0xFF7F7F7F),
-                                          fontSize: 12,
-                                          fontFamily: 'Pretendard Variable',
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    color: Colors.black,
+                                    width: 33.1,
+                                    height: 20,
                                   ),
                                 ],
                               ),
-                            );
-                          },
-                        )
-                      : Column(
-                          children: [
-                            PortfolioCard(
-                              index: 0,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            PortfolioCard(
-                              index: 1,
-                            ),
-                          ],
-                        ),
-                ),
-                Container(
-                  width: 360,
-                  height: 200,
-                  margin: EdgeInsets.only(top: 30, bottom: 25),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/main/main3.png'),
-                      fit: BoxFit.fill,
+                              const SizedBox(
+                                height: 5.5,
+                              ),
+                              const Row(
+                                children: [
+                                  SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: Icon(
+                                      Icons.visibility_outlined,
+                                      color: Color(0xFF808080),
+                                    ),
+                                  ),
+                                  Text(
+                                    "918",
+                                    style: TextStyle(
+                                      color: Color(0xFF7F7F7F),
+                                      fontSize: 12,
+                                      fontFamily: 'Pretendard Variable',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: Icon(
+                                      Icons.favorite_outline,
+                                      color: Color(0xFF808080),
+                                    ),
+                                  ),
+                                  Text(
+                                    "918",
+                                    style: TextStyle(
+                                      color: Color(0xFF7F7F7F),
+                                      fontSize: 12,
+                                      fontFamily: 'Pretendard Variable',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      )
+                    : const Column(
+                        children: [
+                          PortfolioCard(
+                            index: 14,
+                          ),
+                        ],
+                      ),
+              ),
+              Container(
+                width: 320,
+                height: 46,
+                decoration: const BoxDecoration(color: Colors.white),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '채용 정보도 스팩폴리오에서!',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontFamily: 'Pretendard Variable',
+                        fontWeight: FontWeight.w700,
+                        height: 0.07,
+                      ),
                     ),
-                  ),
+                    Icon(Icons.arrow_forward_ios),
+                  ],
                 ),
-                Container(
-                  width: 320,
-                  height: 46,
-                  decoration: BoxDecoration(color: Colors.white),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '채용 정보도 스팩폴리오에서!',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Pretendard Variable',
-                          fontWeight: FontWeight.w700,
-                          height: 0.07,
+              ),
+              Container(
+                padding: const EdgeInsets.only(bottom: 29, left: 20, right: 20),
+                height: 210,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const ClampingScrollPhysics(),
+                  children: const [
+                    HotMaker(),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    HotMaker(),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    HotMaker(),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 30, bottom: 42),
+                child: showGridView
+                    ? GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 20,
+                          childAspectRatio: 155 / 235.5,
                         ),
-                      ),
-                      Icon(Icons.arrow_forward_ios),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 238,
-                  color: Colors.black,
-                  padding: EdgeInsets.only(top: 16, left: 20, right: 20),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    physics: ClampingScrollPhysics(),
-                    children: [
-                      Container(
-                        width: 200,
-                        margin: EdgeInsets.only(right: 20),
-                        child: Column(
-                          children: [
-                            Container(
-                              width: 200,
-                              height: 150,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFD9D9D9),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6)),
+                        itemCount: 4,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              Container(
+                                width: 155,
+                                height: 155,
+                                margin: const EdgeInsets.only(bottom: 8),
+                                decoration: ShapeDecoration(
+                                  color: const Color(0xFFE6E6E6),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  image: DecorationImage(
+                                    image: AssetImage(imageUrls[index + 4]),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 16),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFD9D9D9),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(3)),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                child: const Text(
+                                  'Project',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "직군 채용",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      '회사명',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 200,
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 16),
-                              width: 200,
-                              height: 150,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFD9D9D9),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6)),
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFD9D9D9),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(3)),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "직군 채용",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      '회사명',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding:
-                      EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 42),
-                  child: showGridView
-                      ? GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 20,
-                            childAspectRatio: 155 / 235.5,
-                          ),
-                          itemCount: 4,
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  width: 155,
-                                  height: 155,
-                                  margin: EdgeInsets.only(bottom: 8),
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFE6E6E6),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    image: DecorationImage(
-                                      image: AssetImage(imageUrls[index + 4]),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'Project',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: 72.33,
-                                      height: 20,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                  width: 20,
-                                                  height: 20,
-                                                  child: Stack(
-                                                    children: [
-                                                      Positioned(
-                                                        left: 0,
-                                                        top: 0,
-                                                        child: Container(
-                                                          width: 20,
-                                                          height: 20,
-                                                          decoration:
-                                                              ShapeDecoration(
-                                                            color: Color(
-                                                                0xFFCCCCCC),
-                                                            shape: OvalBorder(),
-                                                          ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: 72.33,
+                                    height: 20,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 20,
+                                                height: 20,
+                                                child: Stack(
+                                                  children: [
+                                                    Positioned(
+                                                      left: 0,
+                                                      top: 0,
+                                                      child: Container(
+                                                        width: 20,
+                                                        height: 20,
+                                                        decoration:
+                                                            const ShapeDecoration(
+                                                          color:
+                                                              Color(0xFFCCCCCC),
+                                                          shape: OvalBorder(),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                const SizedBox(width: 4),
-                                                Text(
-                                                  'Name',
-                                                  style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(
-                                                            0.20000000298023224),
-                                                    fontSize: 12,
-                                                    fontFamily:
-                                                        'Pretendard Variable',
-                                                    fontWeight: FontWeight.w700,
-                                                    height: 0.11,
-                                                  ),
+                                              ),
+                                              const SizedBox(width: 4),
+                                              Text(
+                                                'Name',
+                                                style: TextStyle(
+                                                  color: Colors.black
+                                                      .withOpacity(
+                                                          0.20000000298023224),
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      'Pretendard Variable',
+                                                  fontWeight: FontWeight.w700,
+                                                  height: 0.11,
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      color: Colors.black,
-                                      width: 33.1,
-                                      height: 20,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 5.5,
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 24,
-                                      height: 24,
-                                      child: Icon(
-                                        Icons.visibility_outlined,
-                                        color: Color(0xFF808080),
-                                      ),
-                                    ),
-                                    Text(
-                                      "918",
-                                      style: TextStyle(
-                                        color: Color(0xFF7F7F7F),
-                                        fontSize: 12,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    SizedBox(
-                                      width: 24,
-                                      height: 24,
-                                      child: Icon(
-                                        Icons.favorite_outline,
-                                        color: Color(0xFF808080),
-                                      ),
-                                    ),
-                                    Text(
-                                      "918",
-                                      style: TextStyle(
-                                        color: Color(0xFF7F7F7F),
-                                        fontSize: 12,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
-                          },
-                        )
-                      : Column(
-                          children: [
-                            PortfolioCard(
-                              index: 14,
-                            ),
-                          ],
-                        ),
-                ),
-                Container(
-                  width: 320,
-                  height: 46,
-                  decoration: BoxDecoration(color: Colors.white),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '채용 정보도 스팩폴리오에서!',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Pretendard Variable',
-                          fontWeight: FontWeight.w700,
-                          height: 0.07,
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 29, left: 20, right: 20),
-                  height: 210,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    physics: ClampingScrollPhysics(),
-                    children: [
-                      HotMaker(),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      HotMaker(),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      HotMaker(),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding:
-                      EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 42),
-                  child: showGridView
-                      ? GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 20,
-                            childAspectRatio: 155 / 235.5,
-                          ),
-                          itemCount: 4,
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  width: 155,
-                                  height: 155,
-                                  margin: EdgeInsets.only(bottom: 8),
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFE6E6E6),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    image: DecorationImage(
-                                      image: AssetImage(imageUrls[index + 4]),
-                                      fit: BoxFit.cover,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'Project',
+                                  Container(
+                                    color: Colors.black,
+                                    width: 33.1,
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 5.5,
+                              ),
+                              const Row(
+                                children: [
+                                  SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: Icon(
+                                      Icons.visibility_outlined,
+                                      color: Color(0xFF808080),
+                                    ),
+                                  ),
+                                  Text(
+                                    "918",
                                     style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
+                                      color: Color(0xFF7F7F7F),
+                                      fontSize: 12,
                                       fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: 72.33,
-                                      height: 20,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                  width: 20,
-                                                  height: 20,
-                                                  child: Stack(
-                                                    children: [
-                                                      Positioned(
-                                                        left: 0,
-                                                        top: 0,
-                                                        child: Container(
-                                                          width: 20,
-                                                          height: 20,
-                                                          decoration:
-                                                              ShapeDecoration(
-                                                            color: Color(
-                                                                0xFFCCCCCC),
-                                                            shape: OvalBorder(),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 4),
-                                                Text(
-                                                  'Name',
-                                                  style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(
-                                                            0.20000000298023224),
-                                                    fontSize: 12,
-                                                    fontFamily:
-                                                        'Pretendard Variable',
-                                                    fontWeight: FontWeight.w700,
-                                                    height: 0.11,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: Icon(
+                                      Icons.favorite_outline,
+                                      color: Color(0xFF808080),
                                     ),
-                                    Container(
-                                      color: Colors.black,
-                                      width: 33.1,
-                                      height: 20,
+                                  ),
+                                  Text(
+                                    "918",
+                                    style: TextStyle(
+                                      color: Color(0xFF7F7F7F),
+                                      fontSize: 12,
+                                      fontFamily: 'Pretendard Variable',
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 5.5,
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 24,
-                                      height: 24,
-                                      child: Icon(
-                                        Icons.visibility_outlined,
-                                        color: Color(0xFF808080),
-                                      ),
-                                    ),
-                                    Text(
-                                      "918",
-                                      style: TextStyle(
-                                        color: Color(0xFF7F7F7F),
-                                        fontSize: 12,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    SizedBox(
-                                      width: 24,
-                                      height: 24,
-                                      child: Icon(
-                                        Icons.favorite_outline,
-                                        color: Color(0xFF808080),
-                                      ),
-                                    ),
-                                    Text(
-                                      "918",
-                                      style: TextStyle(
-                                        color: Color(0xFF7F7F7F),
-                                        fontSize: 12,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
-                          },
-                        )
-                      : Column(
-                          children: [
-                            PortfolioCard(
-                              index: 3,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            PortfolioCard(
-                              index: 16,
-                            ),
-                          ],
-                        ),
-                ),
-              ],
-            ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      )
+                    : const Column(
+                        children: [
+                          PortfolioCard(
+                            index: 3,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          PortfolioCard(
+                            index: 16,
+                          ),
+                        ],
+                      ),
+              ),
+            ],
           ),
         ),
       ),
@@ -1126,7 +1126,7 @@ class HotMaker extends StatelessWidget {
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color(0xFFF3F3F3)),
+          side: const BorderSide(width: 1, color: Color(0xFFF3F3F3)),
           borderRadius: BorderRadius.circular(6),
         ),
       ),
@@ -1137,15 +1137,15 @@ class HotMaker extends StatelessWidget {
               Container(
                 width: 40,
                 height: 40,
-                decoration: ShapeDecoration(
+                decoration: const ShapeDecoration(
                   color: Color(0xFFD9D9D9),
                   shape: OvalBorder(),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -1173,7 +1173,7 @@ class HotMaker extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -1183,31 +1183,31 @@ class HotMaker extends StatelessWidget {
                 width: 68,
                 height: 68,
                 decoration: ShapeDecoration(
-                  color: Color(0xFFE6E6E6),
+                  color: const Color(0xFFE6E6E6),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4)),
                 ),
-                child: Icon(Icons.image_rounded),
+                child: const Icon(Icons.image_rounded),
               ),
               Container(
                 width: 68,
                 height: 68,
                 decoration: ShapeDecoration(
-                  color: Color(0xFFE6E6E6),
+                  color: const Color(0xFFE6E6E6),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4)),
                 ),
-                child: Icon(Icons.image_rounded),
+                child: const Icon(Icons.image_rounded),
               ),
               Container(
                 width: 68,
                 height: 68,
                 decoration: ShapeDecoration(
-                  color: Color(0xFFE6E6E6),
+                  color: const Color(0xFFE6E6E6),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4)),
                 ),
-                child: Icon(Icons.image_rounded),
+                child: const Icon(Icons.image_rounded),
               ),
             ],
           ),

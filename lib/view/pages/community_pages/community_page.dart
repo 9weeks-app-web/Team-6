@@ -11,18 +11,22 @@ class CommunityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const HeaderWidget(),
+      ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(
-                left: 20,
-                right: 20,
-                top: 10,
-              ),
-              child: HeaderWidget(),
-            ),
+            // const Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     top: 10,
+            //   ),
+            //   child: HeaderWidget(),
+            // ),
             const SizedBox(height: 18),
             Column(
               mainAxisSize: MainAxisSize.min,
