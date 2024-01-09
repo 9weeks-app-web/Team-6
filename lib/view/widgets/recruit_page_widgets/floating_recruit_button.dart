@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/rich_text_with_divider_widget.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/shadows.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/squire_icon_button.dart';
 import 'package:go_router/go_router.dart';
 
 class FloatingRecruitButton extends StatelessWidget {
@@ -14,6 +15,12 @@ class FloatingRecruitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    onTap() {
+      context.push('/community/apply/${recruitInfo['id']}');
+    }
+
+    String text = '입사지원';
+
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -43,24 +50,7 @@ class FloatingRecruitButton extends StatelessWidget {
             const SizedBox(height: 15),
             Row(
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: DesignColor.Neutral.shade20,
-                      ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Icon(
-                        Icons.star_border,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
+                const SquireIconButton(icon: Icons.star_border),
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
@@ -69,15 +59,13 @@ class FloatingRecruitButton extends StatelessWidget {
                         DesignColor.Primary,
                       ),
                     ),
-                    onPressed: () {
-                      context.push('/community/apply/${recruitInfo['id']}');
-                    },
+                    onPressed: () {},
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 16,
                       ),
                       child: Text(
-                        '입사지원',
+                        text,
                         style: DesignTextStyle.Label_1_SemiBold,
                       ),
                     ),

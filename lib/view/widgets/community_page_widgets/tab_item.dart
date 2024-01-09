@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+enum Filtering {
+  region,
+  job,
+  fields,
+  experience,
+  skill,
+}
+
 enum Community {
   all,
   growth,
@@ -7,8 +15,8 @@ enum Community {
   recruit,
 }
 
-class TabItem {
-  final Community type;
+class TabItem<T> {
+  final T type;
   final String label;
   final Widget content;
 

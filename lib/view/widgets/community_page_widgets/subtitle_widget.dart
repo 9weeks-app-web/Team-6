@@ -6,9 +6,11 @@ class SubTitleWidget extends StatelessWidget {
     super.key,
     required this.label,
     this.padding,
+    this.textStyle,
   });
   final String label;
   final EdgeInsets? padding;
+  final DesignStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class SubTitleWidget extends StatelessWidget {
       child: Text(
         label,
         style: DesignTextStyle(
-          style: DesignStyle.SubTitle_SemiBold,
+          style: textStyle ?? DesignStyle.SubTitle_SemiBold,
         ).textStyle,
       ),
     );
