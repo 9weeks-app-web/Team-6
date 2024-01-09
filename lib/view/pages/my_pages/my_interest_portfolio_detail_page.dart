@@ -79,9 +79,11 @@ class MyInterestPortfolioDetailPage extends ConsumerWidget {
               ),
               elevation: 0, // 그림자 제거
             ),
-            child: const Text(
+            child: Text(
               '비슷한 포트폴리오 더 보러 가기',
-              style: TextStyle(fontSize: 16),
+              style: DesignTextStyle(
+                      color: Colors.white, style: DesignStyle.Label_1_SemiBold)
+                  .textStyle,
             ),
           ),
         ),
