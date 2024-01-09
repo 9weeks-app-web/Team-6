@@ -415,147 +415,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 20,
-                          childAspectRatio: 155 / 235.5,
+                          childAspectRatio: 155 / 247,
                         ),
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                            child: Column(
-                              children: [
-                                Container(
-                                  width: 155,
-                                  height: 155,
-                                  margin: const EdgeInsets.only(bottom: 8),
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFFE6E6E6),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(6)),
-                                    image: DecorationImage(
-                                      image: AssetImage(imageUrls[index]),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  child: const Text(
-                                    'Project',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      width: 72.33,
-                                      height: 20,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            child: Row(
-                                              children: [
-                                                SizedBox(
-                                                  width: 20,
-                                                  height: 20,
-                                                  child: Stack(
-                                                    children: [
-                                                      Positioned(
-                                                        left: 0,
-                                                        top: 0,
-                                                        child: Container(
-                                                          width: 20,
-                                                          height: 20,
-                                                          decoration:
-                                                              const ShapeDecoration(
-                                                            color: Color(
-                                                                0xFFCCCCCC),
-                                                            shape: OvalBorder(),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 4),
-                                                Text(
-                                                  'Name',
-                                                  style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(
-                                                            0.20000000298023224),
-                                                    fontSize: 12,
-                                                    fontFamily:
-                                                        'Pretendard Variable',
-                                                    fontWeight: FontWeight.w700,
-                                                    height: 0.11,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      color: Colors.black,
-                                      width: 33.1,
-                                      height: 20,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 5.5,
-                                ),
-                                const Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 24,
-                                      height: 24,
-                                      child: Icon(
-                                        Icons.visibility_outlined,
-                                        color: Color(0xFF808080),
-                                      ),
-                                    ),
-                                    Text(
-                                      "918",
-                                      style: TextStyle(
-                                        color: Color(0xFF7F7F7F),
-                                        fontSize: 12,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    SizedBox(
-                                      width: 24,
-                                      height: 24,
-                                      child: Icon(
-                                        Icons.favorite_outline,
-                                        color: Color(0xFF808080),
-                                      ),
-                                    ),
-                                    Text(
-                                      "918",
-                                      style: TextStyle(
-                                        color: Color(0xFF7F7F7F),
-                                        fontSize: 12,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                          return PortfolioCard(
+                            index: index,
+                            width: CardWidth.w155,
                           );
                         },
                       )
@@ -563,12 +430,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
                         children: [
                           PortfolioCard(
                             index: 0,
+                            width: CardWidth.wMax,
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           PortfolioCard(
                             index: 1,
+                            width: CardWidth.wMax,
                           ),
                         ],
                       ),
@@ -748,146 +617,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 20,
-                          childAspectRatio: 155 / 235.5,
+                          childAspectRatio: 155 / 247,
                         ),
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              Container(
-                                width: 155,
-                                height: 155,
-                                margin: const EdgeInsets.only(bottom: 8),
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFE6E6E6),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                  image: DecorationImage(
-                                    image: AssetImage(imageUrls[index + 4]),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.topLeft,
-                                child: const Text(
-                                  'Project',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: 72.33,
-                                    height: 20,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 20,
-                                                height: 20,
-                                                child: Stack(
-                                                  children: [
-                                                    Positioned(
-                                                      left: 0,
-                                                      top: 0,
-                                                      child: Container(
-                                                        width: 20,
-                                                        height: 20,
-                                                        decoration:
-                                                            const ShapeDecoration(
-                                                          color:
-                                                              Color(0xFFCCCCCC),
-                                                          shape: OvalBorder(),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(width: 4),
-                                              Text(
-                                                'Name',
-                                                style: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(
-                                                          0.20000000298023224),
-                                                  fontSize: 12,
-                                                  fontFamily:
-                                                      'Pretendard Variable',
-                                                  fontWeight: FontWeight.w700,
-                                                  height: 0.11,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    color: Colors.black,
-                                    width: 33.1,
-                                    height: 20,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 5.5,
-                              ),
-                              const Row(
-                                children: [
-                                  SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: Icon(
-                                      Icons.visibility_outlined,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  Text(
-                                    "918",
-                                    style: TextStyle(
-                                      color: Color(0xFF7F7F7F),
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: Icon(
-                                      Icons.favorite_outline,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  Text(
-                                    "918",
-                                    style: TextStyle(
-                                      color: Color(0xFF7F7F7F),
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          return PortfolioCard(
+                            index: index,
+                            width: CardWidth.w155,
                           );
                         },
                       )
@@ -895,6 +632,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                         children: [
                           PortfolioCard(
                             index: 14,
+                            width: CardWidth.wMax,
                           ),
                         ],
                       ),
@@ -950,146 +688,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 20,
-                          childAspectRatio: 155 / 235.5,
+                          childAspectRatio: 155 / 247,
                         ),
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              Container(
-                                width: 155,
-                                height: 155,
-                                margin: const EdgeInsets.only(bottom: 8),
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFE6E6E6),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                  image: DecorationImage(
-                                    image: AssetImage(imageUrls[index + 4]),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.topLeft,
-                                child: const Text(
-                                  'Project',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontFamily: 'Pretendard Variable',
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: 72.33,
-                                    height: 20,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 20,
-                                                height: 20,
-                                                child: Stack(
-                                                  children: [
-                                                    Positioned(
-                                                      left: 0,
-                                                      top: 0,
-                                                      child: Container(
-                                                        width: 20,
-                                                        height: 20,
-                                                        decoration:
-                                                            const ShapeDecoration(
-                                                          color:
-                                                              Color(0xFFCCCCCC),
-                                                          shape: OvalBorder(),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(width: 4),
-                                              Text(
-                                                'Name',
-                                                style: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(
-                                                          0.20000000298023224),
-                                                  fontSize: 12,
-                                                  fontFamily:
-                                                      'Pretendard Variable',
-                                                  fontWeight: FontWeight.w700,
-                                                  height: 0.11,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    color: Colors.black,
-                                    width: 33.1,
-                                    height: 20,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 5.5,
-                              ),
-                              const Row(
-                                children: [
-                                  SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: Icon(
-                                      Icons.visibility_outlined,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  Text(
-                                    "918",
-                                    style: TextStyle(
-                                      color: Color(0xFF7F7F7F),
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: Icon(
-                                      Icons.favorite_outline,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  Text(
-                                    "918",
-                                    style: TextStyle(
-                                      color: Color(0xFF7F7F7F),
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          return PortfolioCard(
+                            index: index,
+                            width: CardWidth.w155,
                           );
                         },
                       )
@@ -1097,12 +703,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
                         children: [
                           PortfolioCard(
                             index: 3,
+                            width: CardWidth.wMax,
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           PortfolioCard(
                             index: 16,
+                            width: CardWidth.wMax,
                           ),
                         ],
                       ),

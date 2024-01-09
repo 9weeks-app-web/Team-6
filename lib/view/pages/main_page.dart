@@ -271,6 +271,7 @@ class _MainPageState extends State<MainPage> {
 
                 const PortfolioCard(
                   index: 0,
+                  width: CardWidth.wMax,
                 ),
                 const SizedBox(
                   height: 20,
@@ -278,6 +279,7 @@ class _MainPageState extends State<MainPage> {
 
                 const PortfolioCard(
                   index: 1,
+                  width: CardWidth.wMax,
                 ),
                 const SizedBox(
                   height: 70,
