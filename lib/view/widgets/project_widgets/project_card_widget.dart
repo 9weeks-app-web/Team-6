@@ -27,9 +27,7 @@ class ProjectCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // context.push(
-        //   '/community/club/:clubId',
-        // );
+          context.push('/project/detail');
       },
       child: Container(
         width: 300,
@@ -44,7 +42,10 @@ class ProjectCardWidget extends StatelessWidget {
           children: [
             Container(
               width: width == CardWidth.wMax
-                  ? MediaQuery.of(context).size.width
+                  ? MediaQuery
+                  .of(context)
+                  .size
+                  .width
                   : 300,
               height: 100,
               decoration: BoxDecoration(
@@ -74,13 +75,13 @@ class ProjectCardWidget extends StatelessWidget {
                       projectName,
                       style: width == CardWidth.wMax
                           ? DesignTextStyle(
-                                  style: DesignStyle.SubTitle_SemiBold,
-                                  color: DesignColor.Neutral)
-                              .textStyle
+                          style: DesignStyle.SubTitle_SemiBold,
+                          color: DesignColor.Neutral)
+                          .textStyle
                           : DesignTextStyle(
-                                  style: DesignStyle.Body_SemiBold,
-                                  color: DesignColor.Neutral)
-                              .textStyle,
+                          style: DesignStyle.Body_SemiBold,
+                          color: DesignColor.Neutral)
+                          .textStyle,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 18),
