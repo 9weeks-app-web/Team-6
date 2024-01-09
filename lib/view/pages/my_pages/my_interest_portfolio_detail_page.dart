@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/model/menu_model.dart';
 import 'package:flutter_app/view/widgets/common_widgets/custom_menu_widget.dart';
+import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
 import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -52,14 +53,12 @@ class MyInterestPortfolioDetailPage extends ConsumerWidget {
           itemCount: 8,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 155 / 234, //1 개의 행에 보여줄 item 개수
-            mainAxisSpacing: 10, //수평 Padding
+            childAspectRatio: 155 / 250, //1 개의 행에 보여줄 item 개수
+            mainAxisSpacing: 20, //수평 Padding
             crossAxisSpacing: 10, //수직 Padding
           ),
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              color: Colors.blue,
-            );
+            return PortfolioCard(index: index, width: CardWidth.w155);
           },
         ),
       ),
