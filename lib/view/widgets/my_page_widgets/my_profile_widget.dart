@@ -85,7 +85,7 @@ class MyProfileWidget extends StatelessWidget {
                       const Icon(Icons.star_border_outlined,
                           color: Colors.white, size: 24),
                       Text(
-                        '4',
+                        '3',
                         style: DesignTextStyle(
                                 color: Colors.white,
                                 style: DesignStyle.SubTitle_Bold)
