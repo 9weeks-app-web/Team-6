@@ -17,11 +17,11 @@ class _CommentState extends State<Comment> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 10),
-              child: Row(
+              padding: const EdgeInsets.only(left: 10),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 39,
                     height: 19,
                     child: Row(
@@ -56,7 +56,7 @@ class _CommentState extends State<Comment> {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               width: 328,
               height: 32,
               child: TextButton(
@@ -65,9 +65,9 @@ class _CommentState extends State<Comment> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('댓글을 입력하세요'),
+                        title: const Text('댓글을 입력하세요'),
                         content: TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: '댓글을 입력해주세요',
                           ),
                           onChanged: (value) {
@@ -82,14 +82,19 @@ class _CommentState extends State<Comment> {
                               Navigator.pop(context);
                               // 여기서 comment 변수를 사용하여 원하는 작업을 수행할 수 있습니다.
                             },
-                            child: Text('확인'),
+                            child: const Text('확인'),
                           ),
                         ],
                       );
                     },
                   );
                 },
-                child: Text(
+                style: TextButton.styleFrom(
+                  //primary: Color(0xFF8F8F9),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                ),
+                child: const Text(
                   '댓글을  입력하세요',
                   style: TextStyle(
                     color: Color(0xFF999999),
@@ -97,14 +102,9 @@ class _CommentState extends State<Comment> {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                style: TextButton.styleFrom(
-                  primary: Color(0xFF8F8F9),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -112,7 +112,7 @@ class _CommentState extends State<Comment> {
                 children: [
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Container(
@@ -131,41 +131,41 @@ class _CommentState extends State<Comment> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         '권버들',
                         style: TextStyle(
                             color: Color(0xFF666666),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         '개발진행정도를 상세하게 공유받을수 있을까요?',
                         style: TextStyle(
                             color: Color(0xFF666666),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.more_vert,
                         size: 13,
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         child: Icon(Icons.arrow_forward),
                       ),
                       Container(
@@ -184,20 +184,20 @@ class _CommentState extends State<Comment> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Text(
+                      const Text(
                         '오햐얀',
                         style: TextStyle(
                             color: Color(0xFF666666),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Text(
+                      const Text(
                         '작성자',
                         style: TextStyle(
                             color: Color(0xFF0059FF),
@@ -205,31 +205,31 @@ class _CommentState extends State<Comment> {
                             fontWeight: FontWeight.w400,
                             height: 0.15),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         '물론입니다!연락처 남겨주시겠어요?',
                         style: TextStyle(
                             color: Color(0xFF666666),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 23,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.more_vert,
                         size: 13,
                       )
                     ],
                   ),
-                  Row(),
-                  Row(),
+                  const Row(),
+                  const Row(),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -237,7 +237,7 @@ class _CommentState extends State<Comment> {
                 children: [
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Container(
@@ -256,41 +256,41 @@ class _CommentState extends State<Comment> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         '권버들',
                         style: TextStyle(
                             color: Color(0xFF666666),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         '개발진행정도를 상세하게 공유받을수 있을까요?',
                         style: TextStyle(
                             color: Color(0xFF666666),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.more_vert,
                         size: 13,
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         child: Icon(Icons.arrow_forward),
                       ),
                       Container(
@@ -309,20 +309,20 @@ class _CommentState extends State<Comment> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Text(
+                      const Text(
                         '오햐얀',
                         style: TextStyle(
                             color: Color(0xFF666666),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Text(
+                      const Text(
                         '작성자',
                         style: TextStyle(
                             color: Color(0xFF0059FF),
@@ -330,20 +330,20 @@ class _CommentState extends State<Comment> {
                             fontWeight: FontWeight.w400,
                             height: 0.15),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         '물론입니다!연락처 남겨주시겠어요?',
                         style: TextStyle(
                             color: Color(0xFF666666),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 23,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.more_vert,
                         size: 13,
                       )

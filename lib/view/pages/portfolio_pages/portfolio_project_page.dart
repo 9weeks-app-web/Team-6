@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const PortfolioProjectPage());
-}
-
 class PortfolioProjectPage extends StatefulWidget {
   const PortfolioProjectPage({super.key});
 
@@ -27,12 +23,12 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
         body: Container(
           width: 360,
           height: 740,
-          decoration: BoxDecoration(color: Color(0xFF333333)),
+          decoration: const BoxDecoration(color: Color(0xFF333333)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -41,12 +37,12 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 '사람 이름',
                 style: TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -78,7 +74,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
           shape: BoxShape.circle,
           color: containerColor,
         ),
-        margin: EdgeInsets.symmetric(horizontal: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 8),
       ),
     );
   }

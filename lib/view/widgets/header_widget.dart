@@ -16,23 +16,26 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                SvgPicture.asset('assets/logo/sfac_logo.svg'),
-                const SizedBox(width: 8),
-                ToggleWidget(type: type),
-              ],
+    return Container(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  SvgPicture.asset('assets/logo/sfac_logo.svg'),
+                  const SizedBox(width: 8),
+                  ToggleWidget(type: type),
+                ],
+              ),
             ),
-          ),
-          const Icon(
-            Icons.notifications_none_outlined,
-          ),
-        ],
+            const Icon(
+              Icons.notifications_none_outlined,
+            ),
+          ],
+        ),
       ),
     );
   }
