@@ -9,6 +9,7 @@ import 'package:flutter_app/view/pages/community_pages/detail_pages/recruit_deta
 import 'package:flutter_app/view/pages/auth_pages/find_id_page.dart';
 import 'package:flutter_app/view/pages/auth_pages/find_pw_page.dart';
 import 'package:flutter_app/view/pages/auth_pages/login_page.dart';
+import 'package:flutter_app/view/pages/community_pages/recruit_filter_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_delete_account_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_info_edit_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_interest_portfolio_detail_page.dart';
@@ -93,6 +94,10 @@ final router = GoRouter(initialLocation: '/splash', routes: [
             ),
           ),
         ],
+      ),
+      GoRoute(
+        path: 'recruit/filter',
+        builder: (context, state) => const RecruitFilterPage(),
       ),
       GoRoute(
         path: 'recruit/:recruitId',
