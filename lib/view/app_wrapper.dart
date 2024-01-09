@@ -4,7 +4,7 @@ import 'package:flutter_app/view/pages/community_pages/community_page.dart';
 import 'package:flutter_app/view/pages/main_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_page.dart';
 import 'package:flutter_app/view/pages/portfolio_pages/portfolio_page.dart';
-import 'package:flutter_app/view/pages/project_page.dart';
+import 'package:flutter_app/view/pages/project_pages/project_page.dart';
 import 'package:flutter_app/viewmodel/app_wrapper_viewmodel/app_wrapper_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
