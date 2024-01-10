@@ -12,6 +12,8 @@ class RecruitRecommandSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String userName = '수민';
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -21,8 +23,8 @@ class RecruitRecommandSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SubTitleWidget(
-                  label: '수민님에게 추천하는 공고',
+                SubTitleWidget(
+                  label: '$userName님에게 추천하는 공고',
                 ),
                 Expanded(
                   child: GridView.builder(
@@ -32,8 +34,8 @@ class RecruitRecommandSection extends StatelessWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      mainAxisSpacing: 8,
-                      crossAxisSpacing: 3,
+                      mainAxisSpacing: 3,
+                      crossAxisSpacing: 10,
                       childAspectRatio: 155 / 206,
                     ),
                     itemBuilder: (context, index) {
