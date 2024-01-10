@@ -61,6 +61,10 @@ flutter:
     - assets/images/portfolio/
     - assets/images/main/
     - assets/images/project/
+    - assets/images/community/ad/
+    - assets/images/community/club/free/
+    - assets/images/community/club/growth/
+    - assets/images/community/recruit/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
