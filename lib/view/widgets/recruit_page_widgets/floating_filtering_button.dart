@@ -47,7 +47,10 @@ class FloatingFilteringButton extends StatelessWidget {
                   )
                   .toList(),
             ),
-            const SizedBox(height: 12),
+            Visibility(
+              visible: selectedItems.isNotEmpty,
+              child: const SizedBox(height: 70),
+            ),
             IconAndTextButton(
               text: buttonText,
               icon: Icons.refresh,
