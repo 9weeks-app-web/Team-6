@@ -62,7 +62,9 @@ class DefaultRecruitList extends StatelessWidget {
         const SizedBox(height: 28),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: AdvertiseWidget(),
+          child: AdvertiseWidget(
+            image: 'assets/images/community/ad/ad_recruit_02.jpg',
+          ),
         ),
         const SizedBox(height: 28),
         Padding(

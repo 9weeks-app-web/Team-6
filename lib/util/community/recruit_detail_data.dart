@@ -5,6 +5,7 @@ List<Map<String, dynamic>> recruitDetailData = [
     'location_Si_Gu': '서울시 강남구',
     'location_Gu': '강남구',
     'title': 'UX/GUI 디자이너 모집',
+    'image': 'assets/images/community/recruit/recruit_01.jpg',
     'stack': [
       'HTML',
       'Figma',
@@ -81,6 +82,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': 'UI 시각디자이너',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_10.jpg',
       },
       {
         'id': '3',
@@ -88,6 +90,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '시각 디자이너 모집',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_13.jpg',
       },
       {
         'id': '4',
@@ -95,6 +98,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '웹디자이너 신입',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_12.jpg',
       },
       {
         'id': '5',
@@ -102,6 +106,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '프로덕트 디자이너(UX/UI)',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_11.jpg',
       },
     ],
   },
@@ -112,6 +117,7 @@ List<Map<String, dynamic>> recruitDetailData = [
     'due': '01.19(금)',
     'location_Si_Gu': '서울시 강남구',
     'location_Gu': '강남구',
+    'image': 'assets/images/community/recruit/recruit_06.jpg',
     'stack': [
       'HTML',
       'Figma',
@@ -187,6 +193,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': 'UX/GUI 디자이너 모집',
         'location_Gu': '강남구',
         'due': '상시',
+        'image': 'assets/images/community/recruit/recruit_01.jpg',
       },
       {
         'id': '3',
@@ -194,6 +201,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '시각 디자이너 모집',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_13.jpg',
       },
       {
         'id': '4',
@@ -201,6 +209,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '웹디자이너 신입',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_12.jpg',
       },
       {
         'id': '5',
@@ -208,6 +217,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '프로덕트 디자이너(UX/UI)',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_11.jpg',
       },
     ],
   },
@@ -218,6 +228,7 @@ List<Map<String, dynamic>> recruitDetailData = [
     'due': '01.19(금)',
     'location_Si_Gu': '서울시 강남구',
     'location_Gu': '강남구',
+    'image': 'assets/images/community/recruit/recruit_03.jpg',
     'stack': [
       'HTML',
       'Figma',
@@ -293,6 +304,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': 'UX/GUI 디자이너 모집',
         'location_Gu': '강남구',
         'due': '상시',
+        'image': 'assets/images/community/recruit/recruit_01.jpg',
       },
       {
         'id': '2',
@@ -300,6 +312,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': 'UI 시각디자이너',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_10.jpg',
       },
       {
         'id': '4',
@@ -307,6 +320,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '웹디자이너 신입',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_12.jpg',
       },
       {
         'id': '5',
@@ -314,6 +328,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '프로덕트 디자이너(UX/UI)',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_11.jpg',
       },
     ],
   },
@@ -324,6 +339,7 @@ List<Map<String, dynamic>> recruitDetailData = [
     'due': '01.19(금)',
     'location_Si_Gu': '서울시 강남구',
     'location_Gu': '강남구',
+    'image': 'assets/images/community/recruit/recruit_04.jpg',
     'stack': [
       'HTML',
       'Figma',
@@ -399,6 +415,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': 'UX/GUI 디자이너 모집',
         'location_Gu': '강남구',
         'due': '상시',
+        'image': 'assets/images/community/recruit/recruit_01.jpg',
       },
       {
         'id': '2',
@@ -406,6 +423,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': 'UI 시각디자이너',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_13.jpg',
       },
       {
         'id': '3',
@@ -413,6 +431,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '시각 디자이너 모집',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_12.jpg',
       },
       {
         'id': '5',
@@ -420,6 +439,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '프로덕트 디자이너(UX/UI)',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_11.jpg',
       },
     ],
   },
@@ -430,6 +450,7 @@ List<Map<String, dynamic>> recruitDetailData = [
     'due': '01.19(금)',
     'location_Si_Gu': '서울시 강남구',
     'location_Gu': '강남구',
+    'image': 'assets/images/community/recruit/recruit_05.jpg',
     'stack': [
       'HTML',
       'Figma',
@@ -505,6 +526,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': 'UX/GUI 디자이너 모집',
         'location_Gu': '강남구',
         'due': '상시',
+        'image': 'assets/images/community/recruit/recruit_01.jpg',
       },
       {
         'id': '2',
@@ -512,6 +534,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': 'UI 시각디자이너',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_13.jpg',
       },
       {
         'id': '3',
@@ -519,6 +542,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '시각 디자이너 모집',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_12.jpg',
       },
       {
         'id': '4',
@@ -526,6 +550,7 @@ List<Map<String, dynamic>> recruitDetailData = [
         'title': '웹디자이너 신입',
         'location_Gu': '강남구',
         'due': '01.19(금)',
+        'image': 'assets/images/community/recruit/recruit_11.jpg',
       },
     ],
   },

@@ -19,7 +19,7 @@ class RecruitCardWidget extends StatelessWidget {
     required this.type,
     this.width,
   });
-  final dynamic recruitData;
+  final Map<String, dynamic>? recruitData;
   final CardType type;
   final CardWidth? width;
 
@@ -30,6 +30,8 @@ class RecruitCardWidget extends StatelessWidget {
     String companyName = '[회사이름 주식회사 코리아]';
     String locationGu = '서초구';
     String due = '~01.19(금)';
+    String image = 'assets/images/community/recruit/recruit_01.jpg';
+    String smallImage = 'assets/images/community/recruit/recruit_04.jpg';
 
     return Container(
       width: type == CardType.maximum
@@ -48,6 +50,7 @@ class RecruitCardWidget extends StatelessWidget {
           type == CardType.maximum
               ? Container(
                   height: 120,
+                  clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8),
@@ -55,18 +58,28 @@ class RecruitCardWidget extends StatelessWidget {
                     ),
                     color: DesignColor.Neutral.shade20,
                   ),
+                  child: Image.asset(
+                    image,
+                    // recruitData!['image'],
+                    fit: BoxFit.cover,
+                  ),
                 )
               : Stack(
                   children: [
                     Container(
                       width: 155,
                       height: 120,
+                      clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         color: DesignColor.Neutral.shade20,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(8),
                           topRight: Radius.circular(8),
                         ),
+                      ),
+                      child: Image.asset(
+                        recruitData!['image'],
+                        fit: BoxFit.cover,
                       ),
                     ),
                     const Positioned(
@@ -92,7 +105,7 @@ class RecruitCardWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        recruitData != null ? recruitData['title'] : title,
+                        recruitData != null ? recruitData!['title'] : title,
                         style: type == CardType.maximum
                             ? DesignTextStyle(
                                     style: DesignStyle.SubTitle_SemiBold,
@@ -115,7 +128,7 @@ class RecruitCardWidget extends StatelessWidget {
                     : const SizedBox(height: 6),
                 Text(
                   recruitData != null
-                      ? recruitData['companyName']
+                      ? recruitData!['companyName']
                       : companyName,
                   style: type == CardType.maximum
                       ? DesignTextStyle(
@@ -134,8 +147,8 @@ class RecruitCardWidget extends StatelessWidget {
                     Expanded(
                       child: recruitData != null
                           ? RichTextWithDividerWidget(
-                              frontText: recruitData['location_Gu'],
-                              secondText: recruitData['due'],
+                              frontText: recruitData!['location_Gu'],
+                              secondText: recruitData!['due'],
                             )
                           : RichTextWithDividerWidget(
                               frontText: locationGu,
