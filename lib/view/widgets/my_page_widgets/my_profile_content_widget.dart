@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/custom_icons_icons.dart';
 
 class MyProfileContentWidget extends StatelessWidget {
   const MyProfileContentWidget({super.key});
@@ -22,16 +23,14 @@ class MyProfileContentWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MyProfileInfoWidget(
+                count: '24,083', iconData: CustomIcons.icon_like_unfill),
+            MyProfileInfoWidget(
+              count: '3,635',
+              iconData: CustomIcons.icon_follow,
+            ),
+            MyProfileInfoWidget(
               count: '200',
-              iconData: Icons.favorite_border_outlined,
-            ),
-            MyProfileInfoWidget(
-              count: '3000',
-              iconData: Icons.arrow_back_rounded,
-            ),
-            MyProfileInfoWidget(
-              count: '500',
-              iconData: Icons.arrow_forward_outlined,
+              iconData: CustomIcons.icon_following,
             )
           ],
         ),
@@ -60,11 +59,11 @@ class MyProfileInfoWidget extends StatelessWidget {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 0),
               child: Icon(
                 iconData,
                 color: DesignColor.Neutral.shade40,
-                size: 14,
+                size: 20,
               ),
             ),
             Text(

@@ -56,7 +56,6 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/json/
     - assets/logo/
     - assets/images/
     - assets/images/portfolio/
@@ -93,5 +92,8 @@ flutter:
           weight: 800
         - asset: fonts/Pretendard-Black.ttf
           weight: 900
+    - family: CustomIcons
+      fonts:
+        - asset: fonts/CustomIcons.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
