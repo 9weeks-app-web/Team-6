@@ -13,7 +13,7 @@ class MoreButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -22,13 +22,13 @@ class MoreButtonWidget extends StatelessWidget {
               label!,
               style: DesignTextStyle(
                 style: DesignStyle.Label_2_SemiBold,
-                color: DesignColor.Neutral.shade60,
+                color: DesignColor.Neutral,
               ).textStyle,
             ),
-          Icon(
+          const Icon(
             Icons.chevron_right,
-            size: 20,
-            color: DesignColor.Neutral.shade60,
+            size: 30,
+            color: DesignColor.Neutral,
           ),
         ],
       ),
