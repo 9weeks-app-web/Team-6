@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/custom_icons_icons.dart';
 import 'package:flutter_app/model/menu_model.dart';
 import 'package:flutter_app/view/widgets/common_widgets/custom_menu_widget.dart';
 import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
@@ -12,9 +13,16 @@ class MyInterestPortfolioDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<MenuModel> menuList = [
-      MenuModel(iconImg: Icons.edit, title: '보드 편집'),
-      MenuModel(iconImg: Icons.delete, title: '보드 삭제'),
-      MenuModel(iconImg: Icons.share, title: '공유'),
+      MenuModel(
+          iconImg: CustomIcons.icon_edit_1,
+          title: '보드 편집',
+          listColor: DesignColor.Neutral),
+      MenuModel(
+          iconImg: CustomIcons.icon_delete,
+          title: '보드 삭제',
+          listColor: DesignColor.System.warning),
+      MenuModel(
+          iconImg: Icons.share, title: '공유', listColor: DesignColor.Neutral),
     ];
     return Scaffold(
       extendBody: true,
