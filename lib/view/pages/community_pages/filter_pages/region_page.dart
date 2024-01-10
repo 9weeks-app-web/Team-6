@@ -15,6 +15,8 @@ class _RegionPageState extends State<RegionPage> {
   String selectedRegion = '';
   String selectedSubRegion = '';
 
+  double listviewLength = 440;
+
   @override
   Widget build(BuildContext context) {
     String title = '지역선택';
@@ -46,7 +48,7 @@ class _RegionPageState extends State<RegionPage> {
           ),
         ),
         SizedBox(
-          height: selectedItems == [] ? 450 : 420,
+          height: selectedItems == [] ? listviewLength : 420,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Container(
