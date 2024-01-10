@@ -103,17 +103,14 @@ class ClubKeywordChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        border: Border.all(
-          color: DesignColor.Primary.shade20,
-        ),
-        color: DesignColor.Primary.shade5,
+        color: DesignColor.Primary,
       ),
       alignment: Alignment.center,
       child: Text(
         keyword,
         style: DesignTextStyle(
           style: DesignStyle.Body,
-          color: DesignColor.Neutral,
+          color: Colors.white,
         ).textStyle,
       ),
     );
