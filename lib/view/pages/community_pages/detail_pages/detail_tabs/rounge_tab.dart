@@ -101,15 +101,32 @@ class RoungeTab extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SubTitleWidget(
+                        const SubTitleWidget(
                           label: '클럽 통계',
                         ),
                         DescriptionWidget(
                           child: Column(
-                            children: [],
+                            children: club['statistics'].entries.map<Widget>(
+                              (entry) {
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      entry.key,
+                                      style: DesignTextStyle.Label_2_Regular,
+                                    ),
+                                    Text(
+                                      entry.value.toString(),
+                                      style: DesignTextStyle.Label_2_Regular,
+                                    ),
+                                  ],
+                                );
+                              },
+                            ).toList(),
                           ),
                         ),
                       ],
@@ -137,31 +154,55 @@ class RoungeTab extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SubTitleWidget(
+                        const SubTitleWidget(
                           label: '최근활동',
                         ),
                         DescriptionWidget(
                           child: Column(
-                            children: [],
+                            children: [
+                              IconListTile(
+                                title: club['curActivity'][0]['description'],
+                                icon: Icons.login_rounded,
+                              ),
+                              IconListTile(
+                                title: club['curActivity'][1]['description'],
+                                icon: Icons.post_add,
+                              ),
+                              IconListTile(
+                                title: club['curActivity'][2]['description'],
+                                icon: Icons.how_to_vote_outlined,
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 24),
-                    const AdvertiseWidget(),
+                    const AdvertiseWidget(
+                      image: 'assets/images/project/banner.png',
+                    ),
                     const SizedBox(height: 35),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SubTitleWidget(
+                        const SubTitleWidget(
                           label: '투표',
                         ),
                         DescriptionWidget(
                           child: Column(
-                            children: [],
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: club['vote']
+                                .map<Widget>(
+                                  (vote) => IconListTile(
+                                    title: vote['title'],
+                                    icon: Icons.how_to_vote_outlined,
+                                  ),
+                                )
+                                .toList(),
                           ),
                         ),
                       ],
@@ -181,6 +222,41 @@ class RoungeTab extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class IconListTile extends StatelessWidget {
+  const IconListTile({
+    super.key,
+    required this.title,
+    required this.icon,
+  });
+  final String title;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      visualDensity: const VisualDensity(
+        horizontal: 0,
+        vertical: -4,
+      ),
+      title: Row(
+        children: [
+          Icon(
+            icon,
+            color: Colors.black,
+            size: 20,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            title,
+            style: DesignTextStyle.Label_2_Regular,
+          ),
+        ],
+      ),
     );
   }
 }
