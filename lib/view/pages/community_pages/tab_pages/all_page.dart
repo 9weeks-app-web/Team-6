@@ -9,16 +9,25 @@ class AllPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double listTileTopPadding = 17.5;
+    double designedTitlePadding = 11;
+    double tabbarContentGap = 24;
     return ListView(
       shrinkWrap: true,
       children: [
-        const SizedBox(height: 4),
+        SizedBox(
+          height:
+              tabbarContentGap - (listTileTopPadding - designedTitlePadding),
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Column(
             children: [
               ListTile(
-                contentPadding: const EdgeInsets.only(left: 0, right: 4),
+                contentPadding: const EdgeInsets.only(
+                  left: 0,
+                  right: 4,
+                ),
                 title: Text(
                   '성장클럽',
                   style: DesignTextStyle.SubTitle_Bold,
@@ -94,7 +103,6 @@ class AllPage extends StatelessWidget {
                 style: DesignTextStyle.SubTitle_Bold,
               ),
               trailing: MoreButtonWidget(
-                label: '전체',
                 onPressed: () {},
               ),
             ),

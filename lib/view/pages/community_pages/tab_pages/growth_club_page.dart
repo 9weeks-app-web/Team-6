@@ -7,7 +7,12 @@ class GrowthClubPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(
+        top: 24,
+        bottom: 20,
+        left: 20,
+        right: 20,
+      ),
       shrinkWrap: true,
       itemCount: 5,
       itemBuilder: (context, index) {

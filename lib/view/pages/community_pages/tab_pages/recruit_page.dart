@@ -15,17 +15,23 @@ class RecruitPage extends StatelessWidget {
   Widget build(BuildContext context) {
     PageController pageController = PageController(
       initialPage: 1,
-      viewportFraction: 0.85,
+      viewportFraction: 0.91,
     );
 
     int curIdx = 0;
+
+    double listTileTopPadding = 17.5;
+    double tabbarContentGap = 24;
 
     return ListView(
       shrinkWrap: true,
       children: [
         //recruit card영역
         Padding(
-          padding: const EdgeInsets.only(top: 4, left: 20),
+          padding: EdgeInsets.only(
+            top: tabbarContentGap - listTileTopPadding,
+            left: 20,
+          ),
           child: Column(
             children: [
               ListTile(
