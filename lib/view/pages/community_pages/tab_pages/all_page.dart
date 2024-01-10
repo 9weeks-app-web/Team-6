@@ -48,7 +48,7 @@ class AllPage extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 28),
         Padding(
           padding: const EdgeInsets.only(left: 20),
           child: Column(
@@ -84,7 +84,7 @@ class AllPage extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 28),
         Column(
           children: [
             ListTile(
@@ -104,7 +104,7 @@ class AllPage extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 28),
       ],
     );
   }

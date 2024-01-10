@@ -74,7 +74,7 @@ class RecruitPage extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 28),
         Padding(
           padding: const EdgeInsets.only(left: 20),
           child: Column(
@@ -118,12 +118,12 @@ class RecruitPage extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 28),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: AdvertiseWidget(),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 28),
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Column(
