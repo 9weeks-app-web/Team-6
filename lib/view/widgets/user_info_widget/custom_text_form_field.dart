@@ -28,8 +28,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     final baseBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
       borderSide: BorderSide(
-        color: widget.borderError ? Colors.grey : Colors.red,
+        color: widget.borderError ? Color(0xFFE6E6E6) : Colors.red,
         width: 1,
       ),
     );

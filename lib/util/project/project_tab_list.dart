@@ -15,16 +15,16 @@ List<TabItemProject> projectTabList = [
   TabItemProject(
     type: Project.dev,
     label: '개발',
-    content: const DevPage(),
+    content: const AllPage(),
   ),
   TabItemProject(
     type: Project.design,
     label: '디자인',
-    content: const DesignPage(),
+    content: const AllPage(),
   ),
   TabItemProject(
     type: Project.plan,
     label: '기획',
-    content: const PlanPage(),
+    content: const AllPage(),
   ),
 ];

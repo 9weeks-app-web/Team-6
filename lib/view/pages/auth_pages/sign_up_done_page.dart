@@ -31,7 +31,8 @@ class SignUpDonePage extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(height: 86),
+              // SizedBox(height: 86),
+              Spacer(),
               SizedBox(
                 width: double.infinity,
                 height: 54,
@@ -53,6 +54,7 @@ class SignUpDonePage extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 40),
             ],
           ),
         ),
