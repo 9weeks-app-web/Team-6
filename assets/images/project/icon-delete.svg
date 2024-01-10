@@ -1,0 +1,10 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon-delete">
+<mask id="mask0_1594_8579" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+<rect id="Bounding box" width="24" height="24" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_1594_8579)">
+<path id="Icon" d="M9.33333 4H14.6667M4 6.66667L20 6.66667M18.2222 6.66667L17.5989 16.0171C17.5053 17.42 17.4586 18.1215 17.1556 18.6533C16.8888 19.1216 16.4864 19.498 16.0015 19.7331C15.4506 20 14.7476 20 13.3416 20H10.6584C9.25236 20 8.54936 20 7.99852 19.7331C7.51356 19.498 7.11119 19.1216 6.84443 18.6533C6.54143 18.1215 6.49467 17.42 6.40114 16.0171L5.77778 6.66667" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>
