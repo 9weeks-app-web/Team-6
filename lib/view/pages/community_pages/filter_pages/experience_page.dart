@@ -13,6 +13,7 @@ class ExperiencePage extends StatefulWidget {
 class _ExperiencePageState extends State<ExperiencePage> {
   String title = '경력 선택';
   RangeValues currentRangeValues = const RangeValues(0, 3);
+  List<String> selectedItems = ['3년 차'];
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                   onChanged: (RangeValues values) {
                     setState(() {
                       currentRangeValues = values;
+                      selectedItems = ['${values.end.toInt()}년 차'];
                     });
                   },
                 ),
@@ -55,7 +57,9 @@ class _ExperiencePageState extends State<ExperiencePage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  '${currentRangeValues.start == 0 ? "신입" : currentRangeValues.start} - ${currentRangeValues.end}년',
+                  '${currentRangeValues.start == 0 ? //
+                      "신입" //
+                      : currentRangeValues.start} - ${currentRangeValues.end.toInt()}년',
                   style: DesignTextStyle.Label_2_Regular,
                 ),
               ),
@@ -63,7 +67,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
           ),
         ),
         FloatingFilteringButton(
-          selectedItems: const [],
+          selectedItems: selectedItems,
           onTapIconBtn: () {},
           onTapTextBtn: () {},
         ),
