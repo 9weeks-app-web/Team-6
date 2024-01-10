@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/common_widgets/custom_drop_down_widget.dart';
 import 'package:flutter_app/view/widgets/common_widgets/toast_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class MyInfoDeleteAccountContentWidget extends StatefulWidget {
   const MyInfoDeleteAccountContentWidget({super.key});
@@ -170,7 +171,9 @@ class _MyInfoDeleteAccountContentWidgetState
                                             DesignColor.Primary.shade10,
                                         shape: DesignButtonStyle.BorderStyle04,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        context.pop();
+                                      },
                                       child: Text(
                                         '아니오',
                                         style: DesignTextStyle(
@@ -194,7 +197,10 @@ class _MyInfoDeleteAccountContentWidgetState
                                         backgroundColor: DesignColor.Primary,
                                         shape: DesignButtonStyle.BorderStyle04,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        context.pop();
+                                        showToast(context, '탈퇴가 성공적으로 되었습니다.');
+                                      },
                                       child: Text(
                                         '탈퇴하기',
                                         style: DesignTextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/custom_icons_icons.dart';
 import 'package:flutter_app/view/widgets/common_widgets/toast_widget.dart';
 
 const double textFieldWidth = 320;
@@ -89,8 +90,7 @@ class MySnsFieldWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.lock_open_outlined,
-                  color: DesignColor.Neutral.shade40),
+              Icon(CustomIcons.icon_unlock, color: DesignColor.Neutral.shade40),
               SizedBox(
                 height: 12,
                 child: VerticalDivider(

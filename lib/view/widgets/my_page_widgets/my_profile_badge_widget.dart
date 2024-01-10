@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/custom_icons_icons.dart';
 import 'package:go_router/go_router.dart';
 
 class MyProfileBadgeWidget extends StatelessWidget {
@@ -45,7 +46,7 @@ class MyProfileBadgeWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const SizedBox(height: 31),
-                          const Icon(Icons.star_border_outlined,
+                          const Icon(CustomIcons.icon_star,
                               color: Colors.white, size: 60),
                           const SizedBox(height: 20),
                           Text(

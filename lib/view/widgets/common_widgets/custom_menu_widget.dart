@@ -92,12 +92,12 @@ class _CustomMenuState extends State<CustomMenuWidget> {
                           children: [
                             Text(widget.items[index].title,
                                 style: DesignTextStyle(
-                                        color: DesignColor.Neutral,
+                                        color: widget.items[index].listColor,
                                         style: DesignStyle.Body)
                                     .textStyle),
                             Icon(
                               (widget.items[index].iconImg),
-                              color: DesignColor.Neutral,
+                              color: widget.items[index].listColor,
                               size: 24,
                             ),
                           ],

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_app/custom_icons_icons.dart';
 import 'package:flutter_app/model/menu_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,10 +19,20 @@ import 'package:flutter_app/viewmodel/my_page_viewmodel/my_page_notifier.dart';
 class MyPage extends ConsumerWidget {
   MyPage({super.key});
   List<MenuModel> menuList = [
-    MenuModel(iconImg: Icons.edit, title: '프로필 편집'),
-    MenuModel(iconImg: Icons.image, title: '배너 이미지 교체'),
-    MenuModel(iconImg: Icons.delete, title: '배너 이미지 삭제'),
-    MenuModel(iconImg: Icons.share, title: '공유'),
+    MenuModel(
+        iconImg: CustomIcons.icon_edit_1,
+        title: '프로필 편집',
+        listColor: DesignColor.Neutral),
+    MenuModel(
+        iconImg: CustomIcons.icon_photoreplace,
+        title: '배너 이미지 교체',
+        listColor: DesignColor.Neutral),
+    MenuModel(
+        iconImg: CustomIcons.icon_delete,
+        title: '배너 이미지 삭제',
+        listColor: DesignColor.System.warning),
+    MenuModel(
+        iconImg: Icons.share, title: '공유', listColor: DesignColor.Neutral),
   ];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
