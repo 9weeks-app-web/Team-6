@@ -15,12 +15,12 @@ class ProjectPage extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showModalBottomSheet(
-              useSafeArea: true,
-              isScrollControlled: true,
-              context: context,
-              builder: (context) => const ProjectApplyWidget(),
-            );
+            // showModalBottomSheet(
+            //   useSafeArea: true,
+            //   isScrollControlled: true,
+            //   context: context,
+            //   builder: (context) => const ProjectApplyWidget(),
+            // );
           },
           backgroundColor: const Color(0xFF0059FF),
           child: const Icon(
