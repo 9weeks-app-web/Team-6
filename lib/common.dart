@@ -24,6 +24,7 @@ enum DesignStyle {
   Label_2,
   Label_2_SemiBold,
   Label_2_Regular,
+  Label_2_Medium,
   Label_3_SemiBold,
   Label_3_Bold,
   Caption_1_Medium,
