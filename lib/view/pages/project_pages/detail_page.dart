@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/view/widgets/header_widget.dart';
 import 'package:flutter_app/view/widgets/project_widgets/chip_widget.dart';
 import 'package:flutter_app/view/widgets/project_widgets/heading_text.dart';
+import 'package:flutter_app/view/widgets/project_widgets/project_apply_widget.dart';
 import 'package:flutter_app/view/widgets/project_widgets/project_card_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -138,7 +139,12 @@ class ProjectDetailPage extends ConsumerWidget {
           ),
           backgroundColor: Color(0xFF0059FF),
           onPressed: () {
-            // FAB onPressed action
+            showModalBottomSheet(
+              useSafeArea: true,
+              isScrollControlled: true,
+              context: context,
+              builder: (context) => const ProjectApplyWidget(),
+            );
           },
           child: Text('지원하기'),
         ),
