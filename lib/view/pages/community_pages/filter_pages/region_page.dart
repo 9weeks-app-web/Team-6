@@ -15,15 +15,11 @@ class _RegionPageState extends State<RegionPage> {
   String selectedRegion = '';
   String selectedSubRegion = '';
 
-  double listviewLength = 440;
-
   @override
   Widget build(BuildContext context) {
     String title = '지역선택';
     List<String> selectedItems = [
       // '서울 강남구',
-      // '서울 금천구',
-      // '경기 동두천시',
     ];
 
     void updateSelectedItems() {
@@ -39,85 +35,95 @@ class _RegionPageState extends State<RegionPage> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 15),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SubTitleWidget(
-            label: title,
-            textStyle: DesignStyle.Body_Bold,
-          ),
-        ),
-        SizedBox(
-          height: selectedItems == [] ? listviewLength : 420,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    color: DesignColor.Neutral.shade20,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SubTitleWidget(
+                  label: title,
+                  textStyle: DesignStyle.Body_Bold,
+                ),
+              ),
+              const SizedBox(height: 3),
+              SizedBox(
+                height: selectedItems == [] ? 440 : 325,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: DesignColor.Neutral.shade20,
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border(
+                                right: BorderSide(
+                                  color: DesignColor.Neutral.shade20,
+                                ),
+                              ),
+                            ),
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: koreaRegions.keys.length,
+                              itemBuilder: (context, index) {
+                                var region = koreaRegions.keys.elementAt(index);
+                                return RegionItem(
+                                  region: region,
+                                  subRegions: koreaRegions[region]!,
+                                  isSelected: region == selectedRegion,
+                                  onTap: () {
+                                    setState(() {
+                                      selectedRegion = region;
+                                      selectedSubRegion = '';
+                                    });
+                                    updateSelectedItems();
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                if (selectedRegion.isNotEmpty)
+                                  for (var subRegion
+                                      in koreaRegions[selectedRegion]!)
+                                    SubRegionItem(
+                                      region: subRegion,
+                                      isSelected:
+                                          subRegion == selectedSubRegion,
+                                      onTap: () {
+                                        setState(() {
+                                          selectedSubRegion = subRegion;
+                                        });
+                                        updateSelectedItems();
+                                      },
+                                    ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          right: BorderSide(
-                            color: DesignColor.Neutral.shade20,
-                          ),
-                        ),
-                      ),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: koreaRegions.keys.length,
-                        itemBuilder: (context, index) {
-                          var region = koreaRegions.keys.elementAt(index);
-                          return RegionItem(
-                            region: region,
-                            subRegions: koreaRegions[region]!,
-                            isSelected: region == selectedRegion,
-                            onTap: () {
-                              setState(() {
-                                selectedRegion = region;
-                                selectedSubRegion = '';
-                              });
-                              updateSelectedItems();
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          if (selectedRegion.isNotEmpty)
-                            for (var subRegion in koreaRegions[selectedRegion]!)
-                              SubRegionItem(
-                                region: subRegion,
-                                isSelected: subRegion == selectedSubRegion,
-                                onTap: () {
-                                  setState(() {
-                                    selectedSubRegion = subRegion;
-                                  });
-                                  updateSelectedItems();
-                                },
-                              ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            ],
           ),
         ),
         FloatingFilteringButton(
