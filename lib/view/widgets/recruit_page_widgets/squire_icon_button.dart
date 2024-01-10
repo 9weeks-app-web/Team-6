@@ -5,10 +5,10 @@ class SquireIconButton extends StatelessWidget {
   const SquireIconButton({
     super.key,
     required this.icon,
-    this.onTap,
+    required this.onTap,
   });
   final IconData icon;
-  final void Function()? onTap;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {

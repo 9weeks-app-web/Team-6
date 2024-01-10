@@ -7,13 +7,16 @@ class FloatingFilteringButton extends StatelessWidget {
   const FloatingFilteringButton({
     super.key,
     required this.selectedItems,
+    required this.onTapIconBtn,
+    required this.onTapTextBtn,
   });
   final List<String> selectedItems;
+  final void Function() onTapIconBtn;
+  final void Function() onTapTextBtn;
 
   @override
   Widget build(BuildContext context) {
     String buttonText = '이 조건으로 검색';
-    onTap() {}
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -23,10 +26,10 @@ class FloatingFilteringButton extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.only(
-          top: 16,
+          top: 20,
           left: 20,
           right: 20,
-          bottom: 10,
+          bottom: 14,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -48,7 +51,8 @@ class FloatingFilteringButton extends StatelessWidget {
             IconAndTextButton(
               text: buttonText,
               icon: Icons.refresh,
-              onTap: () {},
+              onTapTextBtn: onTapTextBtn,
+              onTapIconBtn: onTapIconBtn,
             ),
           ],
         ),

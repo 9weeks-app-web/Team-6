@@ -57,6 +57,8 @@ class BasicFilterTabbarView extends StatelessWidget {
         ),
         FloatingFilteringButton(
           selectedItems: selectedList,
+          onTapIconBtn: () {},
+          onTapTextBtn: () {},
         ),
       ],
     );

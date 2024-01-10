@@ -51,7 +51,10 @@ class FloatingRecruitButton extends StatelessWidget {
             const SizedBox(height: 15),
             Row(
               children: [
-                const SquireIconButton(icon: Icons.star_border),
+                SquireIconButton(
+                  icon: Icons.star_border,
+                  onTap: () {},
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: FullSizedTextButton(
