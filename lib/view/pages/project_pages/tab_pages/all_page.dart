@@ -33,7 +33,7 @@ class AllPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 300,
+                height: 330,
                 child: ListView(
                   padding: const EdgeInsets.only(right: 20),
                   scrollDirection: Axis.horizontal,
