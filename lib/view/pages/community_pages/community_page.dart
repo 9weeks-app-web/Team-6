@@ -5,8 +5,20 @@ import 'package:flutter_app/view/widgets/community_page_widgets/tab_widget.dart'
 import 'package:flutter_app/view/widgets/header_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/search_bar_widget.dart';
 
-class CommunityPage extends StatelessWidget {
+class CommunityPage extends StatefulWidget {
   const CommunityPage({super.key});
+
+  @override
+  State<CommunityPage> createState() => _CommunityPageState();
+}
+
+class _CommunityPageState extends State<CommunityPage> {
+  TabType tabType = TabType.normal;
+
+  void changeTabType(TabType type) {
+    tabType = type;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +45,11 @@ class CommunityPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SearchBarWidget(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SearchBarWidget(
+                      tabType: tabType,
+                    ),
                   ),
                   const SizedBox(height: 16),
                 ],
@@ -43,6 +57,7 @@ class CommunityPage extends StatelessWidget {
               Expanded(
                 child: TabWidget(
                   tabContents: communityTabList,
+                  changeTabType: changeTabType,
                 ),
               ),
             ],
