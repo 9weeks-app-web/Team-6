@@ -58,6 +58,7 @@ class _RegionPageState extends State<RegionPage> {
                 ),
               ),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: Container(
@@ -119,6 +120,8 @@ class _RegionPageState extends State<RegionPage> {
         ),
         FloatingFilteringButton(
           selectedItems: selectedItems,
+          onTapIconBtn: () {},
+          onTapTextBtn: () {},
         ),
       ],
     );
