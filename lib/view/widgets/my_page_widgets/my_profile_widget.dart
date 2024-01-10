@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/custom_icons_icons.dart';
 import 'package:flutter_app/model/menu_model.dart';
 import 'package:flutter_app/view/widgets/common_widgets/custom_menu_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_profile_badge_widget.dart';
@@ -11,10 +12,20 @@ class MyProfileWidget extends StatelessWidget {
   final double coverHeight = 180;
   final double profileHeight = 100;
   List<MenuModel> menuList = [
-    MenuModel(iconImg: Icons.edit, title: '프로필 편집'),
-    MenuModel(iconImg: Icons.image, title: '배너 이미지 교체'),
-    MenuModel(iconImg: Icons.delete, title: '배너 이미지 삭제'),
-    MenuModel(iconImg: Icons.share, title: '공유'),
+    MenuModel(
+        iconImg: CustomIcons.icon_edit_1,
+        title: '프로필 편집',
+        listColor: DesignColor.Neutral),
+    MenuModel(
+        iconImg: CustomIcons.icon_photoreplace,
+        title: '배너 이미지 교체',
+        listColor: DesignColor.Neutral),
+    MenuModel(
+        iconImg: CustomIcons.icon_delete,
+        title: '배너 이미지 삭제',
+        listColor: DesignColor.System.warning),
+    MenuModel(
+        iconImg: Icons.share, title: '공유', listColor: DesignColor.Neutral),
   ];
   @override
   Widget build(BuildContext context) {
@@ -82,7 +93,7 @@ class MyProfileWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const SizedBox(height: 6),
-                      const Icon(Icons.star_border_outlined,
+                      const Icon(CustomIcons.icon_star,
                           color: Colors.white, size: 24),
                       Text(
                         '3',
