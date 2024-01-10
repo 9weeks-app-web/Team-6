@@ -148,11 +148,13 @@ class _CustomMenuState extends State<CustomMenuWidget> {
         showToast(context, 'Clicked 배너 이미지 공유');
         break;
       case '보드 편집':
-        showDialog(
+        showModalBottomSheet(
+          isScrollControlled: true,
+          useSafeArea: true,
           context: context,
-          barrierDismissible: true,
-          builder: (BuildContext context) =>
-              const MyInterestPortfolioDetailEditWidget(),
+          builder: (context) => SizedBox(
+              height: MediaQuery.of(context).size.height * 0.95,
+              child: const MyInterestPortfolioDetailEditWidget()),
         );
         break;
       case '보드 삭제':
