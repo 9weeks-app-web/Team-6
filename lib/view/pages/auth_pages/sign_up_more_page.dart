@@ -157,6 +157,7 @@ class _SignUpMorePageState extends State<SignUpMorePage> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 30),
                 ],
               ),
             ),

@@ -31,7 +31,7 @@ class FindPwDonePage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 40.0),
             child: SizedBox(
               width: double.infinity,
               child: Column(
@@ -58,7 +58,7 @@ class FindPwDonePage extends StatelessWidget {
                     hintText: '새 비밀번호 확인',
                     obscureText: true,
                   ),
-                  SizedBox(height: 322),
+                  SizedBox(height: 300),
                   SizedBox(
                     width: double.infinity,
                     height: 54,

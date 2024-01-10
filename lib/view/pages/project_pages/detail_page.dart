@@ -392,7 +392,7 @@ class ProjectDetailPage extends ConsumerWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 64),
+                              SizedBox(height: 80),
                             ],
                           )),
                     ],

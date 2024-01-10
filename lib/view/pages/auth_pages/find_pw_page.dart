@@ -109,7 +109,7 @@ class _FindPwPageState extends State<FindPwPage> {
                   CustomTextFormField(
                     hintText: '인증번호 입력',
                   ),
-                  SizedBox(height: 172),
+                  SizedBox(height: 104),
                   SizedBox(
                     width: double.infinity,
                     height: 54,

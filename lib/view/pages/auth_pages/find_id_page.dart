@@ -46,7 +46,8 @@ class _FindIdPageState extends State<FindIdPage> {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: SizedBox(
+          height: 740,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: SizedBox(
@@ -105,7 +106,7 @@ class _FindIdPageState extends State<FindIdPage> {
                   CustomTextFormField(
                     hintText: '인증번호 입력',
                   ),
-                  SizedBox(height: 172),
+                  Spacer(),
                   SizedBox(
                     width: double.infinity,
                     height: 54,
@@ -127,6 +128,7 @@ class _FindIdPageState extends State<FindIdPage> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 40),
                 ],
               ),
             ),
