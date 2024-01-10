@@ -7,22 +7,27 @@ class IconAndTextButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.icon,
-    required this.onTap,
+    required this.onTapTextBtn,
+    required this.onTapIconBtn,
   });
 
   final String text;
   final IconData icon;
-  final void Function() onTap;
+  final void Function() onTapTextBtn;
+  final void Function() onTapIconBtn;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SquireIconButton(icon: icon),
+        SquireIconButton(
+          icon: icon,
+          onTap: onTapIconBtn,
+        ),
         const SizedBox(width: 12),
         Expanded(
           child: FullSizedTextButton(
-            onTap: onTap,
+            onTap: onTapTextBtn,
             text: text,
           ),
         ),

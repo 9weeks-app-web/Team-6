@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/rich_text_with_divider_widget.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/shadows.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/full_sized_text_button.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/squire_icon_button.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,25 +51,15 @@ class FloatingRecruitButton extends StatelessWidget {
             const SizedBox(height: 15),
             Row(
               children: [
-                const SquireIconButton(icon: Icons.star_border),
+                SquireIconButton(
+                  icon: Icons.star_border,
+                  onTap: () {},
+                ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(
-                        DesignColor.Primary,
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 16,
-                      ),
-                      child: Text(
-                        text,
-                        style: DesignTextStyle.Label_1_SemiBold,
-                      ),
-                    ),
+                  child: FullSizedTextButton(
+                    onTap: onTap,
+                    text: text,
                   ),
                 ),
               ],

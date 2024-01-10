@@ -5,6 +5,7 @@ import 'package:flutter_app/view/pages/community_pages/community_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/apply_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/club_detail_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/keyword_card_detail_page.dart';
+import 'package:flutter_app/view/pages/community_pages/detail_pages/keyword_list_page.dart';
 import 'package:flutter_app/view/pages/community_pages/detail_pages/recruit_detail_page.dart';
 import 'package:flutter_app/view/pages/auth_pages/find_id_page.dart';
 import 'package:flutter_app/view/pages/auth_pages/find_pw_page.dart';
@@ -94,6 +95,12 @@ final router = GoRouter(initialLocation: '/splash', routes: [
               dialogId: state.pathParameters['dialogId'] ?? '',
             ),
           ),
+          GoRoute(
+            path: 'keyword/all/:keywordId',
+            builder: (context, state) => KeywordListPage(
+              keywordId: state.pathParameters['keywordId'] ?? '',
+            ),
+          ),
         ],
       ),
       GoRoute(
@@ -118,6 +125,6 @@ final router = GoRouter(initialLocation: '/splash', routes: [
   ),
   GoRoute(
     path: '/project/detail',
-    builder: (context, state) => ProjectDetailPage(),
+    builder: (context, state) => const ProjectDetailPage(),
   ),
 ]);

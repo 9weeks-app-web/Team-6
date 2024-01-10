@@ -10,19 +10,27 @@ class RecruitFilterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: DesignColor.Neutral,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight + 22),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 22),
+          child: AppBar(
+            iconTheme: const IconThemeData(
+              color: DesignColor.Neutral,
+            ),
+            title: const SearchBarWidget(),
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+          ),
         ),
-        title: const SearchBarWidget(),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
       ),
       body: Column(
         children: [
           const SizedBox(height: 8),
           Expanded(
-            child: TabWidget(tabContents: recruitFilterTabList),
+            child: TabWidget(
+              tabContents: recruitFilterTabList,
+            ),
           ),
         ],
       ),

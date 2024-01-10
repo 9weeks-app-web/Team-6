@@ -23,7 +23,10 @@ class RecruitDescriptionSection extends StatelessWidget {
         RichTextWithDividerWidget(
           frontText: recruitInfo['companyName'],
           secondText: recruitInfo['location_Si_Gu'],
-          textStyle: DesignTextStyle.Label_2_Medium,
+          textStyle: DesignTextStyle(
+            style: DesignStyle.Label_2_Medium,
+            color: DesignColor.Neutral,
+          ).textStyle,
         ),
         const SizedBox(height: 8),
         Text(
