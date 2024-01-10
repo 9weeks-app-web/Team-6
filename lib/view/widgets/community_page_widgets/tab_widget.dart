@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/tab_item.dart';
+import 'package:flutter_app/view/widgets/community_page_widgets/tabbar_widgets/customed_tabbar_widget.dart';
 
 class TabWidget extends StatelessWidget {
   const TabWidget({
@@ -18,42 +18,7 @@ class TabWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: DesignColor.Neutral.shade20,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                TabBar(
-                  indicatorWeight: 3,
-                  indicatorColor: DesignColor.Primary.shade80,
-                  labelColor: DesignColor.Primary.shade80,
-                  unselectedLabelColor: DesignColor.Neutral.shade20,
-                  unselectedLabelStyle: DesignTextStyle.Label_2_Regular,
-                  labelStyle: DesignTextStyle.Label_2_SemiBold,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  isScrollable: true,
-                  tabAlignment: TabAlignment.start,
-                  tabs: tabContents
-                      .map(
-                        (tabItem) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Tab(
-                            text: tabItem.label,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ],
-            ),
+            child: CustomedTabbarWidget(tabContents: tabContents),
           ),
           Flexible(
             fit: FlexFit.loose,

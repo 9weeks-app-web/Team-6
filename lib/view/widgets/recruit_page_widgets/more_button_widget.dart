@@ -17,13 +17,14 @@ class MoreButtonWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            label ?? '더보기',
-            style: DesignTextStyle(
-              style: DesignStyle.Label_2_SemiBold,
-              color: DesignColor.Neutral.shade60,
-            ).textStyle,
-          ),
+          if (label != null)
+            Text(
+              label!,
+              style: DesignTextStyle(
+                style: DesignStyle.Label_2_SemiBold,
+                color: DesignColor.Neutral.shade60,
+              ).textStyle,
+            ),
           Icon(
             Icons.chevron_right,
             size: 20,

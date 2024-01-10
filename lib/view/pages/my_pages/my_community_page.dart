@@ -63,9 +63,8 @@ class MyCommunityPortfolioPage extends ConsumerWidget {
                     ? DesignColor.Primary.shade10
                     : DesignColor.Neutral.shade10),
             shape: DesignButtonStyle.BorderStyle04,
-            backgroundColor: isSelected
-                ? DesignColor.Primary.shade10
-                : DesignColor.Neutral.shade10),
+            backgroundColor:
+                isSelected ? DesignColor.Primary.shade10 : Colors.transparent),
         onPressed: () {
           ref.read(myCommunitypageProvider.notifier).pageChanged(index);
         },

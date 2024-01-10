@@ -7,6 +7,8 @@ enum ChipType {
   apply,
   tag,
   job,
+  filtering,
+  select,
 }
 
 Color? getJobColor(String job) {
@@ -48,10 +50,12 @@ class ChipWidget extends StatelessWidget {
     super.key,
     required this.label,
     this.type = ChipType.job,
+    this.isSelected = false,
   });
 
   final String label;
   final ChipType type;
+  final bool? isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -100,12 +104,48 @@ class ChipWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(
-              color: DesignColor.Neutral.shade40,
+              color: isSelected == false
+                  ? DesignColor.Neutral.shade40
+                  : Colors.transparent,
             ),
+            color: isSelected == false
+                ? Colors.transparent
+                : DesignColor.Primary.shade80,
           ),
           child: Text(
             label,
-            style: DesignTextStyle.Caption_1_Medium,
+            style: isSelected == false
+                ? DesignTextStyle.Caption_1_Medium
+                : DesignTextStyle(
+                    style: DesignStyle.Caption_1_Medium,
+                    color: Colors.white,
+                  ).textStyle,
+          ),
+        );
+      case ChipType.filtering:
+        return Container(
+          padding: const EdgeInsets.only(
+            top: 7,
+            bottom: 7,
+            left: 11,
+            right: 8,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: DesignColor.Neutral.shade10,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                label,
+                style: DesignTextStyle.Caption_1_Medium,
+              ),
+              const Icon(
+                Icons.close,
+                size: 14,
+              ),
+            ],
           ),
         );
       default:

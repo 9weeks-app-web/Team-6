@@ -11,8 +11,6 @@ class ClubDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> clubTabs = ['라운지', '채팅', '키워드', '투표'];
-
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(

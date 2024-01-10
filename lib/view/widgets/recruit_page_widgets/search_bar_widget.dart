@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:go_router/go_router.dart';
 
 //@TabType을 받아서 타입에 따라 suffixIcon을 다르게 줄 것
 
@@ -35,9 +36,14 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           color: DesignColor.Neutral.shade30,
         ).textStyle,
         suffixIcon: widget.hintText == null
-            ? const Icon(
-                Icons.search,
-                color: DesignColor.Neutral,
+            ? GestureDetector(
+                onTap: () {
+                  context.push('/community/recruit/filter');
+                },
+                child: const Icon(
+                  Icons.search,
+                  color: DesignColor.Neutral,
+                ),
               )
             : null,
         enabledBorder: OutlineInputBorder(
