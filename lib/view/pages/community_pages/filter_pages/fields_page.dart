@@ -12,8 +12,6 @@ class FieldsPage extends StatelessWidget {
       '3D디자이너',
       '웹 디자이너',
       '인테리어 디자이너',
-      'UI,GUI 디자이너',
-      'UX디자이너',
     ];
     String selectedJob = '디자인';
 
