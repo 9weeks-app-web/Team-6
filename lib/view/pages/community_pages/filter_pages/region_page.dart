@@ -19,7 +19,7 @@ class _RegionPageState extends State<RegionPage> {
   Widget build(BuildContext context) {
     String title = '지역선택';
     List<String> selectedItems = [
-      // '서울 강남구',
+      '서울 강남구',
     ];
 
     void updateSelectedItems() {
