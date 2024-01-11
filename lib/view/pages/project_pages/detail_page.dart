@@ -158,10 +158,10 @@ class ProjectDetailPage extends ConsumerWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: SizedBox(
+          height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
               // header
-
               const SizedBox(
                 height: 10,
               ),
@@ -215,7 +215,7 @@ class ProjectDetailPage extends ConsumerWidget {
               const SizedBox(
                 height: 12,
               ),
-              Container(
+              SizedBox(
                 height: 500,
                 child: SingleChildScrollView(
                   child: Column(
