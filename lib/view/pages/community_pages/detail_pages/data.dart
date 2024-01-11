@@ -11,6 +11,7 @@ Map<String, dynamic> club = {
   'headCount': 552,
   'max': 1500,
   'clubName': '블루라이트 클럽',
+  'image': 'assets/images/community/club/growth/growth_01.png',
   'description': '블루라이트 차단 안경을 끼세요. 그리고 컴퓨터를 킵시다. 이제 작업을 시작해보아요',
   'clubHead': clubHead,
   'rule': '''➰금지사항➰ 

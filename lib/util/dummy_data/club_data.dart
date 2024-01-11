@@ -4,7 +4,7 @@ const growthClubData = [
     'headCount': 552,
     'max': 1500,
     'clubName': '블루라이트 클럽',
-    'image': 'assets/images/community/club/growth/growth_01.jpg',
+    'image': 'assets/images/community/club/growth/growth_01.png',
     'description': '블루라이트 차단 안경을 끼세요. 그리고 컴퓨터를 킵시다. 이제 작업을 시작해보아요',
     'clubHead': {
       'id': 'uuid_1',
@@ -65,7 +65,7 @@ const growthClubData = [
     'headCount': 552,
     'max': 1500,
     'clubName': '3D 스터디',
-    'image': 'assets/images/community/club/growth/growth_02.jpg',
+    'image': 'assets/images/community/club/growth/growth_02.png',
     'description': 'Cinema 4D, Blender 등 모두 환영 각종 팁 환영합니다.',
     'clubHead': {
       'id': 'uuid_2',
@@ -124,7 +124,7 @@ const growthClubData = [
     'headCount': 552,
     'max': 1500,
     'clubName': '이 **한테 속은 클럽',
-    'image': 'assets/images/community/club/growth/growth_03.jpg',
+    'image': 'assets/images/community/club/growth/growth_03.png',
     'description': '어릴때 스크래치 할 때는 코딩이 재밌는줄 알았지...',
     'clubHead': {
       'id': 'uuid_3',
@@ -186,7 +186,7 @@ const freeClubData = [
     'headCount': 552,
     'max': 1500,
     'clubName': '강아지 클럽',
-    'image': 'assets/images/community/club/free/free_01.jpg',
+    'image': 'assets/images/community/club/free/free_01.png',
     'description': '자랑하세요. 제 강아지도 봐주셔야해요.',
     'clubHead': {
       'id': 'uuid_1',
@@ -246,7 +246,7 @@ const freeClubData = [
     'headCount': 552,
     'max': 1500,
     'clubName': '아 똑똑해진다',
-    'image': 'assets/images/community/club/free/free_02.jpg',
+    'image': 'assets/images/community/club/free/free_02.png',
     'description': '이 분위기.. 온도.. 습도.. 느낀점과 인사이트를 공유해보아요. 책 추천도 좋아요.',
     'clubHead': {
       'id': 'uuid_2',
@@ -308,7 +308,7 @@ const freeClubData = [
     'headCount': 552,
     'max': 1500,
     'clubName': '별 헤는 밤',
-    'image': 'assets/images/community/club/free/free_03.jpg',
+    'image': 'assets/images/community/club/free/free_03.png',
     'description': '우주가 너무 좋아요',
     'clubHead': {
       'id': 'uuid_3',
