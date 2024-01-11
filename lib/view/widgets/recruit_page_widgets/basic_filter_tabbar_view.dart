@@ -4,17 +4,28 @@ import 'package:flutter_app/view/widgets/community_page_widgets/chip_widget.dart
 import 'package:flutter_app/view/widgets/community_page_widgets/subtitle_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/floating_filtering_button.dart';
 
-class BasicFilterTabbarView extends StatelessWidget {
+class BasicFilterTabbarView extends StatefulWidget {
   const BasicFilterTabbarView({
     super.key,
     required this.title,
     required this.selectedList,
     required this.filteringData,
+    required this.onTapIconBtn,
+    required this.onTapTextBtn,
+    required this.onTapItem,
   });
   final String title;
   final List<String> selectedList;
   final List<String> filteringData;
+  final void Function() onTapIconBtn;
+  final void Function() onTapTextBtn;
+  final void Function(String) onTapItem;
 
+  @override
+  State<BasicFilterTabbarView> createState() => _BasicFilterTabbarViewState();
+}
+
+class _BasicFilterTabbarViewState extends State<BasicFilterTabbarView> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +35,7 @@ class BasicFilterTabbarView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SubTitleWidget(
-            label: title,
+            label: widget.title,
             textStyle: DesignStyle.Body_Bold,
           ),
         ),
@@ -43,12 +54,15 @@ class BasicFilterTabbarView extends StatelessWidget {
             child: Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: filteringData
+              children: widget.filteringData
                   .map(
-                    (data) => ChipWidget(
-                      label: data,
-                      type: ChipType.tag,
-                      isSelected: selectedList.contains(data),
+                    (data) => GestureDetector(
+                      onTap: () => widget.onTapItem(data),
+                      child: ChipWidget(
+                        label: data,
+                        type: ChipType.tag,
+                        isSelected: widget.selectedList.contains(data),
+                      ),
                     ),
                   )
                   .toList(),
@@ -56,9 +70,9 @@ class BasicFilterTabbarView extends StatelessWidget {
           ),
         ),
         FloatingFilteringButton(
-          selectedItems: selectedList,
-          onTapIconBtn: () {},
-          onTapTextBtn: () {},
+          selectedItems: widget.selectedList,
+          onTapIconBtn: widget.onTapIconBtn,
+          onTapTextBtn: widget.onTapTextBtn,
         ),
       ],
     );

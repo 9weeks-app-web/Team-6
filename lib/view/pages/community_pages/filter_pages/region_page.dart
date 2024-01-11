@@ -12,16 +12,15 @@ class RegionPage extends StatefulWidget {
 }
 
 class _RegionPageState extends State<RegionPage> {
+  String title = '지역선택';
   String selectedRegion = '';
   String selectedSubRegion = '';
+  List<String> selectedItems = [
+    '서울 강남구',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    String title = '지역선택';
-    List<String> selectedItems = [
-      '서울 강남구',
-    ];
-
     void updateSelectedItems() {
       if (selectedRegion.isNotEmpty && selectedSubRegion.isNotEmpty) {
         String selectedItem = '$selectedRegion $selectedSubRegion';
@@ -29,6 +28,15 @@ class _RegionPageState extends State<RegionPage> {
           selectedItems.add(selectedItem);
         }
       }
+    }
+
+    void resetOptions() {
+      selectedItems.clear();
+      setState(() {});
+    }
+
+    void searchByOptions() {
+      print(selectedItems);
     }
 
     return Column(
@@ -128,8 +136,8 @@ class _RegionPageState extends State<RegionPage> {
         ),
         FloatingFilteringButton(
           selectedItems: selectedItems,
-          onTapIconBtn: () {},
-          onTapTextBtn: () {},
+          onTapIconBtn: resetOptions,
+          onTapTextBtn: searchByOptions,
         ),
       ],
     );
