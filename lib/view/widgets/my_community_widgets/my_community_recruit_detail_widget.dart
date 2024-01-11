@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/util/dummy_data/recruit_detail_data.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart';
 import 'package:flutter_app/viewmodel/my_community_page_viewmodel/my_community_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,11 +43,12 @@ class MyCommunityRecruitDetailWidget extends ConsumerWidget {
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 5,
+          itemCount: recruitDetailData.length,
           itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.only(bottom: 20.0),
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
               child: RecruitCardWidget(
+                recruitData: recruitDetailData[index],
                 type: CardType.maximum,
               ),
             );

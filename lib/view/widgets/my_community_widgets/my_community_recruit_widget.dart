@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/util/dummy_data/recruit_detail_data.dart';
 import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recruit_card_widget.dart';
 import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recruit_resume_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart';
@@ -40,11 +41,12 @@ class MyCommunityRecruitWidget extends ConsumerWidget {
           height: 206,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: recruitDetailData.length,
             itemBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.only(right: 10.0),
+              return Padding(
+                padding: const EdgeInsets.only(right: 10.0),
                 child: RecruitCardWidget(
+                  recruitData: recruitDetailData[index],
                   type: CardType.minimum,
                 ),
               );
@@ -82,12 +84,14 @@ class MyCommunityRecruitWidget extends ConsumerWidget {
             scrollDirection: Axis.horizontal,
             itemCount: 5,
             itemBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.only(right: 16),
+              return Padding(
+                padding: const EdgeInsets.only(right: 16),
                 child: SizedBox(
                   height: 194,
                   width: 300,
-                  child: MyCommunityRecruitCardWidget(),
+                  child: MyCommunityRecruitCardWidget(
+                    recruitData: recruitDetailData[index],
+                  ),
                 ),
               );
             },

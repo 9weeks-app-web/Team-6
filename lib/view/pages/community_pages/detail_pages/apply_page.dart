@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
-import 'package:flutter_app/util/community/recruit_detail_data.dart';
+import 'package:flutter_app/util/dummy_data/recruit_detail_data.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/apply_floating_button.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/shade_color_box.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/text_button_with_icon.dart';

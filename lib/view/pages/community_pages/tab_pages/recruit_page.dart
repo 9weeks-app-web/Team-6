@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
-import 'package:flutter_app/util/community/recruit_detail_data.dart';
+import 'package:flutter_app/util/dummy_data/recruit_detail_data.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/chip_widget.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/default_recruit_list.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/recruit_search_list.dart';
