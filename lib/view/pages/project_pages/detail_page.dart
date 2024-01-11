@@ -156,249 +156,252 @@ class ProjectDetailPage extends ConsumerWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: SafeArea(
-        child: SizedBox(
-          child: Column(
-            children: [
-              // header
+      body: Expanded(
+        child: SafeArea(
+          child: SizedBox(
+            child: Column(
+              children: [
+                // header
 
-              const SizedBox(
-                height: 10,
-              ),
-              // title and back button
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        context.pop();
-                      },
-                      child: const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 40),
-                    const Text(
-                      '미술 작품 거래 차트 서비스',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        const SizedBox(
+                const SizedBox(
+                  height: 10,
+                ),
+                // title and back button
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          context.pop();
+                        },
+                        child: const SizedBox(
                           width: 24,
                           height: 24,
-                          child: Icon(Icons.share_outlined),
-                        ),
-                        const SizedBox(width: 10),
-                        GestureDetector(
-                          onTap: () => _showActionSheet(context),
-                          child: const SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: Icon(Icons.more_vert),
+                          child: Icon(
+                            Icons.arrow_back_ios,
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      const SizedBox(width: 40),
+                      const Text(
+                        '미술 작품 거래 차트 서비스',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const Spacer(),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Icon(Icons.share_outlined),
+                          ),
+                          const SizedBox(width: 10),
+                          GestureDetector(
+                            onTap: () => _showActionSheet(context),
+                            child: const SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Icon(Icons.more_vert),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: Image.asset(
-                          'assets/images/project/detail.png',
-                          fit: BoxFit.cover,
+                const SizedBox(
+                  height: 12,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: Image.asset(
+                            'assets/images/project/detail.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 40),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const HeadingTextWidget(text: '프로젝트 소개'),
-                            const SizedBox(height: 16),
-                            SizedBox(
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 4,
-                                    height: 44,
-                                    color: const Color(0xFF99BDFF),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  const Flexible(
-                                    child: Text(
-                                        '그림, 미술, 예술, 전시 등 감성적인 기획들을 좋아하시는 분 신청 바랍니다. ',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            const SizedBox(
-                              width: double.infinity,
-                              child: Flexible(
-                                  child: Text(
-                                '투자 붐이된 시대에 투자할 곳을 많이 찾고 있었습니다.\n금융회사를 다니다보니 여러 방면의 금융시스템과 \n투자처를 찾다보니 가장 수익률이 좋은 곳은 \n미술시장이란 것을 알게 되었습니다.\n\n부동산의 장점과 동산의 장점이 합쳐진 수익률이 극대화된 상품이었죠. 그런데 정보가 너무 없었습니다.\n그래서 미술 플랫폼들이 지금 마구 생겨나는 시기임에도 \n기존의 좋은 작품들은 하나도 쓰지 못하고 새로운 디자인, ai 디자인만 새로운 플랫폼에 유입되면서 \n그들은 기존의 시장에서 제명되고 있죠\n\n작가님들과 친해지며 미술업계 깊숙히 다녀왔는데 정말 너무 썩어있었습니다. 순수회화시장이 크지못하고 기득권이 자리잡아 그 울타리를 절대 부수지 못하는 그런 분위기...\n요즘 IT시대라면 충분히 가능할 것이라고 보고 있고, \n\n회의 진행은 1달 1회 오프라인 정기회의 필요 시 온라인 디스코드로 생각 중에 있습니다. 슬랙도 이용합니다.',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Color(0xFF4C4C4C),
-                                    fontWeight: FontWeight.w400),
-                              )),
-                            ),
-                            const SizedBox(height: 40),
-                            const HeadingTextWidget(text: '모집현황'),
-                            const SizedBox(height: 16),
-                            const RecruitmentStatus(),
-                            const SizedBox(height: 40),
-                            const HeadingTextWidget(text: '작업도구'),
-                            const SizedBox(height: 16),
-                            const ToolsWidget(),
-                            const SizedBox(height: 40),
-                            const SizedBox(
-                              height: 26,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  HeadingTextWidget(text: '모집마감일'),
-                                  SizedBox(width: 12),
-                                  SizedBox(
-                                    width: 100,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox(height: 5),
-                                        Text(
-                                          '2023. 12. 31',
-                                          style: TextStyle(
-                                            color: Color(0xFF4C4C4C),
-                                            fontSize: 16,
-                                            fontFamily: 'Pretendard Variable',
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  RecruitingChip(isRecruiting: true),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 30),
-                            const HeadingTextWidget(text: '참고 링크'),
-                            const SizedBox(height: 20),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: SvgPicture.asset(
-                                    'assets/images/project/check_circle.svg',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(width: 5),
-                                const SizedBox(
-                                  width: 291,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 9, vertical: 7),
-                                    child: Text(
-                                      'https://www.notion.so/sniperfactory1/UI-UX-8def242cfa5b4d1e9b5099879715554c',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontFamily: 'Pretendard Variable',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 40),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        thickness: 10,
-                        color: Color(0xFFF3F3F3),
-                      ),
-                      Padding(
+                        const SizedBox(height: 40),
+                        Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SizedBox(height: 40),
-                              const HeadingTextWidget(text: '리더 정보'),
-                              const SizedBox(height: 16),
-                              const LeaderInfoWidget(),
-                              const CommentArea(),
-                              const SizedBox(height: 40),
-                              const HeadingTextWidget(text: '비슷한 프로젝트 보기'),
+                              const HeadingTextWidget(text: '프로젝트 소개'),
                               const SizedBox(height: 16),
                               SizedBox(
-                                height: 330,
-                                child: ListView(
-                                  padding: const EdgeInsets.only(right: 20),
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 12.0),
-                                      child: ProjectCardWidget(
-                                        isRecruiting: true,
-                                        imagePath:
-                                            'assets/images/project/dog.png',
-                                        projectName: '강아지 산책 앱 서비스 팀원 모집',
-                                        width: CardWidth.w300,
-                                      ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 4,
+                                      height: 44,
+                                      color: const Color(0xFF99BDFF),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 12.0),
-                                      child: ProjectCardWidget(
-                                        isRecruiting: false,
-                                        imagePath:
-                                            'assets/images/project/human.png',
-                                        projectName: '콘텐츠 기반 공연예술 큐레이션 플랫폼',
-                                        width: CardWidth.w300,
-                                      ),
+                                    const SizedBox(width: 10),
+                                    const Flexible(
+                                      child: Text(
+                                          '그림, 미술, 예술, 전시 등 감성적인 기획들을 좋아하시는 분 신청 바랍니다. ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          )),
                                     ),
                                   ],
                                 ),
                               ),
-                              const SizedBox(height: 80),
+                              const SizedBox(height: 20),
+                              const SizedBox(
+                                width: double.infinity,
+                                child: Flexible(
+                                    child: Text(
+                                  '투자 붐이된 시대에 투자할 곳을 많이 찾고 있었습니다.\n금융회사를 다니다보니 여러 방면의 금융시스템과 \n투자처를 찾다보니 가장 수익률이 좋은 곳은 \n미술시장이란 것을 알게 되었습니다.\n\n부동산의 장점과 동산의 장점이 합쳐진 수익률이 극대화된 상품이었죠. 그런데 정보가 너무 없었습니다.\n그래서 미술 플랫폼들이 지금 마구 생겨나는 시기임에도 \n기존의 좋은 작품들은 하나도 쓰지 못하고 새로운 디자인, ai 디자인만 새로운 플랫폼에 유입되면서 \n그들은 기존의 시장에서 제명되고 있죠\n\n작가님들과 친해지며 미술업계 깊숙히 다녀왔는데 정말 너무 썩어있었습니다. 순수회화시장이 크지못하고 기득권이 자리잡아 그 울타리를 절대 부수지 못하는 그런 분위기...\n요즘 IT시대라면 충분히 가능할 것이라고 보고 있고, \n\n회의 진행은 1달 1회 오프라인 정기회의 필요 시 온라인 디스코드로 생각 중에 있습니다. 슬랙도 이용합니다.',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C4C4C),
+                                      fontWeight: FontWeight.w400),
+                                )),
+                              ),
+                              const SizedBox(height: 40),
+                              const HeadingTextWidget(text: '모집현황'),
+                              const SizedBox(height: 16),
+                              const RecruitmentStatus(),
+                              const SizedBox(height: 40),
+                              const HeadingTextWidget(text: '작업도구'),
+                              const SizedBox(height: 16),
+                              const ToolsWidget(),
+                              const SizedBox(height: 40),
+                              const SizedBox(
+                                height: 26,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    HeadingTextWidget(text: '모집마감일'),
+                                    SizedBox(width: 12),
+                                    SizedBox(
+                                      width: 100,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(height: 5),
+                                          Text(
+                                            '2023. 12. 31',
+                                            style: TextStyle(
+                                              color: Color(0xFF4C4C4C),
+                                              fontSize: 16,
+                                              fontFamily: 'Pretendard Variable',
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    RecruitingChip(isRecruiting: true),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 30),
+                              const HeadingTextWidget(text: '참고 링크'),
+                              const SizedBox(height: 20),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: SvgPicture.asset(
+                                      'assets/images/project/check_circle.svg',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  const SizedBox(
+                                    width: 291,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 9, vertical: 7),
+                                      child: Text(
+                                        'https://www.notion.so/sniperfactory1/UI-UX-8def242cfa5b4d1e9b5099879715554c',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontFamily: 'Pretendard Variable',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 40),
                             ],
-                          )),
-                    ],
+                          ),
+                        ),
+                        const Divider(
+                          thickness: 10,
+                          color: Color(0xFFF3F3F3),
+                        ),
+                        Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 40),
+                                const HeadingTextWidget(text: '리더 정보'),
+                                const SizedBox(height: 16),
+                                const LeaderInfoWidget(),
+                                const CommentArea(),
+                                const SizedBox(height: 40),
+                                const HeadingTextWidget(text: '비슷한 프로젝트 보기'),
+                                const SizedBox(height: 16),
+                                SizedBox(
+                                  height: 330,
+                                  child: ListView(
+                                    padding: const EdgeInsets.only(right: 20),
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    children: const [
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 12.0),
+                                        child: ProjectCardWidget(
+                                          isRecruiting: true,
+                                          imagePath:
+                                              'assets/images/project/dog.png',
+                                          projectName: '강아지 산책 앱 서비스 팀원 모집',
+                                          width: CardWidth.w300,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 12.0),
+                                        child: ProjectCardWidget(
+                                          isRecruiting: false,
+                                          imagePath:
+                                              'assets/images/project/human.png',
+                                          projectName: '콘텐츠 기반 공연예술 큐레이션 플랫폼',
+                                          width: CardWidth.w300,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 80),
+                              ],
+                            )),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
