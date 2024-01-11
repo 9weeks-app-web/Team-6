@@ -14,6 +14,7 @@ class ProjectPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
           title: const HeaderWidget(),
         ),

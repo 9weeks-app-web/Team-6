@@ -22,7 +22,7 @@ class PortfolioCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> imageUrls = [
-      'assets/images/portfolio/1.png',
+      'assets/images/portfolio/ex-thumbnail-L.png',
       'assets/images/portfolio/2.png',
       'assets/images/portfolio/3.png',
       'assets/images/portfolio/4.png',

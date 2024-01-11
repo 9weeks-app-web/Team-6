@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/widgets/portfolio_widgets/scroll_aware_fab.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
-  runApp(PortfolioProjectPage());
+  return runApp(PortfolioProjectPage());
 }
 
 class PortfolioProjectPage extends StatefulWidget {
@@ -15,18 +18,209 @@ class PortfolioProjectPage extends StatefulWidget {
 
 class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
   late ScrollController _scrollController;
-
+  bool _isFabExtended1 = true;
+  bool _isFabExtended2 = true;
+  bool _isFabExtended3 = true;
+  bool _isFabExtended4 = true;
+  bool _isVisibleList = true; // 각 버튼의 가시성을 나타내는 리스트
+  double _fabOffset = 0.0;
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController();
+    Timer(Duration(seconds: 1), () {
+      _scrollController.animateTo(0.1,
+          duration: Duration(milliseconds: 450), curve: Curves.easeInOut);
+    });
+    _scrollController = ScrollController(initialScrollOffset: 200.0);
+    _scrollController.addListener(_scrollListener);
+
+    _isVisibleList = true;
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      print('Initial Scroll Offset: ${_scrollController.offset}');
+      print('_isFabExtended: $_isFabExtended1');
+    });
+  }
+
+  void _scrollListener() {
+    final double maxScroll = _scrollController.position.maxScrollExtent;
+    final double offset = _scrollController.offset;
+
+    final double headerThreshold = maxScroll - 1440.36;
+    final double changeColorThreshold1 = maxScroll - 1440.36;
+    final double changeColorThreshold2 = maxScroll - 1390.36;
+    final double changeColorThreshold3 = maxScroll - 1340.36;
+    final double changeColorThreshold4 = maxScroll - 1290.36;
+
+    setState(() {
+      _isVisibleList = offset <= headerThreshold;
+      _isFabExtended1 = offset <= changeColorThreshold1;
+      _isFabExtended2 = offset <= changeColorThreshold2;
+      _isFabExtended3 = offset <= changeColorThreshold3;
+      _isFabExtended4 = offset <= changeColorThreshold4;
+      if (offset <= maxScroll - 1240.36) {
+        _fabOffset = maxScroll - 1240.36;
+      } else {
+        _fabOffset = offset;
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        floatingActionButton: Container(
+          width: 360,
+          height: 740,
+          child: Stack(
+            children: [
+              Positioned(
+                right: 0, // 버튼들의 오른쪽 여백
+                bottom: _fabOffset - 1945, // 아래 정렬
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      child: FloatingActionButton(
+                        heroTag: "btn4",
+                        backgroundColor: Colors.transparent,
+                        onPressed: () {},
+                        child: Icon(
+                          Icons.share,
+                          color: _isFabExtended4 ? Colors.white : Colors.black,
+                        ),
+                        elevation: 0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: 24,
+                      height: 24,
+                      child: FloatingActionButton(
+                        heroTag: "btn3",
+                        onPressed: () {},
+                        child: Icon(
+                          Icons.folder_open,
+                          color: _isFabExtended3 ? Colors.white : Colors.black,
+                        ),
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: 24,
+                      height: 24,
+                      child: FloatingActionButton(
+                        heroTag: "btn2",
+                        onPressed: () {},
+                        child: Icon(
+                          Icons.mail,
+                          color: _isFabExtended2 ? Colors.white : Colors.black,
+                        ),
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: 46,
+                      height: 46,
+                      child: FloatingActionButton(
+                        heroTag: "btn1",
+                        onPressed: () {},
+                        child: Icon(
+                          _isFabExtended1
+                              ? Icons.favorite_outline
+                              : Icons.favorite,
+                          color: _isFabExtended1 ? Colors.black : Colors.white,
+                          size: 24,
+                        ),
+                        shape: OvalBorder(),
+                        backgroundColor:
+                            _isFabExtended1 ? Colors.white : Color(0xFF0059FF),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                right: 0, // X 버튼의 오른쪽 여백
+                top: 54, // 위쪽 정렬
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    shape: CircleBorder(),
+                  ),
+                  onPressed: () {
+                    context.push('/home');
+                  },
+                  child: Icon(
+                    Icons.close,
+                    size: 24,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              if (_isVisibleList)
+                Positioned(
+                  left: 36, // Project와 Name의 왼쪽 여백
+                  bottom: 0, // 아래 정렬
+                  child: Row(
+                    children: [
+                      if (_isVisibleList)
+                        Container(
+                          width: 46,
+                          height: 46,
+                          decoration: ShapeDecoration(
+                            shape: OvalBorder(),
+                            color: Color(0xFFE6E6E6),
+                          ),
+                        ),
+                      SizedBox(
+                        width: 9,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (_isVisibleList)
+                            Text(
+                              'Project',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Pretendard Variable',
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          if (_isVisibleList)
+                            Text(
+                              'Name',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Pretendard Variable',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
           controller: _scrollController,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -34,8 +228,11 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
             children: [
               Container(
                 width: 360,
-                height: 835,
                 decoration: BoxDecoration(color: Color(0xFF333333)),
+                child: Image.asset(
+                  "assets/images/portfolio/ex.png",
+                  //fit: BoxFit.fitWidth,
+                ),
               ),
               Container(
                 height: 13,
@@ -339,7 +536,10 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                           ),
                           child: Stack(
                             children: [
-                              Image.asset("assets/images/portfolio/1.png"),
+                              Image.asset(
+                                "assets/images/portfolio/ex-thumbnail-S.png",
+                                //fit: BoxFit.fitWidth,
+                              ),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -1015,8 +1215,6 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
             ],
           ),
         ),
-        floatingActionButton:
-            ScrollAwareFab(scrollController: _scrollController),
       ),
     );
   }

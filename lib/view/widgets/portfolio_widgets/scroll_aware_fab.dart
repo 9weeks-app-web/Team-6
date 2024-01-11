@@ -16,7 +16,6 @@ class _ScrollAwareFabState extends State<ScrollAwareFab> {
   bool _isFabExtended2 = true;
   bool _isFabExtended3 = true;
   bool _isFabExtended4 = true;
-  bool _isFabExtended5 = true;
   List<bool> _isVisibleList = [
     true,
   ]; // 각 버튼의 가시성을 나타내는 리스트
@@ -27,23 +26,18 @@ class _ScrollAwareFabState extends State<ScrollAwareFab> {
     super.initState();
     _scrollController = widget.scrollController;
     _scrollController.addListener(_scrollListener);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
+    _isVisibleList[0] = true;
   }
 
   void _scrollListener() {
     final double maxScroll = _scrollController.position.maxScrollExtent;
     final double offset = _scrollController.offset;
+
     final double headerThreshold = maxScroll - 1440.36;
     final double changeColorThreshold1 = maxScroll - 1440.36;
     final double changeColorThreshold2 = maxScroll - 1390.36;
     final double changeColorThreshold3 = maxScroll - 1340.36;
     final double changeColorThreshold4 = maxScroll - 1290.36;
-    final double threshold = maxScroll - 1240.36;
 
     setState(() {
       _isVisibleList[0] = offset <= headerThreshold;
@@ -51,7 +45,6 @@ class _ScrollAwareFabState extends State<ScrollAwareFab> {
       _isFabExtended2 = offset <= changeColorThreshold2;
       _isFabExtended3 = offset <= changeColorThreshold3;
       _isFabExtended4 = offset <= changeColorThreshold4;
-      _isFabExtended5 = offset <= threshold;
       if (offset <= maxScroll - 1240.36) {
         _fabOffset = maxScroll - 1240.36;
       } else {
@@ -112,7 +105,7 @@ class _ScrollAwareFabState extends State<ScrollAwareFab> {
             ),
           Positioned(
             right: 0, // 버튼들의 오른쪽 여백
-            bottom: _fabOffset - 350, // 아래 정렬
+            bottom: _fabOffset - 1940, // 아래 정렬
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -141,7 +134,9 @@ class _ScrollAwareFabState extends State<ScrollAwareFab> {
                     onPressed: () {},
                     child: Icon(
                       Icons.folder_open,
-                      color: _isFabExtended3 ? Colors.white : Colors.black,
+                      color: _isFabExtended3
+                          ? Colors.white
+                          : const Color.fromARGB(255, 137, 20, 20),
                     ),
                     backgroundColor: Colors.transparent,
                     elevation: 0,

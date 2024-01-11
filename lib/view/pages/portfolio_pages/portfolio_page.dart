@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common.dart';
+import 'package:flutter_app/util/dummy_data/recruit_detail_data.dart';
 
 import 'package:flutter_app/view/router.dart';
+import 'package:flutter_app/view/widgets/community_page_widgets/default_recruit_list.dart';
 import 'package:flutter_app/view/widgets/header_widget.dart';
-import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
+import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart'
+    as portfolio;
+import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart'
+    as recruit;
+import 'package:flutter_app/view/widgets/recruit_page_widgets/recruit_card_widget.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/search_bar_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class PortfolioPage extends StatefulWidget {
-  const PortfolioPage({super.key});
+  const PortfolioPage({
+    super.key,
+  });
 
   @override
-  State<PortfolioPage> createState() => _PortfolioPageState();
+  State<PortfolioPage> createState() =>
+      _PortfolioPageState(recruitData: recruitDetailData);
 }
 
 class _PortfolioPageState extends State<PortfolioPage> {
   bool showGridView = false;
   List<String> imageUrls = [
-    'assets/images/portfolio/1.png',
+    'assets/images/portfolio/ex-thumbnail-L.png',
     'assets/images/portfolio/2.png',
     'assets/images/portfolio/3.png',
     'assets/images/portfolio/4.png',
@@ -45,121 +57,17 @@ class _PortfolioPageState extends State<PortfolioPage> {
     'assets/images/portfolio/29.png',
     'assets/images/portfolio/30.png',
   ];
+  final List<Map<String, dynamic>> recruitData;
+  _PortfolioPageState({required this.recruitData});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,
         title: const HeaderWidget(),
       ),
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   title: Row(
-      //     children: [
-      //       Container(
-      //         child: IconButton(
-      //           icon: SvgPicture.asset(
-      //             'assets/logo/sfac_logo.svg',
-      //             width: 77,
-      //             height: 20,
-      //             fit: BoxFit.contain,
-      //             // 원하는 높이 설정
-      //           ),
-      //           onPressed: () {
-      //             print('메인페이지로 이동');
-      //           },
-      //         ),
-      //       ),
-      //       Container(
-      //         child: GestureDetector(
-      //           onTap: () {
-      //             setState(() {
-      //               _isPortfolioSelected = !_isPortfolioSelected;
-      //             });
-      //           },
-      //           child: Container(
-      //               height: 26,
-      //               decoration: ShapeDecoration(
-      //                 color: const Color(0xFFF3F3F3),
-      //                 shape: RoundedRectangleBorder(
-      //                   borderRadius: BorderRadius.circular(14),
-      //                 ),
-      //               ),
-      //               child: Row(
-      //                 mainAxisSize: MainAxisSize.min,
-      //                 children: [
-      //                   Container(
-      //                     height: 26,
-      //                     padding: const EdgeInsets.symmetric(
-      //                       horizontal: 8,
-      //                     ),
-      //                     decoration: ShapeDecoration(
-      //                       color: _isPortfolioSelected
-      //                           ? const Color(0xFF337AFF)
-      //                           : const Color(0xFFE5EEFF),
-      //                       shape: RoundedRectangleBorder(
-      //                         borderRadius: BorderRadius.circular(14),
-      //                       ),
-      //                     ),
-      //                     child: Center(
-      //                       child: Text(
-      //                         '폴리오',
-      //                         style: TextStyle(
-      //                           color: _isPortfolioSelected
-      //                               ? Colors.white
-      //                               : const Color(0xFFB3B3B3),
-      //                           fontSize: 14,
-      //                           fontFamily: 'Pretendard Variable',
-      //                           fontWeight: FontWeight.w600,
-      //                         ),
-      //                       ),
-      //                     ),
-      //                   ),
-      //                   Container(
-      //                     height: 26,
-      //                     padding: const EdgeInsets.symmetric(
-      //                       horizontal: 8,
-      //                     ),
-      //                     decoration: ShapeDecoration(
-      //                       color: !_isPortfolioSelected
-      //                           ? const Color(0xFF337AFF)
-      //                           : const Color(0xFFE5EEFF),
-      //                       shape: RoundedRectangleBorder(
-      //                         borderRadius: BorderRadius.circular(14),
-      //                       ),
-      //                     ),
-      //                     child: Center(
-      //                       child: Text(
-      //                         '로그',
-      //                         style: TextStyle(
-      //                           color: _isPortfolioSelected
-      //                               ? const Color(0xFFB3B3B3)
-      //                               : Colors.white,
-      //                           fontSize: 14,
-      //                           fontFamily: 'Pretendard Variable',
-      //                           fontWeight: FontWeight.w600,
-      //                         ),
-      //                       ),
-      //                     ),
-      //                   ),
-      //                 ],
-      //               )),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      //   actions: [
-      //     IconButton(
-      //       icon: const Icon(Icons.notifications_none),
-      //       onPressed: () {
-      //         // Navigator.push(
-      //         //   context,
-      //         //   MaterialPageRoute(builder: (context) => NoticePage()),
-      //         // );
-      //       },
-      //     ),
-      //   ],
-      // ),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Container(
@@ -181,29 +89,35 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 ),
               ),
               Container(
-                width: 320,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(22),
-                  border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
-                ),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    hintText: '궁금한 포트폴리오 분야를 검색해주세요',
-                    hintStyle: TextStyle(
-                      color: Color(0xFFCCCCCC),
-                      fontSize: 12,
-                      fontFamily: 'Pretendard Variable',
-                      fontWeight: FontWeight.w400,
-                    ),
-                    border: InputBorder.none,
-                    suffixIcon: Icon(Icons.search),
-                    contentPadding:
-                        EdgeInsets.only(left: 12, top: 14, bottom: 14),
-                  ),
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: SearchBarWidget(
+                  hintText: "궁금한 포트폴리오 분야를 검색해주세요",
                 ),
               ),
+              // Container(
+              //   width: 320,
+              //   height: 44,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(22),
+              //     border: Border.all(width: 1, color: const Color(0xFFCCCCCC)),
+              //   ),
+              //   child: const TextField(
+              //     decoration: InputDecoration(
+              //       hintText: '궁금한 포트폴리오 분야를 검색해주세요',
+              //       hintStyle: TextStyle(
+              //         color: Color(0xFFCCCCCC),
+              //         fontSize: 12,
+              //         fontFamily: 'Pretendard Variable',
+              //         fontWeight: FontWeight.w400,
+              //       ),
+              //       border: InputBorder.none,
+              //       suffixIcon: Icon(Icons.search),
+              //       contentPadding:
+              //           EdgeInsets.only(left: 12, top: 14, bottom: 14),
+              //     ),
+              //   ),
+              // ),
               Container(
                 margin: const EdgeInsets.only(top: 6, bottom: 18, left: 20),
                 height: 40,
@@ -211,6 +125,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     Container(
+                      margin: EdgeInsets.only(right: 8),
                       height: 40,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 8),
@@ -233,10 +148,12 @@ class _PortfolioPageState extends State<PortfolioPage> {
                               color: Color(0xFFE6E6E6),
                               shape: OvalBorder(),
                             ),
+                            child: Image.asset(
+                                "assets/images/portfolio/image1.png"),
                           ),
                           const SizedBox(width: 8),
                           const Text(
-                            '직군/분야',
+                            'UI/UX',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 12,
@@ -271,10 +188,12 @@ class _PortfolioPageState extends State<PortfolioPage> {
                               color: Color(0xFFE6E6E6),
                               shape: OvalBorder(),
                             ),
+                            child: Image.asset(
+                                "assets/images/portfolio/image2.png"),
                           ),
                           const SizedBox(width: 8),
                           const Text(
-                            '직군/분야',
+                            '그래픽 디자인',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 12,
@@ -309,48 +228,12 @@ class _PortfolioPageState extends State<PortfolioPage> {
                               color: Color(0xFFE6E6E6),
                               shape: OvalBorder(),
                             ),
+                            child: Image.asset(
+                                "assets/images/portfolio/image3.png"),
                           ),
                           const SizedBox(width: 8),
                           const Text(
-                            '직군/분야',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Pretendard Variable',
-                              fontWeight: FontWeight.w700,
-                              height: 0.12,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 40,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 8),
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 1, color: Color(0xFFF3F3F3)),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 24,
-                            height: 24,
-                            decoration: const ShapeDecoration(
-                              color: Color(0xFFE6E6E6),
-                              shape: OvalBorder(),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Text(
-                            '직군/분야',
+                            '영상/모션그래픽',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 12,
@@ -419,24 +302,24 @@ class _PortfolioPageState extends State<PortfolioPage> {
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          return PortfolioCard(
+                          return portfolio.PortfolioCard(
                             index: index,
-                            width: CardWidth.w155,
+                            width: portfolio.CardWidth.w155,
                           );
                         },
                       )
                     : const Column(
                         children: [
-                          PortfolioCard(
+                          portfolio.PortfolioCard(
                             index: 0,
-                            width: CardWidth.wMax,
+                            width: portfolio.CardWidth.wMax,
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          PortfolioCard(
+                          portfolio.PortfolioCard(
                             index: 1,
-                            width: CardWidth.wMax,
+                            width: portfolio.CardWidth.wMax,
                           ),
                         ],
                       ),
@@ -476,133 +359,29 @@ class _PortfolioPageState extends State<PortfolioPage> {
               Container(
                 height: 238,
                 color: Colors.black,
-                padding: const EdgeInsets.only(top: 16, left: 20, right: 20),
-                child: ListView(
+                padding: const EdgeInsets.only(
+                    top: 16, bottom: 16, left: 20, right: 20),
+                child: ListView.builder(
+                  padding: const EdgeInsets.only(right: 20),
                   scrollDirection: Axis.horizontal,
-                  physics: const ClampingScrollPhysics(),
-                  children: [
-                    Container(
-                      width: 200,
-                      margin: const EdgeInsets.only(right: 20),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 200,
-                            height: 150,
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFFD9D9D9),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6)),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 32,
-                                height: 32,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(3)),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "직군 채용",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 3,
-                                  ),
-                                  Text(
-                                    '회사명',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
+                  shrinkWrap: true,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.push(
+                            '/community/recruit/${recruitData[index]['id']}',
+                          );
+                        },
+                        child: recruit.RecruitCardWidget(
+                          recruitData: recruitData[index],
+                          type: CardType.minimum,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 200,
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(bottom: 16),
-                            width: 200,
-                            height: 150,
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFFD9D9D9),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6)),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 32,
-                                height: 32,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFD9D9D9),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(3)),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "직군 채용",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 3,
-                                  ),
-                                  Text(
-                                    '회사명',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: 'Pretendard Variable',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ),
               Container(
@@ -621,17 +400,17 @@ class _PortfolioPageState extends State<PortfolioPage> {
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          return PortfolioCard(
+                          return portfolio.PortfolioCard(
                             index: index,
-                            width: CardWidth.w155,
+                            width: portfolio.CardWidth.w155,
                           );
                         },
                       )
                     : const Column(
                         children: [
-                          PortfolioCard(
+                          portfolio.PortfolioCard(
                             index: 14,
-                            width: CardWidth.wMax,
+                            width: portfolio.CardWidth.wMax,
                           ),
                         ],
                       ),
@@ -664,15 +443,25 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   scrollDirection: Axis.horizontal,
                   physics: const ClampingScrollPhysics(),
                   children: const [
-                    HotMaker(),
+                    HotMaker(
+                      name: '김민우',
+                      job: 'UI/UX 디자인',
+                      image1: 'assets/images/portfolio/hotmaker1.png',
+                      image2: 'assets/images/portfolio/5.png',
+                      image3: 'assets/images/portfolio/6.png',
+                      image4: 'assets/images/portfolio/7.png',
+                    ),
                     SizedBox(
                       width: 20,
                     ),
-                    HotMaker(),
-                    SizedBox(
-                      width: 20,
+                    HotMaker(
+                      name: '김혜성',
+                      job: 'UI/UX 디자인',
+                      image1: 'assets/images/portfolio/hotmaker2.png',
+                      image2: 'assets/images/portfolio/2.png',
+                      image3: 'assets/images/portfolio/15.png',
+                      image4: 'assets/images/portfolio/20.png',
                     ),
-                    HotMaker(),
                   ],
                 ),
               ),
@@ -692,24 +481,24 @@ class _PortfolioPageState extends State<PortfolioPage> {
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          return PortfolioCard(
+                          return portfolio.PortfolioCard(
                             index: index,
-                            width: CardWidth.w155,
+                            width: portfolio.CardWidth.w155,
                           );
                         },
                       )
                     : const Column(
                         children: [
-                          PortfolioCard(
+                          portfolio.PortfolioCard(
                             index: 3,
-                            width: CardWidth.wMax,
+                            width: portfolio.CardWidth.wMax,
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          PortfolioCard(
+                          portfolio.PortfolioCard(
                             index: 16,
-                            width: CardWidth.wMax,
+                            width: portfolio.CardWidth.wMax,
                           ),
                         ],
                       ),
@@ -723,7 +512,22 @@ class _PortfolioPageState extends State<PortfolioPage> {
 }
 
 class HotMaker extends StatelessWidget {
-  const HotMaker({super.key});
+  final String name;
+  final String job;
+  final String image1;
+  final String image2;
+  final String image3;
+  final String image4;
+
+  const HotMaker({
+    Key? key,
+    required this.name,
+    required this.image1,
+    required this.image2,
+    required this.image3,
+    required this.job,
+    required this.image4,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -748,15 +552,16 @@ class HotMaker extends StatelessWidget {
                   color: Color(0xFFD9D9D9),
                   shape: OvalBorder(),
                 ),
+                child: Image.asset(image1),
               ),
               const SizedBox(
                 width: 10,
               ),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Name',
+                    name,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -764,11 +569,11 @@ class HotMaker extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 3,
                   ),
                   Text(
-                    '직군 ∙ 분야',
+                    job,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -794,7 +599,7 @@ class HotMaker extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4)),
                 ),
-                child: const Icon(Icons.image_rounded),
+                child: Image.asset(image2),
               ),
               Container(
                 width: 68,
@@ -804,7 +609,7 @@ class HotMaker extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4)),
                 ),
-                child: const Icon(Icons.image_rounded),
+                child: Image.asset(image3),
               ),
               Container(
                 width: 68,
@@ -814,7 +619,7 @@ class HotMaker extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4)),
                 ),
-                child: const Icon(Icons.image_rounded),
+                child: Image.asset(image4),
               ),
             ],
           ),

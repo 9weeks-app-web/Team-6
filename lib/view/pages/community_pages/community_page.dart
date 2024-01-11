@@ -26,6 +26,7 @@ class _CommunityPageState extends State<CommunityPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             expandedHeight: 165.0,
             flexibleSpace: FlexibleSpaceBar(

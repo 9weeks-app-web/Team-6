@@ -37,6 +37,7 @@ class RecruitCardWidget extends StatelessWidget {
           ? (width == CardWidth.w300 ? 300 : MediaQuery.of(context).size.width)
           : 155,
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: DesignColor.Neutral.shade20,
@@ -92,10 +93,11 @@ class RecruitCardWidget extends StatelessWidget {
                   ],
                 ),
           // description section
-          Padding(
+          Container(
             padding: type == CardType.maximum
                 ? const EdgeInsets.all(16)
                 : const EdgeInsets.all(12),
+            color: Colors.white,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
