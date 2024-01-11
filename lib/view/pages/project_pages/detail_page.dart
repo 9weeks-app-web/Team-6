@@ -215,7 +215,8 @@ class ProjectDetailPage extends ConsumerWidget {
               const SizedBox(
                 height: 12,
               ),
-              Expanded(
+              Container(
+                height: 500,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
