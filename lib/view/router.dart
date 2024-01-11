@@ -18,6 +18,8 @@ import 'package:flutter_app/view/pages/my_pages/my_page.dart';
 import 'package:flutter_app/view/pages/auth_pages/sign_up_done_page.dart';
 import 'package:flutter_app/view/pages/auth_pages/sign_up_more_page.dart';
 import 'package:flutter_app/view/pages/auth_pages/sign_up_page.dart';
+import 'package:flutter_app/view/pages/notice_page.dart';
+import 'package:flutter_app/view/pages/portfolio_pages/portfolio_project_page.dart';
 import 'package:flutter_app/view/pages/project_pages/detail_page.dart';
 import 'package:flutter_app/view/pages/splash_page.dart';
 import 'package:go_router/go_router.dart';
@@ -131,5 +133,13 @@ final router = GoRouter(initialLocation: '/splash', routes: [
   GoRoute(
     path: '/project/detail',
     builder: (context, state) => const ProjectDetailPage(),
+  ),
+  GoRoute(
+    path: '/Portfolio',
+    builder: (context, state) => const PortfolioProjectPage(),
+  ),
+  GoRoute(
+    path: '/Notice',
+    builder: (context, state) => const NoticePage(),
   ),
 ]);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/router.dart';
 
 class NoticePage extends StatelessWidget {
   const NoticePage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class NoticePage extends StatelessWidget {
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
               onPressed: () {
-                Navigator.pop(context);
+                router.go('/home');
               },
             ),
             title: Text(
@@ -43,7 +44,6 @@ class NoticePage extends StatelessWidget {
               labelColor: Colors.black, // 선택된 탭의 텍스트 색상
               unselectedLabelColor:
                   const Color(0xFFB3B3B3), // 선택되지 않은 탭의 텍스트 색상
-
             ),
           ),
           body: TabBarView(

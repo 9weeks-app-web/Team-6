@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_app/view/router.dart';
 import 'package:flutter_app/view/widgets/header_widget.dart';
 import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
-
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({super.key});
@@ -12,7 +12,6 @@ class PortfolioPage extends StatefulWidget {
 }
 
 class _PortfolioPageState extends State<PortfolioPage> {
-  final bool _isPortfolioSelected = true;
   bool showGridView = false;
   List<String> imageUrls = [
     'assets/images/portfolio/1.png',
