@@ -69,6 +69,7 @@ class _MainPageState extends State<MainPage> {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,
         title: const HeaderWidget(),
       ),
@@ -167,6 +168,7 @@ class _MainPageState extends State<MainPage> {
                       children: [
                         Container(
                           padding: const EdgeInsets.only(left: 20),
+                          alignment: Alignment.centerLeft,
                           child: Visibility(
                             visible: !_dropdownVisible,
                             child: _buildSelectedCategories(),
@@ -925,62 +927,66 @@ class _MainPageState extends State<MainPage> {
         height: 40,
         padding: const EdgeInsets.symmetric(horizontal: 4),
         margin: const EdgeInsets.only(bottom: 24, top: 16),
-        child: Wrap(
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.start,
-          spacing: 8.0,
-          runSpacing: 8.0,
-          children: selectedCategories.map((category) {
-            return Container(
-              padding:
-                  const EdgeInsets.only(top: 8, left: 8, right: 12, bottom: 8),
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                    width: 1,
-                    strokeAlign: BorderSide.strokeAlignCenter,
-                    color: Color(0xFFE6E6E6),
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedCategories.remove(category);
-                      });
-                    },
-                    child: Container(
-                        width: 24,
-                        height: 24,
-                        decoration: const ShapeDecoration(
-                          color: Color(0xFFE6E6E6),
-                          shape: OvalBorder(),
-                        ),
-                        child: const Icon(Icons.clear,
-                            color: Colors.black, size: 18.0)),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    category,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontFamily: 'Pretendard Variable',
-                      fontWeight: FontWeight.w600,
-                      height: 0.07,
+        child: Row(
+          children: <Widget>[
+            Wrap(
+              direction: Axis.horizontal,
+              alignment: WrapAlignment.start,
+              spacing: 8.0,
+              runSpacing: 8.0,
+              children: selectedCategories.map((category) {
+                return Container(
+                  padding: const EdgeInsets.only(
+                      top: 8, left: 8, right: 12, bottom: 8),
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                        width: 1,
+                        strokeAlign: BorderSide.strokeAlignCenter,
+                        color: Color(0xFFE6E6E6),
+                      ),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                ],
-              ), // 추가된 부분
-            );
-          }).toList(),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedCategories.remove(category);
+                          });
+                        },
+                        child: Container(
+                            width: 24,
+                            height: 24,
+                            decoration: const ShapeDecoration(
+                              color: Color(0xFFE6E6E6),
+                              shape: OvalBorder(),
+                            ),
+                            child: const Icon(Icons.clear,
+                                color: Colors.black, size: 18.0)),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        category,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'Pretendard Variable',
+                          fontWeight: FontWeight.w600,
+                          height: 0.07,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
         ),
       ),
     );

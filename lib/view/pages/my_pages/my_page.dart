@@ -46,6 +46,7 @@ class MyPage extends ConsumerWidget {
                 (BuildContext context, bool innerBoxIsScrolled) {
               return [
                 SliverAppBar(
+                  automaticallyImplyLeading: false,
                   elevation: 0,
                   surfaceTintColor: const Color(0xFFFFFBFE),
                   expandedHeight: 320.0,
