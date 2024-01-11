@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/viewmodel/community_page_viewmodel/community_page_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 enum TabType {
@@ -7,7 +9,7 @@ enum TabType {
   recruit,
 }
 
-class SearchBarWidget extends StatefulWidget {
+class SearchBarWidget extends ConsumerStatefulWidget {
   const SearchBarWidget({
     super.key,
     this.hintText,
@@ -17,10 +19,10 @@ class SearchBarWidget extends StatefulWidget {
   final TabType? tabType;
 
   @override
-  State<SearchBarWidget> createState() => _SearchBarWidgetState();
+  ConsumerState<SearchBarWidget> createState() => _SearchBarWidgetState();
 }
 
-class _SearchBarWidgetState extends State<SearchBarWidget> {
+class _SearchBarWidgetState extends ConsumerState<SearchBarWidget> {
   TextEditingController controller = TextEditingController();
 
   @override
@@ -31,6 +33,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(communitypageProvider);
     return TextField(
       controller: controller,
       onSubmitted: (value) {},
@@ -40,7 +43,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           style: DesignStyle.Caption_1,
           color: DesignColor.Neutral.shade30,
         ).textStyle,
-        suffixIcon: widget.tabType == TabType.normal
+        suffixIcon: state.tab != 3
             ? const Icon(
                 Icons.search,
                 color: DesignColor.Neutral,

@@ -1,20 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/tab_item.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/search_bar_widget.dart';
+import 'package:flutter_app/viewmodel/community_page_viewmodel/community_page_notifier.dart';
 
-class CustomedTabbarWidget extends StatelessWidget {
+class CustomedTabbarWidget extends ConsumerWidget {
   const CustomedTabbarWidget({
     super.key,
     required this.tabContents,
     this.changeTabType,
+    required this.tabController,
   });
 
   final List<TabItem> tabContents;
   final Function(TabType)? changeTabType;
-
+  final TabController tabController;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(communitypageProvider);
     return Stack(
       children: [
         Positioned.fill(
@@ -29,6 +35,7 @@ class CustomedTabbarWidget extends StatelessWidget {
           ),
         ),
         TabBar(
+          controller: tabController,
           indicatorWeight: 3,
           indicatorColor: DesignColor.Primary.shade80,
           labelColor: DesignColor.Primary.shade80,
@@ -39,21 +46,17 @@ class CustomedTabbarWidget extends StatelessWidget {
           isScrollable: true,
           tabAlignment: TabAlignment.start,
           onTap: (value) {
-            if (changeTabType == null) return;
-            if (value == tabContents.length - 1) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                changeTabType!(TabType.recruit);
-              });
-            }
-            if (value != tabContents.length - 1) {
-              changeTabType!(TabType.normal);
-            }
+            ref.read(communitypageProvider.notifier).tabChanged(value);
+            // if (changeTabType == null) return;
+            // if (state.tab == tabContents.length - 1) {
+            //   WidgetsBinding.instance.addPostFrameCallback((_) {
+            //     changeTabType!(TabType.recruit);
+            //   });
+            // }
+            // if (state.tab != tabContents.length - 1) {
+            //   changeTabType!(TabType.normal);
+            // }
           },
-          // onTap: (value) {
-          //   if (value == tabContents.length - 1) {
-          //     changeTabType();
-          //   }
-          // },
           tabs: tabContents.map(
             (tabItem) {
               return GestureDetector(
