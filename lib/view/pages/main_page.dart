@@ -46,7 +46,7 @@ class _MainPageState extends State<MainPage> {
       SubCategory('브랜딩·편집 디자인'),
       SubCategory('포토그래피'),
       SubCategory('UX·UI 디자인'),
-      SubCategory('건축·인테리어 디자인'),
+      SubCategory('건축·인테리어'),
       SubCategory('그래픽 디자인'),
       SubCategory('타이포그래피'),
       SubCategory('캐릭터 디자인'),
@@ -295,7 +295,6 @@ class _MainPageState extends State<MainPage> {
                                 child: InkWell(
                                   onTap: () {
                                     setState(() {
-                                      print("Before: $_dropdownVisible");
                                       categoryVisibilityMap['디자인'] =
                                           !(categoryVisibilityMap['디자인'] ??
                                               false);
@@ -303,7 +302,6 @@ class _MainPageState extends State<MainPage> {
                                           !(categoryVisibilityMap['기획'] ??
                                               false);
                                       _dropdownVisible = !_dropdownVisible;
-                                      print("After: $_dropdownVisible");
                                     });
                                   },
                                   child: const Center(
@@ -1031,16 +1029,18 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
       child: Container(
         margin: const EdgeInsets.only(top: 12, left: 20, right: 20),
         width: 320,
-        decoration: const BoxDecoration(
+        decoration: const ShapeDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(8),
-            topRight: Radius.circular(8),
-          ),
-          border: Border(
-            top: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
-            left: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
-            right: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+              width: 1,
+              strokeAlign: BorderSide.strokeAlignCenter,
+              color: Color(0xFFE6E6E6),
+            ),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(8),
+              topRight: Radius.circular(8),
+            ),
           ),
         ),
         child: Column(
@@ -1086,9 +1086,7 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                         ),
                       ),
                     ),
-                    const Divider(
-                      height: 1,
-                    ),
+                    const Divider(),
                     if (categoryExpansionMap[category.name] ?? false)
                       Container(
                         padding: const EdgeInsets.symmetric(

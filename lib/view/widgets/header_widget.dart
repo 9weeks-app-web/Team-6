@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/router.dart';
 import 'package:flutter_app/view/widgets/toggle_widget.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -32,8 +33,13 @@ class HeaderWidget extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(
-              Icons.notifications_none_outlined,
+            IconButton(
+              icon: const Icon(
+                Icons.notifications_none_outlined,
+              ),
+              onPressed: () {
+                router.go('/Notice');
+              },
             ),
           ],
         ),
