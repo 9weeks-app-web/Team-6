@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/subtitle_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/floating_filtering_button.dart';
+import 'package:go_router/go_router.dart';
 
 class ExperiencePage extends StatefulWidget {
   const ExperiencePage({super.key});
@@ -17,6 +18,15 @@ class _ExperiencePageState extends State<ExperiencePage> {
 
   @override
   Widget build(BuildContext context) {
+    void resetOptions() {
+      selectedItems.clear();
+      setState(() {});
+    }
+
+    void searchByOptions() {
+      context.pop();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -68,8 +78,8 @@ class _ExperiencePageState extends State<ExperiencePage> {
         ),
         FloatingFilteringButton(
           selectedItems: selectedItems,
-          onTapIconBtn: () {},
-          onTapTextBtn: () {},
+          onTapIconBtn: resetOptions,
+          onTapTextBtn: searchByOptions,
         ),
       ],
     );

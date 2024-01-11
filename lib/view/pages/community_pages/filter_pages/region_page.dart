@@ -3,6 +3,7 @@ import 'package:flutter_app/common.dart';
 import 'package:flutter_app/util/dummy_data/filtering_data.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/subtitle_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/floating_filtering_button.dart';
+import 'package:go_router/go_router.dart';
 
 class RegionPage extends StatefulWidget {
   const RegionPage({super.key});
@@ -12,16 +13,15 @@ class RegionPage extends StatefulWidget {
 }
 
 class _RegionPageState extends State<RegionPage> {
+  String title = '지역선택';
   String selectedRegion = '';
   String selectedSubRegion = '';
+  List<String> selectedItems = [
+    '서울 강남구',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    String title = '지역선택';
-    List<String> selectedItems = [
-      '서울 강남구',
-    ];
-
     void updateSelectedItems() {
       if (selectedRegion.isNotEmpty && selectedSubRegion.isNotEmpty) {
         String selectedItem = '$selectedRegion $selectedSubRegion';
@@ -29,6 +29,15 @@ class _RegionPageState extends State<RegionPage> {
           selectedItems.add(selectedItem);
         }
       }
+    }
+
+    void resetOptions() {
+      selectedItems.clear();
+      setState(() {});
+    }
+
+    void searchByOptions() {
+      context.pop();
     }
 
     return Column(
@@ -128,8 +137,8 @@ class _RegionPageState extends State<RegionPage> {
         ),
         FloatingFilteringButton(
           selectedItems: selectedItems,
-          onTapIconBtn: () {},
-          onTapTextBtn: () {},
+          onTapIconBtn: resetOptions,
+          onTapTextBtn: searchByOptions,
         ),
       ],
     );

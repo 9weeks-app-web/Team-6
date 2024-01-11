@@ -174,6 +174,9 @@ class TagWrapperWidget extends StatelessWidget {
             (job) => ChipWidget(
               label: job,
               type: type == CardType.growth ? ChipType.job : ChipType.tag,
+              padding: type == CardType.free
+                  ? const EdgeInsets.symmetric(horizontal: 6, vertical: 2)
+                  : null,
             ),
           )
           .toList(),
