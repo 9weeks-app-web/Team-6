@@ -89,22 +89,25 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: widget.items.length,
                   itemBuilder: (context, index) {
-                    return TextButton(
-                      onPressed: () {
-                        setState(() {
-                          value = widget.items.elementAt(index);
-                        });
-                        _removeOverlay();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(widget.items.elementAt(index),
-                              style: DesignTextStyle(
-                                      color: DesignColor.Neutral,
-                                      style: DesignStyle.Body_SemiBold)
-                                  .textStyle),
+                    return SizedBox(
+                      height: _dropdownHeight,
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            value = widget.items.elementAt(index);
+                          });
+                          _removeOverlay();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(widget.items.elementAt(index),
+                                style: DesignTextStyle(
+                                        color: DesignColor.Neutral,
+                                        style: DesignStyle.Body_SemiBold)
+                                    .textStyle),
+                          ),
                         ),
                       ),
                     );
