@@ -1035,18 +1035,16 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
       child: Container(
         margin: const EdgeInsets.only(top: 12, left: 20, right: 20),
         width: 320,
-        decoration: const ShapeDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              width: 1,
-              strokeAlign: BorderSide.strokeAlignCenter,
-              color: Color(0xFFE6E6E6),
-            ),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8),
-              topRight: Radius.circular(8),
-            ),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(8),
+            topRight: Radius.circular(8),
+          ),
+          border: Border(
+            top: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+            left: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+            right: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
           ),
         ),
         child: Column(
@@ -1092,7 +1090,9 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                         ),
                       ),
                     ),
-                    const Divider(),
+                    const Divider(
+                      height: 1,
+                    ),
                     if (categoryExpansionMap[category.name] ?? false)
                       Container(
                         padding: const EdgeInsets.symmetric(
