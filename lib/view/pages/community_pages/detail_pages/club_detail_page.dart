@@ -11,24 +11,26 @@ class ClubDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: DesignColor.Neutral,
-        ),
-        title: Text(
-          club['clubName'],
-          style: DesignTextStyle(
-            style: DesignStyle.SubTitle_SemiBold,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          iconTheme: const IconThemeData(
             color: DesignColor.Neutral,
-          ).textStyle,
+          ),
+          title: Text(
+            club['clubName'],
+            style: DesignTextStyle(
+              style: DesignStyle.SubTitle_SemiBold,
+              color: DesignColor.Neutral,
+            ).textStyle,
+          ),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
         ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
-      body: TabWidget(
-        tabContents: communityDetailTabList,
+        body: TabWidget(
+          tabContents: communityDetailTabList,
+        ),
       ),
     );
   }

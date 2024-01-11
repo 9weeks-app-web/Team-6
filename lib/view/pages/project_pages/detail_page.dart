@@ -27,8 +27,8 @@ class ProjectDetailPage extends ConsumerWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 children: [
                   Text(
@@ -54,7 +54,7 @@ class ProjectDetailPage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     '모집 마감',
                     style: TextStyle(
                       color: Colors.black,
@@ -63,8 +63,9 @@ class ProjectDetailPage extends ConsumerWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Spacer(),
-                  SvgPicture.asset('assets/images/project/icon-person-disabled.svg'),
+                  const Spacer(),
+                  SvgPicture.asset(
+                      'assets/images/project/icon-person-disabled.svg'),
                 ],
               ),
             ),
@@ -80,7 +81,7 @@ class ProjectDetailPage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     '프로젝트 삭제',
                     style: TextStyle(
                       color: Colors.red,
@@ -89,7 +90,7 @@ class ProjectDetailPage extends ConsumerWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   SvgPicture.asset('assets/images/project/icon-delete.svg'),
                 ],
               ),
@@ -99,27 +100,27 @@ class ProjectDetailPage extends ConsumerWidget {
             /// This parameter indicates the action would perform
             /// a destructive action such as delete or exit and turns
             /// the action's text color to red.
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  children: [
-                    Text(
-                      '프로젝트 완료',
-                      style: TextStyle(
-                        color: Color(0xFF0059FF),
-                        fontSize: 16,
-                        fontFamily: 'Pretendard Variable',
-                        fontWeight: FontWeight.w400,
-                      ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Text(
+                    '프로젝트 완료',
+                    style: TextStyle(
+                      color: Color(0xFF0059FF),
+                      fontSize: 16,
+                      fontFamily: 'Pretendard Variable',
+                      fontWeight: FontWeight.w400,
                     ),
-                    Spacer(),
-                    Icon(Icons.check, color: Color(0xFF0059FF)),
-                  ],
-                ),
+                  ),
+                  Spacer(),
+                  Icon(Icons.check, color: Color(0xFF0059FF)),
+                ],
               ),
+            ),
           ),
         ],
       ),
@@ -130,6 +131,11 @@ class ProjectDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var pageIndex = ref.watch(appwrapperProvider);
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        scrolledUnderElevation: 0,
+        title: const HeaderWidget(),
+      ),
       floatingActionButton: SizedBox(
         width: 320,
         height: 54,
@@ -137,7 +143,7 @@ class ProjectDetailPage extends ConsumerWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          backgroundColor: Color(0xFF0059FF),
+          backgroundColor: const Color(0xFF0059FF),
           onPressed: () {
             showModalBottomSheet(
               useSafeArea: true,
@@ -146,7 +152,7 @@ class ProjectDetailPage extends ConsumerWidget {
               builder: (context) => const ProjectApplyWidget(),
             );
           },
-          child: Text('지원하기'),
+          child: const Text('지원하기'),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -155,27 +161,20 @@ class ProjectDetailPage extends ConsumerWidget {
           child: Column(
             children: [
               // header
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  top: 10,
-                ),
-                child: HeaderWidget(),
-              ),
-              SizedBox(
+
+              const SizedBox(
                 height: 10,
               ),
               // title and back button
               Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Row(
                   children: [
                     GestureDetector(
                       onTap: () {
                         context.pop();
                       },
-                      child: SizedBox(
+                      child: const SizedBox(
                         width: 24,
                         height: 24,
                         child: Icon(
@@ -183,26 +182,26 @@ class ProjectDetailPage extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: 40),
-                    Text(
+                    const SizedBox(width: 40),
+                    const Text(
                       '미술 작품 거래 차트 서비스',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 24,
                           height: 24,
                           child: Icon(Icons.share_outlined),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         GestureDetector(
                           onTap: () => _showActionSheet(context),
-                          child: SizedBox(
+                          child: const SizedBox(
                             width: 24,
                             height: 24,
                             child: Icon(Icons.more_vert),
@@ -213,7 +212,7 @@ class ProjectDetailPage extends ConsumerWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Expanded(
@@ -228,24 +227,24 @@ class ProjectDetailPage extends ConsumerWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            HeadingTextWidget(text: '프로젝트 소개'),
-                            SizedBox(height: 16),
+                            const HeadingTextWidget(text: '프로젝트 소개'),
+                            const SizedBox(height: 16),
                             SizedBox(
                               child: Row(
                                 children: [
                                   Container(
                                     width: 4,
                                     height: 44,
-                                    color: Color(0xFF99BDFF),
+                                    color: const Color(0xFF99BDFF),
                                   ),
-                                  SizedBox(width: 10),
-                                  Flexible(
+                                  const SizedBox(width: 10),
+                                  const Flexible(
                                     child: Text(
                                         '그림, 미술, 예술, 전시 등 감성적인 기획들을 좋아하시는 분 신청 바랍니다. ',
                                         style: TextStyle(
@@ -256,8 +255,8 @@ class ProjectDetailPage extends ConsumerWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 20),
-                            SizedBox(
+                            const SizedBox(height: 20),
+                            const SizedBox(
                               width: double.infinity,
                               child: Flexible(
                                   child: Text(
@@ -268,16 +267,16 @@ class ProjectDetailPage extends ConsumerWidget {
                                     fontWeight: FontWeight.w400),
                               )),
                             ),
-                            SizedBox(height: 40),
-                            HeadingTextWidget(text: '모집현황'),
-                            SizedBox(height: 16),
-                            RecruitmentStatus(),
-                            SizedBox(height: 40),
-                            HeadingTextWidget(text: '작업도구'),
-                            SizedBox(height: 16),
-                            ToolsWidget(),
-                            SizedBox(height: 40),
-                            SizedBox(
+                            const SizedBox(height: 40),
+                            const HeadingTextWidget(text: '모집현황'),
+                            const SizedBox(height: 16),
+                            const RecruitmentStatus(),
+                            const SizedBox(height: 40),
+                            const HeadingTextWidget(text: '작업도구'),
+                            const SizedBox(height: 16),
+                            const ToolsWidget(),
+                            const SizedBox(height: 40),
+                            const SizedBox(
                               height: 26,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -308,12 +307,12 @@ class ProjectDetailPage extends ConsumerWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 30),
-                            HeadingTextWidget(text: '참고 링크'),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 30),
+                            const HeadingTextWidget(text: '참고 링크'),
+                            const SizedBox(height: 20),
                             Row(
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 24,
                                   height: 24,
                                   child: SvgPicture.asset(
@@ -321,11 +320,11 @@ class ProjectDetailPage extends ConsumerWidget {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                                SizedBox(width: 5),
-                                Container(
+                                const SizedBox(width: 5),
+                                const SizedBox(
                                   width: 291,
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                         horizontal: 9, vertical: 7),
                                     child: Text(
                                       'https://www.notion.so/sniperfactory1/UI-UX-8def242cfa5b4d1e9b5099879715554c',
@@ -340,11 +339,11 @@ class ProjectDetailPage extends ConsumerWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 40),
                           ],
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         thickness: 10,
                         color: Color(0xFFF3F3F3),
                       ),
@@ -354,21 +353,21 @@ class ProjectDetailPage extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 40),
-                              HeadingTextWidget(text: '리더 정보'),
-                              SizedBox(height: 16),
-                              LeaderInfoWidget(),
-                              CommentArea(),
-                              SizedBox(height: 40),
-                              HeadingTextWidget(text: '비슷한 프로젝트 보기'),
-                              SizedBox(height: 16),
+                              const SizedBox(height: 40),
+                              const HeadingTextWidget(text: '리더 정보'),
+                              const SizedBox(height: 16),
+                              const LeaderInfoWidget(),
+                              const CommentArea(),
+                              const SizedBox(height: 40),
+                              const HeadingTextWidget(text: '비슷한 프로젝트 보기'),
+                              const SizedBox(height: 16),
                               SizedBox(
                                 height: 330,
                                 child: ListView(
                                   padding: const EdgeInsets.only(right: 20),
                                   scrollDirection: Axis.horizontal,
                                   shrinkWrap: true,
-                                  children: [
+                                  children: const [
                                     Padding(
                                       padding: EdgeInsets.only(right: 12.0),
                                       child: ProjectCardWidget(
@@ -392,7 +391,7 @@ class ProjectDetailPage extends ConsumerWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 64),
+                              const SizedBox(height: 80),
                             ],
                           )),
                     ],
@@ -453,12 +452,12 @@ class RecruitmentStatus extends StatelessWidget {
         children: [
           Row(
             children: [
-              RoleChip(
+              const RoleChip(
                 label: 'UX/UI 디자이너',
                 color: Color(0xFFDBEDDB),
               ),
-              Spacer(),
-              Center(
+              const Spacer(),
+              const Center(
                 child: Column(
                   children: [
                     SizedBox(
@@ -477,24 +476,25 @@ class RecruitmentStatus extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 40),
+              const SizedBox(width: 40),
               SizedBox(
                 width: 65,
                 child: Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.0),
                         // Set border radius
                         border: Border.all(
-                          color: Color(0xFF0059FF), // Set border color to red
+                          color: const Color(
+                              0xFF0059FF), // Set border color to red
                           width: 1.0, // Set border width
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6.0, vertical: 2),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
                         child: Text(
                           '지원가능',
                           style: TextStyle(
@@ -510,15 +510,15 @@ class RecruitmentStatus extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             children: [
-              RoleChip(
+              const RoleChip(
                 label: '기획자',
                 color: Color(0xFFFDECC8),
               ),
-              Spacer(),
-              Center(
+              const Spacer(),
+              const Center(
                 child: Column(
                   children: [
                     SizedBox(
@@ -537,24 +537,25 @@ class RecruitmentStatus extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 40),
+              const SizedBox(width: 40),
               SizedBox(
                 width: 65,
                 child: Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.0),
                         // Set border radius
                         border: Border.all(
-                          color: Color(0xFF0059FF), // Set border color to red
+                          color: const Color(
+                              0xFF0059FF), // Set border color to red
                           width: 1.0, // Set border width
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6.0, vertical: 2),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
                         child: Text(
                           '지원가능',
                           style: TextStyle(
@@ -570,15 +571,15 @@ class RecruitmentStatus extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             children: [
-              RoleChip(
+              const RoleChip(
                 label: '백엔드',
                 color: Color(0xFFF4E0E9),
               ),
-              Spacer(),
-              Center(
+              const Spacer(),
+              const Center(
                 child: Column(
                   children: [
                     SizedBox(
@@ -597,24 +598,25 @@ class RecruitmentStatus extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 40),
+              const SizedBox(width: 40),
               SizedBox(
                 width: 65,
                 child: Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.0),
                         // Set border radius
                         border: Border.all(
-                          color: Color(0xFF0059FF), // Set border color to red
+                          color: const Color(
+                              0xFF0059FF), // Set border color to red
                           width: 1.0, // Set border width
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6.0, vertical: 2),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
                         child: Text(
                           '지원가능',
                           style: TextStyle(
@@ -630,18 +632,17 @@ class RecruitmentStatus extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             children: [
               Container(
                 decoration: ShapeDecoration(
-                  color: Color(0xFFF3F3F3),
+                  color: const Color(0xFFF3F3F3),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                 ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
                   child: Text(
                     '그래픽 디자이너',
                     style: TextStyle(
@@ -652,8 +653,8 @@ class RecruitmentStatus extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(),
-              Center(
+              const Spacer(),
+              const Center(
                 child: Column(
                   children: [
                     SizedBox(
@@ -672,24 +673,25 @@ class RecruitmentStatus extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 40),
+              const SizedBox(width: 40),
               SizedBox(
                 width: 65,
                 child: Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.0),
                         // Set border radius
                         border: Border.all(
-                          color: Color(0xFF999999), // Set border color to red
+                          color: const Color(
+                              0xFF999999), // Set border color to red
                           width: 1.0, // Set border width
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6.0, vertical: 2),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
                         child: Text(
                           '마감',
                           style: TextStyle(
@@ -705,18 +707,17 @@ class RecruitmentStatus extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             children: [
               Container(
                 decoration: ShapeDecoration(
-                  color: Color(0xFFF3F3F3),
+                  color: const Color(0xFFF3F3F3),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                 ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
                   child: Text(
                     '프론트엔드',
                     style: TextStyle(
@@ -727,8 +728,8 @@ class RecruitmentStatus extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(),
-              Center(
+              const Spacer(),
+              const Center(
                 child: Column(
                   children: [
                     SizedBox(
@@ -747,24 +748,25 @@ class RecruitmentStatus extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 40),
+              const SizedBox(width: 40),
               SizedBox(
                 width: 65,
                 child: Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.0),
                         // Set border radius
                         border: Border.all(
-                          color: Color(0xFF999999), // Set border color to red
+                          color: const Color(
+                              0xFF999999), // Set border color to red
                           width: 1.0, // Set border width
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6.0, vertical: 2),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
                         child: Text(
                           '마감',
                           style: TextStyle(
@@ -792,7 +794,7 @@ class ToolsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
+        child: const Column(
       children: [
         Row(
           children: [
@@ -860,11 +862,11 @@ class ToolChipWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: ShapeDecoration(
-        color: Color(0xFFF3F3F3),
+        color: const Color(0xFFF3F3F3),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
       child: Padding(
-        padding: EdgeInsets.all(7),
+        padding: const EdgeInsets.all(7),
         child: Row(
           children: [
             SizedBox(
@@ -875,10 +877,10 @@ class ToolChipWidget extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 6),
+            const SizedBox(width: 6),
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
@@ -905,14 +907,14 @@ class LeaderInfoWidget extends StatelessWidget {
                 width: 46,
                 height: 46,
                 child: Container(
-                  decoration: ShapeDecoration(
+                  decoration: const ShapeDecoration(
                     shape: OvalBorder(),
                     color: Color(0xFFE6E6E6),
                   ),
                 ),
               ),
-              SizedBox(width: 9),
-              Column(
+              const SizedBox(width: 9),
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -937,14 +939,23 @@ class LeaderInfoWidget extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             children: [
               Container(
                 width: 155,
                 height: 48,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(
+                      width: 1,
+                      color: Color(0xFF0059FF),
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
                     children: [
                       Spacer(),
@@ -970,22 +981,22 @@ class LeaderInfoWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+              ),
+              const Spacer(),
+              Container(
+                width: 155,
+                height: 48,
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(
+                    side: const BorderSide(
                       width: 1,
-                      color: Color(0xFF0059FF),
+                      color: Color(0xFF7F7F7F),
                     ),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
-              ),
-              Spacer(),
-              Container(
-                width: 155,
-                height: 48,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
                     children: [
                       Spacer(),
@@ -1011,19 +1022,10 @@ class LeaderInfoWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 1,
-                      color: Color(0xFF7F7F7F),
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
               ),
             ],
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           Container(
             child: Column(
               children: [
@@ -1032,7 +1034,17 @@ class LeaderInfoWidget extends StatelessWidget {
                     Container(
                       width: 155,
                       height: 80,
-                      child: Column(
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFFF3F3F3),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                            width: 1,
+                            color: Color(0xFFE6E6E6),
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -1060,22 +1072,22 @@ class LeaderInfoWidget extends StatelessWidget {
                           )
                         ],
                       ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      width: 155,
+                      height: 80,
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
+                        color: const Color(0xFFF3F3F3),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(
+                          side: const BorderSide(
                             width: 1,
                             color: Color(0xFFE6E6E6),
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                    ),
-                    Spacer(),
-                    Container(
-                      width: 155,
-                      height: 80,
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -1103,20 +1115,10 @@ class LeaderInfoWidget extends StatelessWidget {
                           )
                         ],
                       ),
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            width: 1,
-                            color: Color(0xFFE6E6E6),
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -1124,7 +1126,17 @@ class LeaderInfoWidget extends StatelessWidget {
                     Container(
                       width: 155,
                       height: 80,
-                      child: Column(
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFFF3F3F3),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                            width: 1,
+                            color: Color(0xFFE6E6E6),
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -1152,22 +1164,22 @@ class LeaderInfoWidget extends StatelessWidget {
                           )
                         ],
                       ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      width: 155,
+                      height: 80,
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
+                        color: const Color(0xFFF3F3F3),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(
+                          side: const BorderSide(
                             width: 1,
                             color: Color(0xFFE6E6E6),
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                    ),
-                    Spacer(),
-                    Container(
-                      width: 155,
-                      height: 80,
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -1195,25 +1207,15 @@ class LeaderInfoWidget extends StatelessWidget {
                           )
                         ],
                       ),
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            width: 1,
-                            color: Color(0xFFE6E6E6),
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
                     ),
                   ],
                 ),
               ],
             ),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Container(
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
@@ -1231,7 +1233,7 @@ class LeaderInfoWidget extends StatelessWidget {
                   width: 24,
                   height: 24,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 2.0),
+                    padding: EdgeInsets.only(top: 2.0),
                     child: Icon(
                       Icons.arrow_forward_ios,
                       color: Color(0xFF7F7F7F),
@@ -1242,7 +1244,7 @@ class LeaderInfoWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
         ],
       ),
     );
@@ -1257,8 +1259,8 @@ class CommentArea extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HeadingTextWidget(text: '댓글 (200)'),
-        SizedBox(height: 11),
+        const HeadingTextWidget(text: '댓글 (200)'),
+        const SizedBox(height: 11),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -1266,17 +1268,22 @@ class CommentArea extends StatelessWidget {
               width: 36,
               height: 36,
               child: Container(
-                decoration: ShapeDecoration(
+                decoration: const ShapeDecoration(
                   shape: CircleBorder(),
                   color: Color(0xFFE6E6E6),
                 ),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Container(
               width: 274,
               height: 36,
-              child: Row(
+              decoration: ShapeDecoration(
+                color: const Color(0xFFF3F3F3),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18)),
+              ),
+              child: const Row(
                 children: [
                   SizedBox(
                     width: 14,
@@ -1304,15 +1311,10 @@ class CommentArea extends StatelessWidget {
                   ),
                 ],
               ),
-              decoration: ShapeDecoration(
-                color: Color(0xFFF3F3F3),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18)),
-              ),
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
@@ -1326,17 +1328,17 @@ class CommentArea extends StatelessWidget {
                       width: 30,
                       height: 30,
                       child: Container(
-                        decoration: ShapeDecoration(
+                        decoration: const ShapeDecoration(
                           shape: CircleBorder(),
                           color: Color(0xFFE6E6E6),
                         ),
                       ),
                     ),
-                    SizedBox(height: 18),
+                    const SizedBox(height: 18),
                   ],
                 ),
-                SizedBox(width: 10),
-                Column(
+                const SizedBox(width: 10),
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
@@ -1389,7 +1391,7 @@ class CommentArea extends StatelessWidget {
         ),
         Row(
           children: [
-            SizedBox(width: 40),
+            const SizedBox(width: 40),
             Container(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -1401,17 +1403,17 @@ class CommentArea extends StatelessWidget {
                           width: 20,
                           height: 20,
                           child: Container(
-                            decoration: ShapeDecoration(
+                            decoration: const ShapeDecoration(
                               shape: CircleBorder(),
                               color: Color(0xFFCCCCCC),
                             ),
                           ),
                         ),
-                        SizedBox(height: 35),
+                        const SizedBox(height: 35),
                       ],
                     ),
-                    SizedBox(width: 10),
-                    Column(
+                    const SizedBox(width: 10),
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
@@ -1475,17 +1477,17 @@ class CommentArea extends StatelessWidget {
                       width: 30,
                       height: 30,
                       child: Container(
-                        decoration: ShapeDecoration(
+                        decoration: const ShapeDecoration(
                           shape: CircleBorder(),
                           color: Color(0xFFE6E6E6),
                         ),
                       ),
                     ),
-                    SizedBox(height: 60),
+                    const SizedBox(height: 60),
                   ],
                 ),
-                SizedBox(width: 10),
-                Column(
+                const SizedBox(width: 10),
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
@@ -1536,8 +1538,8 @@ class CommentArea extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10.0, bottom: 10, left: 40),
+        const Padding(
+          padding: EdgeInsets.only(top: 10.0, bottom: 10, left: 40),
           child: Text(
             '모든 답글 보기',
             style: TextStyle(

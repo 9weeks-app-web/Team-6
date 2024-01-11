@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app/view/widgets/header_widget.dart';
-import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart';
+import 'package:flutter_app/view/widgets/portfolio_widgets/portfolio_card_widget.dart'
+    as Portfolio;
+import 'package:flutter_app/view/widgets/project_widgets/project_card_widget.dart'
+    as Project;
 
-import 'package:flutter_svg/flutter_svg.dart';
+bool _dropdownVisible = false;
 
 class Category {
   final String name;
@@ -26,6 +29,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  Map<String, bool> categoryVisibilityMap = {};
   final int _currentIndex = 0;
   List<String> imagePaths = [
     'assets/images/main/main1.png',
@@ -53,8 +57,10 @@ class _MainPageState extends State<MainPage> {
       SubCategory('기획2'),
     ]),
   ];
-  Map<String, bool> categoryVisibilityMap = {};
-  bool _dropdownVisible = false;
+  List<String> selectedSortOptions = [
+    '인기순',
+    '최신순',
+  ];
 
   String selectedSortOption = '인기순';
 
@@ -107,6 +113,7 @@ class _MainPageState extends State<MainPage> {
                       });
                     },
                     style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
                       padding: MaterialStateProperty.all(
                           EdgeInsets.zero), // 패딩을 제거하거나 필요에 따라 조절
                       backgroundColor: MaterialStateProperty.all(Colors.white),
@@ -121,10 +128,11 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                     child: Container(
-                      width: 107,
+                      width: 111,
                       height: 36,
                       padding: const EdgeInsets.symmetric(
                           vertical: 6, horizontal: 8),
+                      decoration: const BoxDecoration(color: Colors.white),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -138,6 +146,9 @@ class _MainPageState extends State<MainPage> {
                               height: 0.07,
                             ),
                           ),
+                          const SizedBox(
+                            width: 4,
+                          ),
                           Icon(
                             _dropdownVisible
                                 ? Icons.expand_less
@@ -150,136 +161,170 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                 ),
-                if (_dropdownVisible) _buildMultiLevelDropdown(),
-                _buildSelectedCategories(),
-
-                // if (_dropdownVisible)
-                //   Container(
-                //     // 덮는 컨테이너 설정
-                //     width: double.infinity,
-                //     padding: EdgeInsets.all(16),
-                //     margin: EdgeInsets.only(top: 16),
-                //     decoration: BoxDecoration(
-                //       color: Colors.white,
-                //       borderRadius: BorderRadius.circular(8),
-                //       boxShadow: [
-                //         BoxShadow(
-                //           color: Colors.grey.withOpacity(0.3),
-                //           spreadRadius: 2,
-                //           blurRadius: 4,
-                //           offset: Offset(0, 2),
-                //         ),
-                //       ],
-                //     ),
-                //     child:
-                //         _buildMultiLevelDropdown(), // 아마도 _buildMultiLevelDropdown() 함수를 호출해서 해당 부분을 만들게 될 것
-                //   ),
-
-                // Expanded(
-                //   child: SingleChildScrollView(
-                //     scrollDirection: Axis.horizontal,
-                //     child: Row(
-                //       children: List.generate(
-                //         selectedCategories.length,
-                //         (index) {
-                //           return Container(
-                //             child: _buildSelectedCategories(),
-                //           );
-                //         },
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        '오늘의 #스팩폴리오',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Pretendard Variable',
-                          fontWeight: FontWeight.w700,
-                          height: 0,
-                        ),
-                      ),
-                      Container(
-                        width: 58,
-                        height: 22,
-                        padding: const EdgeInsets.all(4),
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                              width: 1,
-                              strokeAlign: BorderSide.strokeAlignCenter,
-                              color: Color(0xFFF3F3F3),
-                            ),
-                            borderRadius: BorderRadius.circular(4),
+                Stack(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Visibility(
+                            visible: !_dropdownVisible,
+                            child: _buildSelectedCategories(),
                           ),
                         ),
-                        child: DropdownButton<String>(
-                          value: selectedSortOption,
-                          icon: Icon(
-                            _dropdownVisible
-                                ? Icons.expand_less
-                                : Icons.expand_more,
-                            color: Colors.black,
-                          ),
-                          iconSize: 14,
-                          elevation: 16,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                            fontFamily: 'Pretendard Variable',
-                            fontWeight: FontWeight.w600,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedSortOption = newValue!;
-                            });
-                          },
-                          items: <String>['인기순', '최신순']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(
-                                value,
-                                textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Color(0xFF272727),
-                                  fontSize: 12,
+                        Container(
+                          margin: const EdgeInsets.only(
+                              left: 20, right: 20, top: 16, bottom: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                '오늘의 #스팩폴리오',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
                                   fontFamily: 'Pretendard Variable',
                                   fontWeight: FontWeight.w700,
-                                  height: 0.8, // 이 부분을 0.08에서 0.8로 수정
+                                  height: 0,
                                 ),
                               ),
-                            );
-                          }).toList(),
+                              Container(
+                                width: 58,
+                                height: 22,
+                                padding: const EdgeInsets.all(4),
+                                child: DropdownButton<String>(
+                                  value: selectedSortOption,
+                                  icon: Icon(
+                                    _dropdownVisible
+                                        ? Icons.arrow_drop_up
+                                        : Icons.arrow_drop_down,
+                                    size: 16.5,
+                                    color: Colors.black,
+                                  ),
+                                  iconSize: 14,
+                                  elevation: 16,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontFamily: 'Pretendard Variable',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  underline: Container(
+                                    height: 0,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedSortOption = newValue!;
+                                    });
+                                  },
+                                  items: <String>['인기순', '최신순']
+                                      .map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(
+                                        value,
+                                        textAlign: TextAlign.right,
+                                        style: const TextStyle(
+                                          color: Color(0xFF272727),
+                                          fontSize: 12,
+                                          fontFamily: 'Pretendard Variable',
+                                          fontWeight: FontWeight.w700,
+                                          height: 0.8, // 이 부분을 0.08에서 0.8로 수정
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
+                        const Portfolio.PortfolioCard(
+                          index: 0,
+                          width: Portfolio.CardWidth.wMax,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Portfolio.PortfolioCard(
+                          index: 1,
+                          width: Portfolio.CardWidth.wMax,
+                        ),
+                      ],
+                    ),
+                    if (_dropdownVisible)
+                      Column(
+                        children: [
+                          _buildMultiLevelDropdown(),
+                          Container(
+                            width: 320,
+                            height: 72,
+                            decoration: const ShapeDecoration(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  width: 1,
+                                  strokeAlign: BorderSide.strokeAlignCenter,
+                                  color: Color(0xFFE6E6E6),
+                                ),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(8),
+                                  bottomRight: Radius.circular(8),
+                                ),
+                              ),
+                            ),
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Center(
+                              child: Container(
+                                width: 288,
+                                height: 40,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 100),
+                                decoration: const ShapeDecoration(
+                                  color: Color(0xFF0059FF),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(8),
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                    ),
+                                  ),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      print("Before: $_dropdownVisible");
+                                      categoryVisibilityMap['디자인'] =
+                                          !(categoryVisibilityMap['디자인'] ??
+                                              false);
+                                      categoryVisibilityMap['기획'] =
+                                          !(categoryVisibilityMap['기획'] ??
+                                              false);
+                                      _dropdownVisible = !_dropdownVisible;
+                                      print("After: $_dropdownVisible");
+                                    });
+                                  },
+                                  child: const Center(
+                                    child: Text(
+                                      '적용하기',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'Pretendard Variable',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-
-                const PortfolioCard(
-                  index: 0,
-                  width: CardWidth.wMax,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-
-                const PortfolioCard(
-                  index: 1,
-                  width: CardWidth.wMax,
+                  ],
                 ),
                 const SizedBox(
                   height: 70,
@@ -307,7 +352,8 @@ class _MainPageState extends State<MainPage> {
                   margin: const EdgeInsets.only(bottom: 20),
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1),
+                      side:
+                          const BorderSide(width: 1, color: Color(0xFFFDECC8)),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -367,9 +413,21 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
+                                ),
+                              ),
+                              child: SizedBox(
+                                width: 40,
+                                height: 27,
+                                child: Image.asset(
+                                  "assets/images/main/position_01.png",
                                 ),
                               ),
                             ),
@@ -380,9 +438,21 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
+                                ),
+                              ),
+                              child: SizedBox(
+                                width: 40,
+                                height: 27,
+                                child: Image.asset(
+                                  "assets/images/main/position_02.png",
                                 ),
                               ),
                             ),
@@ -393,9 +463,21 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
+                                ),
+                              ),
+                              child: SizedBox(
+                                width: 40,
+                                height: 27,
+                                child: Image.asset(
+                                  "assets/images/main/position_03.png",
                                 ),
                               ),
                             ),
@@ -435,7 +517,8 @@ class _MainPageState extends State<MainPage> {
                   margin: const EdgeInsets.only(bottom: 20),
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1),
+                      side:
+                          const BorderSide(width: 1, color: Color(0xFFDBEDDB)),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -495,10 +578,18 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
                                 ),
+                              ),
+                              child: Image.asset(
+                                "assets/images/main/position_04.png",
                               ),
                             ),
                             const SizedBox(
@@ -508,10 +599,18 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
                                 ),
+                              ),
+                              child: Image.asset(
+                                "assets/images/main/position_05.png",
                               ),
                             ),
                             const SizedBox(
@@ -521,10 +620,18 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
                                 ),
+                              ),
+                              child: Image.asset(
+                                "assets/images/main/position_06.png",
                               ),
                             ),
                             const SizedBox(
@@ -563,7 +670,8 @@ class _MainPageState extends State<MainPage> {
                   margin: const EdgeInsets.only(bottom: 20),
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1),
+                      side:
+                          const BorderSide(width: 1, color: Color(0xFFDBEDDB)),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -623,10 +731,18 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
                                 ),
+                              ),
+                              child: Image.asset(
+                                "assets/images/main/position_07.png",
                               ),
                             ),
                             const SizedBox(
@@ -636,10 +752,18 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
                                 ),
+                              ),
+                              child: Image.asset(
+                                "assets/images/main/position_08.png",
                               ),
                             ),
                             const SizedBox(
@@ -649,10 +773,18 @@ class _MainPageState extends State<MainPage> {
                               width: 64,
                               height: 64,
                               decoration: ShapeDecoration(
-                                color: const Color(0xFFD9D9D9),
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                    color: Color(0xFFE6E6E6),
+                                  ),
                                 ),
+                              ),
+                              child: Image.asset(
+                                "assets/images/main/position_09.png",
                               ),
                             ),
                             const SizedBox(
@@ -709,22 +841,13 @@ class _MainPageState extends State<MainPage> {
                         width: 58,
                         height: 22,
                         padding: const EdgeInsets.all(4),
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                              width: 1,
-                              strokeAlign: BorderSide.strokeAlignCenter,
-                              color: Color(0xFFF3F3F3),
-                            ),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
                         child: DropdownButton<String>(
                           value: selectedSortOption,
                           icon: Icon(
                             _dropdownVisible
-                                ? Icons.expand_less
-                                : Icons.expand_more,
+                                ? Icons.arrow_drop_up
+                                : Icons.arrow_drop_down,
+                            size: 16.5,
                             color: Colors.black,
                           ),
                           iconSize: 14,
@@ -734,6 +857,9 @@ class _MainPageState extends State<MainPage> {
                             fontSize: 12,
                             fontFamily: 'Pretendard Variable',
                             fontWeight: FontWeight.w600,
+                          ),
+                          underline: Container(
+                            height: 0,
                           ),
                           onChanged: (String? newValue) {
                             setState(() {
@@ -762,376 +888,22 @@ class _MainPageState extends State<MainPage> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  width: 320,
-                  clipBehavior: Clip.antiAlias,
-                  margin: const EdgeInsets.only(
-                    bottom: 20,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                        width: 0.71,
-                        strokeAlign: BorderSide.strokeAlignCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 320,
-                        height: 180,
-                        decoration:
-                            const BoxDecoration(color: Color(0x7FD9D9D9)),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16, horizontal: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 0.71,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(15.64),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    '오프라인',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 0.71,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(15.64),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    '모집중',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            const Text(
-                              '프로젝트 공고 제목',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            const Text(
-                              '2024. 01. 01',
-                              style: TextStyle(
-                                color: Color(0xFFCCCCCC),
-                                fontSize: 12,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                const Padding(
+                  padding: EdgeInsets.only(top: 18, left: 20, right: 20),
+                  child: Project.ProjectCardWidget(
+                    isRecruiting: true,
+                    imagePath: 'assets/images/project/dog.png',
+                    projectName: '강아지 산책 앱 서비스 팀원 모집',
+                    width: Project.CardWidth.wMax,
                   ),
                 ),
-                Container(
-                  width: 320,
-                  clipBehavior: Clip.antiAlias,
-                  margin: const EdgeInsets.only(
-                    bottom: 20,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                        width: 0.71,
-                        strokeAlign: BorderSide.strokeAlignCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 320,
-                        height: 180,
-                        decoration:
-                            const BoxDecoration(color: Color(0x7FD9D9D9)),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16, horizontal: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 0.71,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(15.64),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    '오프라인',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 0.71,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(15.64),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    '모집중',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            const Text(
-                              '프로젝트 공고 제목',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            const Text(
-                              '2024. 01. 01',
-                              style: TextStyle(
-                                color: Color(0xFFCCCCCC),
-                                fontSize: 12,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 320,
-                  clipBehavior: Clip.antiAlias,
-                  margin: const EdgeInsets.only(
-                    bottom: 20,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                        width: 0.71,
-                        strokeAlign: BorderSide.strokeAlignCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 320,
-                        height: 180,
-                        decoration:
-                            const BoxDecoration(color: Color(0x7FD9D9D9)),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16, horizontal: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 0.71,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(15.64),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    '오프라인',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 0.71,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(15.64),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    '모집중',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontFamily: 'Pretendard',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            const Text(
-                              '프로젝트 공고 제목',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            const Text(
-                              '2024. 01. 01',
-                              style: TextStyle(
-                                color: Color(0xFFCCCCCC),
-                                fontSize: 12,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                const Padding(
+                  padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+                  child: Project.ProjectCardWidget(
+                    isRecruiting: false,
+                    imagePath: 'assets/images/project/human.png',
+                    projectName: '콘텐츠 기반 공연예술 큐레이션 플랫폼',
+                    width: Project.CardWidth.wMax,
                   ),
                 ),
                 const SizedBox(
@@ -1146,13 +918,18 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildSelectedCategories() {
+    if (selectedCategories.isEmpty) {
+      return const SizedBox.shrink(); // 또는 return Container(); 등으로 변경 가능
+    }
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         height: 40,
         padding: const EdgeInsets.symmetric(horizontal: 4),
-        margin: const EdgeInsets.only(bottom: 24),
+        margin: const EdgeInsets.only(bottom: 24, top: 16),
         child: Wrap(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.start,
           spacing: 8.0,
           runSpacing: 8.0,
           children: selectedCategories.map((category) {
@@ -1220,6 +997,7 @@ class _MainPageState extends State<MainPage> {
           selectedCategories = newSelectedCategories;
         });
       },
+      dropdownVisible: _dropdownVisible,
     );
   }
 }
@@ -1228,12 +1006,14 @@ class MultiLevelDropdownWidget extends StatefulWidget {
   final List<Category> categories;
   final List<String> selectedCategories;
   final Function(List<String>) onCategoriesChanged;
+  final bool dropdownVisible; // 새로운 필드 추가
 
   const MultiLevelDropdownWidget({
     super.key,
     required this.categories,
     required this.selectedCategories,
     required this.onCategoriesChanged,
+    required this.dropdownVisible,
   });
 
   @override
@@ -1245,98 +1025,97 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
   Map<String, bool> categoryExpansionMap = {};
 
   @override
-  void initState() {
-    super.initState();
-
-    // 초기에 모든 대분류를 닫힌 상태로 설정
-    for (Category category in widget.categories) {
-      categoryExpansionMap[category.name] = false;
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 12),
-      width: 320,
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            width: 1,
-            strokeAlign: BorderSide.strokeAlignCenter,
-            color: Color(0xFFE6E6E6),
+    return Visibility(
+      visible: widget.dropdownVisible,
+      child: Container(
+        margin: const EdgeInsets.only(top: 12, left: 20, right: 20),
+        width: 320,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(8),
+            topRight: Radius.circular(8),
           ),
-          borderRadius: BorderRadius.circular(8),
+          border: Border(
+            top: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+            left: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+            right: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+          ),
         ),
-      ),
-      child: Column(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: widget.categories.map((category) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        // 대분류를 토글하여 소분류가 나타나거나 숨겨지도록 함
-                        categoryExpansionMap[category.name] =
-                            !(categoryExpansionMap[category.name] ?? false);
-                      });
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            category.name,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontFamily: 'Pretendard Variable',
-                              fontWeight: FontWeight.w600,
-                              height: 0.09,
+        child: Column(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: widget.categories.map((category) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          // 대분류를 토글하여 소분류가 나타나거나 숨겨지도록 함
+                          categoryExpansionMap[category.name] =
+                              !(categoryExpansionMap[category.name] ?? false);
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              category.name,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontFamily: 'Pretendard Variable',
+                                fontWeight: FontWeight.w600,
+                                height: 0.09,
+                              ),
                             ),
-                          ),
-                          Icon(
-                            categoryExpansionMap[category.name] ?? false
-                                ? Icons.expand_less
-                                : Icons.expand_more,
-                            size: 24,
-                            color: Colors.black,
-                          ),
-                        ],
+                            Icon(
+                              categoryExpansionMap[category.name] ?? false
+                                  ? Icons.expand_less
+                                  : Icons.expand_more,
+                              size: 24,
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const Divider(),
-                  if (categoryExpansionMap[category.name] ?? false)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 3),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: (category.subCategories.length / 2).ceil(),
-                        itemBuilder: (context, index) {
-                          final startIndex = index * 2;
-                          final endIndex = (index + 1) * 2;
-                          final subCategories = category.subCategories.sublist(
-                            startIndex,
-                            endIndex.clamp(0, category.subCategories.length),
-                          );
-                          return Row(
-                            children: subCategories.map((subCategory) {
-                              final fullCategory = subCategory.name;
-                              final isSelected = widget.selectedCategories
-                                  .contains(fullCategory);
-                              return Container(
-                                margin: const EdgeInsets.only(top: 24),
-                                width: 146,
-                                child: Expanded(
+                    const Divider(
+                      height: 1,
+                    ),
+                    if (categoryExpansionMap[category.name] ?? false)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 14),
+                        child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: (category.subCategories.length / 2).ceil(),
+                          itemBuilder: (context, index) {
+                            final startIndex = index * 2;
+                            final endIndex = (index + 1) * 2;
+                            final subCategories =
+                                category.subCategories.sublist(
+                              startIndex,
+                              endIndex.clamp(0, category.subCategories.length),
+                            );
+                            return Row(
+                              children: subCategories.map((subCategory) {
+                                final fullCategory = subCategory.name;
+                                final isSelected = widget.selectedCategories
+                                    .contains(fullCategory);
+                                return Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 6),
+                                  width: 145.2,
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Checkbox(
                                         value: isSelected,
@@ -1385,7 +1164,6 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                                             fontSize: 14,
                                             fontFamily: 'Pretendard Variable',
                                             fontWeight: FontWeight.w600,
-                                            height: 0.07,
                                             color: isSelected
                                                 ? const Color(0xFF0059FF)
                                                 : const Color(0xFF333333),
@@ -1394,59 +1172,18 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
-                              );
-                            }).toList(),
-                          );
-                        },
+                                );
+                              }).toList(),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  const Divider(),
-                ],
-              );
-            }).toList(),
-          ),
-          InkWell(
-            onTap: () {
-              setState(() {});
-
-              // 이후에 필요한 다른 작업 수행 가능
-              // 예를 들어, 선택한 카테고리에 대한 작업 수행
-              print("Selected Categories: ${widget.selectedCategories}");
-            },
-            child: Container(
-              width: 320,
-              height: 54,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              decoration: const ShapeDecoration(
-                color: Color(0xFF0059FF),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(8),
-                    bottomRight: Radius.circular(8),
-                  ),
-                ),
-              ),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    '적용하기',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'Pretendard Variable',
-                      fontWeight: FontWeight.w600,
-                      height: 0.09,
-                    ),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              }).toList(),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

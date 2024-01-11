@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 enum CardWidth {
   wMax,
@@ -87,26 +88,51 @@ class PortfolioCard extends StatelessWidget {
                           width: 32,
                           height: 20,
                           child: Stack(
-                            alignment: Alignment.center,
                             children: [
-                              // 첫 번째 원 (왼쪽에 그리기)
-                              Container(
-                                width: 20,
-                                height: 20,
-                                decoration: const BoxDecoration(
-                                  color: Colors.blue,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              // 겹치는 부분
                               Positioned(
-                                right: 12,
+                                left: 8,
+                                bottom: 0,
                                 child: Container(
                                   width: 20,
                                   height: 20,
-                                  decoration: const BoxDecoration(
+                                  padding: EdgeInsets.all(4.44),
+                                  decoration: ShapeDecoration(
                                     color: Colors.black,
-                                    shape: BoxShape.circle,
+                                    shape: OvalBorder(
+                                      side: BorderSide(
+                                          width: 0.50, color: Colors.white),
+                                    ),
+                                  ),
+                                  child: Stack(
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/images/portfolio/photoshop.svg",
+                                      ),
+                                      Positioned.fill(
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 0,
+                                bottom: 0,
+                                child: Container(
+                                  width: 20,
+                                  height: 20,
+                                  padding: EdgeInsets.all(4.44),
+                                  decoration: ShapeDecoration(
+                                    color: Colors.black,
+                                    shape: OvalBorder(
+                                      side: BorderSide(
+                                          width: 0.50, color: Colors.white),
+                                    ),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    "assets/images/portfolio/figma.svg",
                                   ),
                                 ),
                               ),
@@ -118,65 +144,73 @@ class PortfolioCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 20,
-                              height: 20,
-                              decoration: const ShapeDecoration(
-                                color: Color(0xFFCCCCCC),
-                                shape: OvalBorder(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 7.0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 20,
+                                height: 20,
+                                decoration: const ShapeDecoration(
+                                  color: Color(0xFFCCCCCC),
+                                  shape: OvalBorder(),
+                                ),
+                                child: Image.asset(
+                                    "assets/images/main/person.png"),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              'Name',
-                              style: DesignTextStyle(
-                                      color: DesignColor.Neutral,
-                                      style: DesignStyle.Body_Bold)
-                                  .textStyle,
-                            )
-                          ],
+                              const SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                'Design_Kmw',
+                                style: DesignTextStyle(
+                                        color: DesignColor.Neutral,
+                                        style: DesignStyle.Body_Bold)
+                                    .textStyle,
+                              )
+                            ],
+                          ),
                         ),
-                        const Row(
-                          children: [
-                            SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Icon(
-                                Icons.visibility_outlined,
-                                color: Color(0xFF808080),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 7.0),
+                          child: const Row(
+                            children: [
+                              SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: Icon(
+                                  Icons.visibility_outlined,
+                                  color: Color(0xFF808080),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 2,
-                            ),
-                            Text(
-                              "918",
-                              style: TextStyle(
-                                color: Color(0xFF808080),
+                              SizedBox(
+                                width: 2,
                               ),
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Icon(
-                                Icons.favorite_outline,
-                                color: Color(0xFF808080),
+                              Text(
+                                "918",
+                                style: TextStyle(
+                                  color: Color(0xFF808080),
+                                ),
                               ),
-                            ),
-                            Text(
-                              "918",
-                              style: TextStyle(
-                                color: Color(0xFF808080),
+                              SizedBox(
+                                width: 3,
                               ),
-                            )
-                          ],
+                              SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: Icon(
+                                  Icons.favorite_outline,
+                                  color: Color(0xFF808080),
+                                ),
+                              ),
+                              Text(
+                                "918",
+                                style: TextStyle(
+                                  color: Color(0xFF808080),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -227,26 +261,28 @@ class PortfolioCard extends StatelessWidget {
                           width: 32,
                           height: 20,
                           child: Stack(
-                            alignment: Alignment.center,
                             children: [
-                              // 첫 번째 원 (왼쪽에 그리기)
-                              Container(
-                                width: 20,
-                                height: 20,
-                                decoration: const BoxDecoration(
-                                  color: Colors.blue,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              // 겹치는 부분
                               Positioned(
-                                right: 12,
+                                left: 0,
+                                bottom: 0,
                                 child: Container(
                                   width: 20,
                                   height: 20,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.black,
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 8,
+                                bottom: 8,
+                                child: Container(
+                                  width: 20,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.red,
                                   ),
                                 ),
                               ),

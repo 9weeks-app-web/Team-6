@@ -35,7 +35,8 @@ class _FindIdPageState extends State<FindIdDonePage> {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: SizedBox(
+          height: 740,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: SizedBox(
@@ -73,8 +74,7 @@ class _FindIdPageState extends State<FindIdDonePage> {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 400),
+                  ),Spacer(),
                   SizedBox(
                     width: double.infinity,
                     height: 54,
@@ -96,6 +96,7 @@ class _FindIdPageState extends State<FindIdDonePage> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 40),
                 ],
               ),
             ),

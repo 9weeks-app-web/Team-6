@@ -77,30 +77,34 @@ class _CustomMenuState extends State<CustomMenuWidget> {
                   color: Colors.white.withOpacity(1), // 여기에 색상 설정
                 ),
                 child: ListView.separated(
+                  shrinkWrap: true,
                   padding: EdgeInsets.zero,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: widget.items.length,
                   itemBuilder: (context, index) {
-                    return TextButton(
-                      onPressed: () {
-                        _handleMenuItemAction(widget.items[index].title);
-                      },
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(widget.items[index].title,
-                                style: DesignTextStyle(
-                                        color: widget.items[index].listColor,
-                                        style: DesignStyle.Body)
-                                    .textStyle),
-                            Icon(
-                              (widget.items[index].iconImg),
-                              color: widget.items[index].listColor,
-                              size: 24,
-                            ),
-                          ],
+                    return SizedBox(
+                      height: _dropdownHeight,
+                      child: TextButton(
+                        onPressed: () {
+                          _handleMenuItemAction(widget.items[index].title);
+                        },
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(widget.items[index].title,
+                                  style: DesignTextStyle(
+                                          color: widget.items[index].listColor,
+                                          style: DesignStyle.Body)
+                                      .textStyle),
+                              Icon(
+                                (widget.items[index].iconImg),
+                                color: widget.items[index].listColor,
+                                size: 24,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
