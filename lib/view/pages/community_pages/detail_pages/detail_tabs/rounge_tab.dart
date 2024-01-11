@@ -29,6 +29,10 @@ class RoungeTab extends StatelessWidget {
                   Container(
                     height: 224,
                     color: Colors.grey,
+                    child: Image.asset(
+                      club['image'],
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   const SizedBox(height: 28),
                   Padding(

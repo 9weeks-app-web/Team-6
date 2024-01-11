@@ -6,7 +6,7 @@ import 'package:flutter_app/view/widgets/header_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/search_bar_widget.dart';
 
 class CommunityPage extends StatefulWidget {
-  const CommunityPage({super.key});
+  const CommunityPage({Key? key}) : super(key: key);
 
   @override
   State<CommunityPage> createState() => _CommunityPageState();
@@ -23,46 +23,43 @@ class _CommunityPageState extends State<CommunityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const HeaderWidget(),
-      ),
-      body: SafeArea(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: [
-              const SizedBox(height: 4),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Colors.white,
+            expandedHeight: 165.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const HeaderWidget(),
+                    const SizedBox(height: 4),
+                    Text(
                       '커뮤니티',
-                      style: DesignTextStyle.HeadLine_Bold,
+                      style: DesignTextStyle(
+                        style: DesignStyle.HeadLine_Bold,
+                        color: Colors.black,
+                      ).textStyle,
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SearchBarWidget(
+                    const SizedBox(height: 12),
+                    SearchBarWidget(
                       tabType: tabType,
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                ],
-              ),
-              Expanded(
-                child: TabWidget(
-                  tabContents: communityTabList,
-                  changeTabType: changeTabType,
+                    const SizedBox(height: 16),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+          SliverFillRemaining(
+            child: TabWidget(
+              tabContents: communityTabList,
+              changeTabType: changeTabType,
+            ),
+          ),
+        ],
       ),
     );
   }

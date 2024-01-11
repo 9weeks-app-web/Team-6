@@ -30,8 +30,7 @@ class RecruitCardWidget extends StatelessWidget {
     String companyName = '[회사이름 주식회사 코리아]';
     String locationGu = '서초구';
     String due = '~01.19(금)';
-    String image = 'assets/images/community/recruit/recruit_01.jpg';
-    String smallImage = 'assets/images/community/recruit/recruit_04.jpg';
+    String image = 'assets/images/community/recruit/recruit_01.png';
 
     return Container(
       width: type == CardType.maximum
@@ -49,6 +48,7 @@ class RecruitCardWidget extends StatelessWidget {
           // img section
           type == CardType.maximum
               ? Container(
+                  width: 300,
                   height: 120,
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
@@ -59,8 +59,7 @@ class RecruitCardWidget extends StatelessWidget {
                     color: DesignColor.Neutral.shade20,
                   ),
                   child: Image.asset(
-                    image,
-                    // recruitData!['image'],
+                    recruitData!['image'],
                     fit: BoxFit.cover,
                   ),
                 )
@@ -120,7 +119,10 @@ class RecruitCardWidget extends StatelessWidget {
                     ),
                     type != CardType.maximum
                         ? Container()
-                        : const Icon(Icons.star_border),
+                        : const Icon(
+                            Icons.star_border,
+                            size: 24,
+                          ),
                   ],
                 ),
                 type == CardType.maximum

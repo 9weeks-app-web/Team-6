@@ -86,8 +86,13 @@ final router = GoRouter(initialLocation: '/splash', routes: [
     builder: (context, state) => const CommunityPage(),
     routes: [
       GoRoute(
-        path: 'club/:clubId',
-        builder: (context, state) => const ClubDetailPage(),
+        path: 'club/:type/:clubId',
+        builder: (context, state) {
+          return ClubDetailPage(
+            type: state.pathParameters['type'] ?? '',
+            clubId: state.pathParameters['clubId'] ?? '',
+          );
+        },
         routes: [
           GoRoute(
             path: 'keyword/:dialogId',
