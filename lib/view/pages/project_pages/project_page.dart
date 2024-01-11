@@ -13,6 +13,10 @@ class ProjectPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          scrolledUnderElevation: 0,
+          title: const HeaderWidget(),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // showModalBottomSheet(
@@ -32,14 +36,13 @@ class ProjectPage extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  top: 10,
-                ),
-                child: HeaderWidget(),
-              ),
+              // const Padding(
+              //   padding: EdgeInsets.only(
+              //     left: 20,
+              //     right: 20,
+              //   ),
+              //   child: HeaderWidget(),
+              // ),
               const SizedBox(height: 18),
               Column(
                 mainAxisSize: MainAxisSize.min,
