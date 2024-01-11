@@ -4,12 +4,15 @@ import 'package:flutter_app/util/dummy_data/club_data.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/community_card_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/advertise_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/more_button_widget.dart';
+import 'package:flutter_app/view/widgets/recruit_page_widgets/search_bar_widget.dart';
+import 'package:flutter_app/viewmodel/community_page_viewmodel/community_page_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AllPage extends StatelessWidget {
+class AllPage extends ConsumerWidget {
   const AllPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     double listTileTopPadding = 17.5;
     double designedTitlePadding = 11;
     double tabbarContentGap = 24;
@@ -34,7 +37,9 @@ class AllPage extends StatelessWidget {
                   style: DesignTextStyle.SubTitle_Bold,
                 ),
                 trailing: MoreButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                    ref.read(communitypageProvider.notifier).tabChanged(1);
+                  },
                 ),
               ),
               SizedBox(
@@ -71,7 +76,9 @@ class AllPage extends StatelessWidget {
                   style: DesignTextStyle.SubTitle_Bold,
                 ),
                 trailing: MoreButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                    ref.read(communitypageProvider.notifier).tabChanged(2);
+                  },
                 ),
               ),
               SizedBox(
@@ -106,7 +113,9 @@ class AllPage extends StatelessWidget {
                 style: DesignTextStyle.SubTitle_Bold,
               ),
               trailing: MoreButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  ref.read(communitypageProvider.notifier).tabChanged(3);
+                },
               ),
             ),
             const Padding(
