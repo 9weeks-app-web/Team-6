@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/message_menu_widget.dart';
 
-class ClubMessageInputWidget extends StatelessWidget {
+class ClubMessageInputWidget extends StatefulWidget {
   const ClubMessageInputWidget({
     super.key,
     required this.controller,
@@ -12,12 +12,21 @@ class ClubMessageInputWidget extends StatelessWidget {
 
   final TextEditingController controller;
   final bool isMenuOpend;
-  final void handleMenu;
+  final void Function() handleMenu;
+
+  @override
+  State<ClubMessageInputWidget> createState() => _ClubMessageInputWidgetState();
+}
+
+class _ClubMessageInputWidgetState extends State<ClubMessageInputWidget> {
+  bool isActive = false;
 
   @override
   Widget build(BuildContext context) {
+    isActive = widget.controller.text.isNotEmpty;
+
     return Container(
-      height: isMenuOpend ? 199 : 75,
+      height: widget.isMenuOpend ? 199 : 75,
       padding: const EdgeInsets.only(
         top: 4,
         left: 11,
@@ -34,7 +43,12 @@ class ClubMessageInputWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 35),
                 child: TextField(
-                  controller: controller,
+                  controller: widget.controller,
+                  onChanged: (value) {
+                    setState(() {
+                      isActive = value.isNotEmpty;
+                    });
+                  },
                   onSubmitted: (value) {},
                   decoration: InputDecoration(
                     hintText: '메시지를 입력해주세요.',
@@ -42,16 +56,18 @@ class ClubMessageInputWidget extends StatelessWidget {
                       style: DesignStyle.Body,
                       color: DesignColor.Neutral.shade20,
                     ).textStyle,
-                    suffixIcon: CircleAvatar(
-                      radius: 15,
-                      backgroundColor: controller.text.isNotEmpty
-                          ? DesignColor.Primary
-                          : Colors.transparent,
-                      child: Icon(
-                        Icons.arrow_upward,
-                        color: controller.text.isNotEmpty
-                            ? Colors.white
-                            : DesignColor.Neutral.shade20,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 3),
+                      child: CircleAvatar(
+                        radius: 15,
+                        backgroundColor:
+                            isActive ? DesignColor.Primary : Colors.transparent,
+                        child: Icon(
+                          Icons.arrow_upward,
+                          color: isActive
+                              ? Colors.white
+                              : DesignColor.Neutral.shade20,
+                        ),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
@@ -83,16 +99,16 @@ class ClubMessageInputWidget extends StatelessWidget {
                 top: 0,
                 bottom: 0,
                 child: GestureDetector(
-                  onTap: () => handleMenu,
+                  onTap: widget.handleMenu,
                   child: Icon(
-                    isMenuOpend ? Icons.close : Icons.add,
+                    widget.isMenuOpend ? Icons.close : Icons.add,
                     color: DesignColor.Neutral.shade50,
                   ),
                 ),
               ),
             ],
           ),
-          isMenuOpend ? const MessageMenuWidget() : Container(),
+          widget.isMenuOpend ? const MessageMenuWidget() : Container(),
         ],
       ),
     );
