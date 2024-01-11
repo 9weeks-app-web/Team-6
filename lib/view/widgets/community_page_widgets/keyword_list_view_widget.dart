@@ -19,7 +19,7 @@ class KeywordListViewWidget extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             context.push(
-                '/community/club/:clubId/keyword/${keywordList[index]['id']}');
+                '/community/club/growth/1/keyword/${keywordList[index]['id']}');
           },
           child: KeywordDialogCardWidget(
             keywordChatData: keywordList[index],
