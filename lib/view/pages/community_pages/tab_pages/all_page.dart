@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/util/dummy_data/club_data.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/community_card_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/advertise_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/more_button_widget.dart';
@@ -42,13 +43,14 @@ class AllPage extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20),
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: 5,
+                  itemCount: growthClubData.length,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.only(right: 12.0),
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
                       child: CommunityCardWidget(
                         width: CardWidth.w210,
                         type: CardType.growth,
+                        cardData: growthClubData[index],
                       ),
                     );
                   },
@@ -78,13 +80,14 @@ class AllPage extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20),
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: 5,
+                  itemCount: freeClubData.length,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.only(right: 12.0),
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
                       child: CommunityCardWidget(
                         width: CardWidth.w210,
                         type: CardType.free,
+                        cardData: freeClubData[index],
                       ),
                     );
                   },
@@ -108,7 +111,9 @@ class AllPage extends StatelessWidget {
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: AdvertiseWidget(),
+              child: AdvertiseWidget(
+                image: 'assets/images/community/ad/ad_recruit_01.jpg',
+              ),
             ),
           ],
         ),

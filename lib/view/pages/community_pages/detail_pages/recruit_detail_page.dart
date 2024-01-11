@@ -28,6 +28,10 @@ class RecruitDetailPage extends StatelessWidget {
             decoration: BoxDecoration(
               color: DesignColor.Neutral.shade20,
             ),
+            child: Image.asset(
+              recruitInfo['image'],
+              fit: BoxFit.fill,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),

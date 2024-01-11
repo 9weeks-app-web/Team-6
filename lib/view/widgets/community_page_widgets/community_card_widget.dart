@@ -18,10 +18,12 @@ class CommunityCardWidget extends StatelessWidget {
     super.key,
     required this.type,
     required this.width,
+    this.cardData,
   });
 
   final CardType type;
   final CardWidth width;
+  final Map<String, dynamic>? cardData;
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +72,13 @@ class CommunityCardWidget extends StatelessWidget {
                   topRight: Radius.circular(8),
                 ),
               ),
+              clipBehavior: Clip.antiAlias,
+              child: cardData != null
+                  ? Image.asset(
+                      cardData!['image'],
+                      fit: BoxFit.cover,
+                    )
+                  : null,
             ),
             // description section
             Padding(
@@ -81,7 +90,7 @@ class CommunityCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    clubName,
+                    cardData != null ? cardData!['clubName'] : clubName,
                     style: width == CardWidth.wMax
                         ? DesignTextStyle(
                                 style: DesignStyle.SubTitle_SemiBold,
@@ -95,7 +104,7 @@ class CommunityCardWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    description,
+                    cardData != null ? cardData!['description'] : description,
                     style: DesignTextStyle(
                             style: DesignStyle.Label_2,
                             color: DesignColor.Neutral.shade40)
@@ -106,24 +115,9 @@ class CommunityCardWidget extends StatelessWidget {
                   type == CardType.growth
                       ? const SizedBox(height: 8)
                       : const SizedBox(height: 12),
-                  Wrap(
-                    spacing: 6,
-                    children: type == CardType.growth
-                        ? jobs
-                            .map(
-                              (job) => ChipWidget(
-                                label: job,
-                              ),
-                            )
-                            .toList()
-                        : tags
-                            .map(
-                              (tag) => ChipWidget(
-                                type: ChipType.tag,
-                                label: tag,
-                              ),
-                            )
-                            .toList(),
+                  TagWrapperWidget(
+                    type: type,
+                    tags: cardData != null ? cardData!['tag'] : tags,
                   ),
                   const SizedBox(height: 10),
                   Align(
@@ -153,6 +147,32 @@ class CommunityCardWidget extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class TagWrapperWidget extends StatelessWidget {
+  const TagWrapperWidget({
+    super.key,
+    required this.type,
+    required this.tags,
+  });
+
+  final CardType type;
+  final List<String> tags;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 6,
+      children: tags
+          .map(
+            (job) => ChipWidget(
+              label: job,
+              type: type == CardType.growth ? ChipType.job : ChipType.tag,
+            ),
+          )
+          .toList(),
     );
   }
 }
