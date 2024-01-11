@@ -132,7 +132,7 @@ class _MainPageState extends State<MainPage> {
                       height: 36,
                       padding: const EdgeInsets.symmetric(
                           vertical: 6, horizontal: 8),
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: const BoxDecoration(color: Colors.white),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -146,7 +146,7 @@ class _MainPageState extends State<MainPage> {
                               height: 0.07,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 4,
                           ),
                           Icon(
@@ -166,7 +166,7 @@ class _MainPageState extends State<MainPage> {
                     Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.only(left: 20),
+                          padding: const EdgeInsets.only(left: 20),
                           child: Visibility(
                             visible: !_dropdownVisible,
                             child: _buildSelectedCategories(),
@@ -260,10 +260,10 @@ class _MainPageState extends State<MainPage> {
                           Container(
                             width: 320,
                             height: 72,
-                            decoration: ShapeDecoration(
+                            decoration: const ShapeDecoration(
                               color: Colors.white,
                               shape: RoundedRectangleBorder(
-                                side: const BorderSide(
+                                side: BorderSide(
                                   width: 1,
                                   strokeAlign: BorderSide.strokeAlignCenter,
                                   color: Color(0xFFE6E6E6),
@@ -274,12 +274,12 @@ class _MainPageState extends State<MainPage> {
                                 ),
                               ),
                             ),
-                            margin: EdgeInsets.symmetric(horizontal: 20),
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
                             child: Center(
                               child: Container(
                                 width: 288,
                                 height: 40,
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     vertical: 8, horizontal: 100),
                                 decoration: const ShapeDecoration(
                                   color: Color(0xFF0059FF),
@@ -306,7 +306,7 @@ class _MainPageState extends State<MainPage> {
                                       print("After: $_dropdownVisible");
                                     });
                                   },
-                                  child: Center(
+                                  child: const Center(
                                     child: Text(
                                       '적용하기',
                                       style: TextStyle(
@@ -416,7 +416,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -441,7 +441,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -466,7 +466,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -581,7 +581,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -602,7 +602,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -623,7 +623,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -734,7 +734,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -755,7 +755,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -776,7 +776,7 @@ class _MainPageState extends State<MainPage> {
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     width: 1,
                                     strokeAlign: BorderSide.strokeAlignCenter,
                                     color: Color(0xFFE6E6E6),
@@ -888,18 +888,18 @@ class _MainPageState extends State<MainPage> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 18, left: 20, right: 20),
-                  child: const Project.ProjectCardWidget(
+                const Padding(
+                  padding: EdgeInsets.only(top: 18, left: 20, right: 20),
+                  child: Project.ProjectCardWidget(
                     isRecruiting: true,
                     imagePath: 'assets/images/project/dog.png',
                     projectName: '강아지 산책 앱 서비스 팀원 모집',
                     width: Project.CardWidth.wMax,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                  child: const Project.ProjectCardWidget(
+                const Padding(
+                  padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+                  child: Project.ProjectCardWidget(
                     isRecruiting: false,
                     imagePath: 'assets/images/project/human.png',
                     projectName: '콘텐츠 기반 공연예술 큐레이션 플랫폼',
@@ -919,7 +919,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildSelectedCategories() {
     if (selectedCategories.isEmpty) {
-      return SizedBox.shrink(); // 또는 return Container(); 등으로 변경 가능
+      return const SizedBox.shrink(); // 또는 return Container(); 등으로 변경 가능
     }
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -1031,18 +1031,16 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
       child: Container(
         margin: const EdgeInsets.only(top: 12, left: 20, right: 20),
         width: 320,
-        decoration: ShapeDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
-          shape: RoundedRectangleBorder(
-            side: const BorderSide(
-              width: 1,
-              strokeAlign: BorderSide.strokeAlignCenter,
-              color: Color(0xFFE6E6E6),
-            ),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8),
-              topRight: Radius.circular(8),
-            ),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(8),
+            topRight: Radius.circular(8),
+          ),
+          border: Border(
+            top: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+            left: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+            right: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
           ),
         ),
         child: Column(
@@ -1088,7 +1086,9 @@ class _MultiLevelDropdownWidgetState extends State<MultiLevelDropdownWidget> {
                         ),
                       ),
                     ),
-                    const Divider(),
+                    const Divider(
+                      height: 1,
+                    ),
                     if (categoryExpansionMap[category.name] ?? false)
                       Container(
                         padding: const EdgeInsets.symmetric(

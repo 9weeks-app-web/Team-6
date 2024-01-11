@@ -17,6 +17,7 @@ class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
