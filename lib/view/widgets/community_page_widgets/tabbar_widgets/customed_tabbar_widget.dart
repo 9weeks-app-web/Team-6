@@ -58,7 +58,7 @@ class CustomedTabbarWidget extends StatelessWidget {
             (tabItem) {
               return GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Tab(
                     text: tabItem.label,
                   ),
