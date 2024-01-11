@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/custom_icons_icons.dart';
 import 'package:flutter_app/view/pages/community_pages/community_page.dart';
 import 'package:flutter_app/view/pages/main_page.dart';
 import 'package:flutter_app/view/pages/my_pages/my_page.dart';
@@ -16,7 +17,7 @@ class AppWrapper extends ConsumerWidget {
     var pageIndex = ref.watch(appwrapperProvider);
 
     final List<Widget> pageOptions = <Widget>[
-      MainPage(),
+      const MainPage(),
       const CommunityPage(),
       const PortfolioPage(),
       const ProjectPage(),
@@ -39,23 +40,23 @@ class AppWrapper extends ConsumerWidget {
             },
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home, size: 24),
+                icon: Icon(CustomIcons.icon_home, size: 24),
                 label: '홈',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.chat, size: 24),
+                icon: Icon(CustomIcons.icon_community, size: 24),
                 label: '커뮤니티',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.portrait, size: 24),
+                icon: Icon(CustomIcons.icon_portfolio, size: 24),
                 label: '포트폴리오',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.work, size: 24),
+                icon: Icon(CustomIcons.icon_project, size: 24),
                 label: '프로젝트',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person, size: 24),
+                icon: Icon(CustomIcons.icon_my, size: 24),
                 label: '마이',
               ),
             ],
