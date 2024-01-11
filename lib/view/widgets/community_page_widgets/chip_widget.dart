@@ -51,11 +51,13 @@ class ChipWidget extends StatelessWidget {
     required this.label,
     this.type = ChipType.job,
     this.isSelected = false,
+    this.padding,
   });
 
   final String label;
   final ChipType type;
   final bool? isSelected;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +102,8 @@ class ChipWidget extends StatelessWidget {
         );
       case ChipType.tag:
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+          padding:
+              padding ?? const EdgeInsets.symmetric(horizontal: 9, vertical: 7),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(
