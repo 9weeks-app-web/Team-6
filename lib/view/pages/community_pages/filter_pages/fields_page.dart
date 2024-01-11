@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/util/dummy_data/filtering_data.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/basic_filter_tabbar_view.dart';
+import 'package:go_router/go_router.dart';
 
 class FieldsPage extends StatefulWidget {
   const FieldsPage({super.key});
@@ -35,7 +36,7 @@ class _FieldsPageState extends State<FieldsPage> {
     }
 
     void searchByOptions() {
-      print(selectedJobList);
+      context.pop();
     }
 
     return BasicFilterTabbarView(

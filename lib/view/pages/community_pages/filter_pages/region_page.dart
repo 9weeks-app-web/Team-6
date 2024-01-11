@@ -3,6 +3,7 @@ import 'package:flutter_app/common.dart';
 import 'package:flutter_app/util/dummy_data/filtering_data.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/subtitle_widget.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/floating_filtering_button.dart';
+import 'package:go_router/go_router.dart';
 
 class RegionPage extends StatefulWidget {
   const RegionPage({super.key});
@@ -36,7 +37,7 @@ class _RegionPageState extends State<RegionPage> {
     }
 
     void searchByOptions() {
-      print(selectedItems);
+      context.pop();
     }
 
     return Column(

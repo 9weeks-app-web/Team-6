@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/util/dummy_data/filtering_data.dart';
 import 'package:flutter_app/view/widgets/recruit_page_widgets/basic_filter_tabbar_view.dart';
+import 'package:go_router/go_router.dart';
 
 class SkillPage extends StatefulWidget {
   const SkillPage({super.key});
@@ -34,7 +35,7 @@ class _SkillPageState extends State<SkillPage> {
     }
 
     void searchByOptions() {
-      print(selectedSkillList);
+      context.pop();
     }
 
     return BasicFilterTabbarView(
