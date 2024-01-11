@@ -73,9 +73,14 @@ class RecruitDescriptionSection extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Container(
+          clipBehavior: Clip.antiAlias,
           width: MediaQuery.of(context).size.width,
           height: 120,
           color: DesignColor.Neutral.shade40,
+          child: Image.asset(
+            'assets/images/community/recruit/map.png',
+            fit: BoxFit.cover,
+          ),
         ),
         const SizedBox(height: 32),
       ],
