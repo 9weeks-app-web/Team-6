@@ -43,9 +43,13 @@ class CommunityCardWidget extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        context.push(
-          '/community/club/:clubId',
-        );
+        if (cardData != null) {
+          Future.delayed(const Duration(milliseconds: 300), () {
+            context.push(
+              '/community/club/${type.name}/${cardData!['id']}',
+            );
+          });
+        }
       },
       child: Container(
         width:
