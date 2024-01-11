@@ -70,6 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   SizedBox(height: 12),
                   CustomTextFormField(
+                    obscureText: true,
                     hintText: '비밀번호',
                   ),
                   SizedBox(height: 12),
@@ -79,6 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: _passwordEnableController,
                   ),
                   CustomTextFormField(
+                    obscureText: true,
                     hintText: '비밀번호 확인',
                   ),
                   SizedBox(height: 12),
