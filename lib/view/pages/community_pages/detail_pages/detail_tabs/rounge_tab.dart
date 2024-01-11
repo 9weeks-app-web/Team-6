@@ -188,3 +188,38 @@ class RoungeTab extends StatelessWidget {
     );
   }
 }
+
+class IconListTile extends StatelessWidget {
+  const IconListTile({
+    super.key,
+    required this.title,
+    required this.icon,
+  });
+  final String title;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      visualDensity: const VisualDensity(
+        horizontal: 0,
+        vertical: -4,
+      ),
+      title: Row(
+        children: [
+          Icon(
+            icon,
+            color: Colors.black,
+            size: 20,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            title,
+            style: DesignTextStyle.Label_2_Regular,
+          ),
+        ],
+      ),
+    );
+  }
+}
