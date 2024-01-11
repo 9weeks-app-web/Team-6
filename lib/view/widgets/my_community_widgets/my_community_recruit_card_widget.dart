@@ -1,9 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/chip_widget.dart';
 
 class MyCommunityRecruitCardWidget extends StatelessWidget {
-  const MyCommunityRecruitCardWidget({super.key});
+  final Map<String, dynamic>? recruitData;
+  const MyCommunityRecruitCardWidget({
+    Key? key,
+    this.recruitData,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +81,7 @@ class MyCommunityRecruitCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '채용 공고 제목',
+                    recruitData!['title'],
                     style: DesignTextStyle(
                             style: DesignStyle.Label_2_SemiBold,
                             color: DesignColor.Neutral)
@@ -86,7 +92,7 @@ class MyCommunityRecruitCardWidget extends StatelessWidget {
                   ),
                   Text(
                     overflow: TextOverflow.ellipsis,
-                    '[회사이름 주식회사 코리아]UX디자이너 모',
+                    '[${recruitData!['companyName']}]-${recruitData!['title']}',
                     style: DesignTextStyle(
                             style: DesignStyle.Label_2_Regular,
                             color: DesignColor.Neutral.shade40)

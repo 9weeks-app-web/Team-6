@@ -71,6 +71,7 @@ class PortfolioCard extends StatelessWidget {
             height: 8,
           ),
           width == CardWidth.wMax
+              //큰 카드
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -95,8 +96,8 @@ class PortfolioCard extends StatelessWidget {
                                 child: Container(
                                   width: 20,
                                   height: 20,
-                                  padding: EdgeInsets.all(4.44),
-                                  decoration: ShapeDecoration(
+                                  padding: const EdgeInsets.all(4.44),
+                                  decoration: const ShapeDecoration(
                                     color: Colors.black,
                                     shape: OvalBorder(
                                       side: BorderSide(
@@ -123,8 +124,8 @@ class PortfolioCard extends StatelessWidget {
                                 child: Container(
                                   width: 20,
                                   height: 20,
-                                  padding: EdgeInsets.all(4.44),
-                                  decoration: ShapeDecoration(
+                                  padding: const EdgeInsets.all(4.44),
+                                  decoration: const ShapeDecoration(
                                     color: Colors.black,
                                     shape: OvalBorder(
                                       side: BorderSide(
@@ -171,9 +172,9 @@ class PortfolioCard extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 7.0),
-                          child: const Row(
+                        const Padding(
+                          padding: EdgeInsets.only(top: 7.0),
+                          child: Row(
                             children: [
                               SizedBox(
                                 width: 24,
@@ -216,6 +217,7 @@ class PortfolioCard extends StatelessWidget {
                     ),
                   ],
                 )
+              //작은 카드
               : Column(
                   children: [
                     Row(
@@ -268,7 +270,7 @@ class PortfolioCard extends StatelessWidget {
                                 child: Container(
                                   width: 20,
                                   height: 20,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.blue,
                                   ),
@@ -276,11 +278,10 @@ class PortfolioCard extends StatelessWidget {
                               ),
                               Positioned(
                                 left: 8,
-                                bottom: 8,
                                 child: Container(
                                   width: 20,
                                   height: 20,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.red,
                                   ),

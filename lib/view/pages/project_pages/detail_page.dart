@@ -40,7 +40,6 @@ class ProjectDetailPage extends ConsumerWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Spacer(),
                   Icon(Icons.edit_outlined),
                 ],
               ),
@@ -63,7 +62,6 @@ class ProjectDetailPage extends ConsumerWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const Spacer(),
                   SvgPicture.asset(
                       'assets/images/project/icon-person-disabled.svg'),
                 ],
@@ -90,7 +88,6 @@ class ProjectDetailPage extends ConsumerWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const Spacer(),
                   SvgPicture.asset('assets/images/project/icon-delete.svg'),
                 ],
               ),
@@ -116,7 +113,6 @@ class ProjectDetailPage extends ConsumerWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Spacer(),
                   Icon(Icons.check, color: Color(0xFF0059FF)),
                 ],
               ),
@@ -156,69 +152,70 @@ class ProjectDetailPage extends ConsumerWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: SafeArea(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: [
-              // header
-              const SizedBox(
-                height: 10,
-              ),
-              // title and back button
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        context.pop();
-                      },
-                      child: const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 40),
-                    const Text(
-                      '미술 작품 거래 차트 서비스',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        const SizedBox(
+      body: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                scrolledUnderElevation: 0,
+                automaticallyImplyLeading: false,
+                pinned: true, // 이 속성을 true로 설정하면 스크롤 시 헤더가 상단에 고정됩니다.
+                flexibleSpace: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          context.pop();
+                        },
+                        child: const SizedBox(
                           width: 24,
                           height: 24,
-                          child: Icon(Icons.share_outlined),
-                        ),
-                        const SizedBox(width: 10),
-                        GestureDetector(
-                          onTap: () => _showActionSheet(context),
-                          child: const SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: Icon(Icons.more_vert),
+                          child: Icon(
+                            Icons.arrow_back_ios,
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      const SizedBox(width: 35),
+                      const Text(
+                        '미술 작품 거래 차트 서비스',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Icon(Icons.share_outlined),
+                          ),
+                          const SizedBox(width: 6),
+                          GestureDetector(
+                            onTap: () => _showActionSheet(context),
+                            child: const SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Icon(Icons.more_vert),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 12,
-              ),
-              SizedBox(
-                height: 500,
-                child: SingleChildScrollView(
-                  child: Column(
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
@@ -244,29 +241,26 @@ class ProjectDetailPage extends ConsumerWidget {
                                     height: 44,
                                     color: const Color(0xFF99BDFF),
                                   ),
-                                  const SizedBox(width: 10),
-                                  const Flexible(
-                                    child: Text(
-                                        '그림, 미술, 예술, 전시 등 감성적인 기획들을 좋아하시는 분 신청 바랍니다. ',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        )),
-                                  ),
+                                  const SizedBox(width: 7),
+                                  const Text(
+                                      '그림, 미술, 예술, 전시 등 감성적인 기획들을 좋아\n하시는 분 신청 바랍니다. ',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      )),
                                 ],
                               ),
                             ),
                             const SizedBox(height: 20),
                             const SizedBox(
                               width: double.infinity,
-                              child: Flexible(
-                                  child: Text(
+                              child: Text(
                                 '투자 붐이된 시대에 투자할 곳을 많이 찾고 있었습니다.\n금융회사를 다니다보니 여러 방면의 금융시스템과 \n투자처를 찾다보니 가장 수익률이 좋은 곳은 \n미술시장이란 것을 알게 되었습니다.\n\n부동산의 장점과 동산의 장점이 합쳐진 수익률이 극대화된 상품이었죠. 그런데 정보가 너무 없었습니다.\n그래서 미술 플랫폼들이 지금 마구 생겨나는 시기임에도 \n기존의 좋은 작품들은 하나도 쓰지 못하고 새로운 디자인, ai 디자인만 새로운 플랫폼에 유입되면서 \n그들은 기존의 시장에서 제명되고 있죠\n\n작가님들과 친해지며 미술업계 깊숙히 다녀왔는데 정말 너무 썩어있었습니다. 순수회화시장이 크지못하고 기득권이 자리잡아 그 울타리를 절대 부수지 못하는 그런 분위기...\n요즘 IT시대라면 충분히 가능할 것이라고 보고 있고, \n\n회의 진행은 1달 1회 오프라인 정기회의 필요 시 온라인 디스코드로 생각 중에 있습니다. 슬랙도 이용합니다.',
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xFF4C4C4C),
                                     fontWeight: FontWeight.w400),
-                              )),
+                              ),
                             ),
                             const SizedBox(height: 40),
                             const HeadingTextWidget(text: '모집현황'),
@@ -286,24 +280,20 @@ class ProjectDetailPage extends ConsumerWidget {
                                   SizedBox(width: 12),
                                   SizedBox(
                                     width: 100,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox(height: 5),
-                                        Text(
-                                          '2023. 12. 31',
-                                          style: TextStyle(
-                                            color: Color(0xFF4C4C4C),
-                                            fontSize: 16,
-                                            fontFamily: 'Pretendard Variable',
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
+                                    child: Text(
+                                      textAlign: TextAlign.center,
+                                      '2023. 12. 31',
+                                      style: TextStyle(
+                                        color: Color(0xFF4C4C4C),
+                                        fontSize: 16,
+                                        fontFamily: 'Pretendard Variable',
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
-                                  Spacer(),
+                                  SizedBox(
+                                    width: 80,
+                                  ),
                                   RecruitingChip(isRecruiting: true),
                                 ],
                               ),
@@ -396,13 +386,11 @@ class ProjectDetailPage extends ConsumerWidget {
                             ],
                           )),
                     ],
-                  ),
-                ),
+                  )
+                ]),
               ),
             ],
-          ),
-        ),
-      ),
+          )),
       bottomNavigationBar: SizedBox(
         height: 78,
         child: BottomNavigationBar(
@@ -452,189 +440,157 @@ class RecruitmentStatus extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const RoleChip(
                 label: 'UX/UI 디자이너',
                 color: Color(0xFFDBEDDB),
               ),
-              const Spacer(),
-              const Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
+              Row(
+                children: [
+                  const Text(
+                    '0/1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF0059FF),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 0.11,
                     ),
-                    Text(
-                      '0/1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF0059FF),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        height: 0.11,
+                  ),
+                  const SizedBox(
+                    width: 26,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      // Set border radius
+                      border: Border.all(
+                        color:
+                            const Color(0xFF0059FF), // Set border color to red
+                        width: 1.0, // Set border width
                       ),
                     ),
-                  ],
-                ),
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
+                      child: Text(
+                        '지원가능',
+                        style: TextStyle(
+                          color: Color(0xFF0059FF),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 40),
-              SizedBox(
-                width: 65,
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        // Set border radius
-                        border: Border.all(
-                          color: const Color(
-                              0xFF0059FF), // Set border color to red
-                          width: 1.0, // Set border width
-                        ),
-                      ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
-                        child: Text(
-                          '지원가능',
-                          style: TextStyle(
-                            color: Color(0xFF0059FF),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
           const SizedBox(height: 12),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const RoleChip(
                 label: '기획자',
                 color: Color(0xFFFDECC8),
               ),
-              const Spacer(),
-              const Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
+              Row(
+                children: [
+                  const Text(
+                    '0/1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF0059FF),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 0.11,
                     ),
-                    Text(
-                      '0/1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF0059FF),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        height: 0.11,
+                  ),
+                  const SizedBox(
+                    width: 26,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      // Set border radius
+                      border: Border.all(
+                        color:
+                            const Color(0xFF0059FF), // Set border color to red
+                        width: 1.0, // Set border width
                       ),
                     ),
-                  ],
-                ),
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
+                      child: Text(
+                        '지원가능',
+                        style: TextStyle(
+                          color: Color(0xFF0059FF),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 40),
-              SizedBox(
-                width: 65,
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        // Set border radius
-                        border: Border.all(
-                          color: const Color(
-                              0xFF0059FF), // Set border color to red
-                          width: 1.0, // Set border width
-                        ),
-                      ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
-                        child: Text(
-                          '지원가능',
-                          style: TextStyle(
-                            color: Color(0xFF0059FF),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
           const SizedBox(height: 12),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const RoleChip(
                 label: '백엔드',
                 color: Color(0xFFF4E0E9),
               ),
-              const Spacer(),
-              const Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
+              Row(
+                children: [
+                  const Text(
+                    '0/1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF0059FF),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 0.11,
                     ),
-                    Text(
-                      '0/1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF0059FF),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        height: 0.11,
+                  ),
+                  const SizedBox(
+                    width: 26,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      // Set border radius
+                      border: Border.all(
+                        color:
+                            const Color(0xFF0059FF), // Set border color to red
+                        width: 1.0, // Set border width
                       ),
                     ),
-                  ],
-                ),
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
+                      child: Text(
+                        '지원가능',
+                        style: TextStyle(
+                          color: Color(0xFF0059FF),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 40),
-              SizedBox(
-                width: 65,
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        // Set border radius
-                        border: Border.all(
-                          color: const Color(
-                              0xFF0059FF), // Set border color to red
-                          width: 1.0, // Set border width
-                        ),
-                      ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
-                        child: Text(
-                          '지원가능',
-                          style: TextStyle(
-                            color: Color(0xFF0059FF),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
           const SizedBox(height: 12),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: ShapeDecoration(
@@ -654,62 +610,51 @@ class RecruitmentStatus extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(),
-              const Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
+              Row(
+                children: [
+                  const Text(
+                    '0/1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF0059FF),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 0.11,
                     ),
-                    Text(
-                      '1/1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF999999),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        height: 0.11,
+                  ),
+                  const SizedBox(
+                    width: 26,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      // Set border radius
+                      border: Border.all(
+                        color:
+                            const Color(0xFF0059FF), // Set border color to red
+                        width: 1.0, // Set border width
                       ),
                     ),
-                  ],
-                ),
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
+                      child: Text(
+                        '지원가능',
+                        style: TextStyle(
+                          color: Color(0xFF0059FF),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 40),
-              SizedBox(
-                width: 65,
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        // Set border radius
-                        border: Border.all(
-                          color: const Color(
-                              0xFF999999), // Set border color to red
-                          width: 1.0, // Set border width
-                        ),
-                      ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
-                        child: Text(
-                          '마감',
-                          style: TextStyle(
-                            color: Color(0xFF999999),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
           const SizedBox(height: 12),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: ShapeDecoration(
@@ -729,58 +674,46 @@ class RecruitmentStatus extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(),
-              const Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
+              Row(
+                children: [
+                  const Text(
+                    '0/1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF0059FF),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 0.11,
                     ),
-                    Text(
-                      '1/1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF999999),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        height: 0.11,
+                  ),
+                  const SizedBox(
+                    width: 26,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      // Set border radius
+                      border: Border.all(
+                        color:
+                            const Color(0xFF0059FF), // Set border color to red
+                        width: 1.0, // Set border width
                       ),
                     ),
-                  ],
-                ),
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
+                      child: Text(
+                        '지원가능',
+                        style: TextStyle(
+                          color: Color(0xFF0059FF),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 40),
-              SizedBox(
-                width: 65,
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        // Set border radius
-                        border: Border.all(
-                          color: const Color(
-                              0xFF999999), // Set border color to red
-                          width: 1.0, // Set border width
-                        ),
-                      ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2),
-                        child: Text(
-                          '마감',
-                          style: TextStyle(
-                            color: Color(0xFF999999),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ],
@@ -942,6 +875,7 @@ class LeaderInfoWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 width: 155,
@@ -956,10 +890,9 @@ class LeaderInfoWidget extends StatelessWidget {
                   ),
                 ),
                 child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: EdgeInsets.symmetric(horizontal: 41.5),
                   child: Row(
                     children: [
-                      Spacer(),
                       SizedBox(
                         width: 24,
                         height: 24,
@@ -978,12 +911,10 @@ class LeaderInfoWidget extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Spacer(),
                     ],
                   ),
                 ),
               ),
-              const Spacer(),
               Container(
                 width: 155,
                 height: 48,
@@ -997,10 +928,9 @@ class LeaderInfoWidget extends StatelessWidget {
                   ),
                 ),
                 child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: EdgeInsets.symmetric(horizontal: 35),
                   child: Row(
                     children: [
-                      Spacer(),
                       SizedBox(
                         width: 24,
                         height: 24,
@@ -1019,7 +949,6 @@ class LeaderInfoWidget extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Spacer(),
                     ],
                   ),
                 ),
@@ -1031,6 +960,7 @@ class LeaderInfoWidget extends StatelessWidget {
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       width: 155,
@@ -1074,7 +1004,6 @@ class LeaderInfoWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Spacer(),
                     Container(
                       width: 155,
                       height: 80,
@@ -1123,6 +1052,7 @@ class LeaderInfoWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       width: 155,
@@ -1166,7 +1096,6 @@ class LeaderInfoWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Spacer(),
                     Container(
                       width: 155,
                       height: 80,
@@ -1285,6 +1214,7 @@ class CommentArea extends StatelessWidget {
                     borderRadius: BorderRadius.circular(18)),
               ),
               child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                     width: 14,
@@ -1298,7 +1228,6 @@ class CommentArea extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Spacer(),
                   SizedBox(
                     width: 15,
                     height: 15,

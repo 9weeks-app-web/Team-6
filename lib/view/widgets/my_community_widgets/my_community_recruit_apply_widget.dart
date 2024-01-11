@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/util/dummy_data/recruit_detail_data.dart';
 import 'package:flutter_app/view/widgets/my_community_widgets/my_community_recruit_card_widget.dart';
 import 'package:flutter_app/viewmodel/my_community_page_viewmodel/my_community_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,9 +45,11 @@ class MyCommunityRecruitApplyWidget extends ConsumerWidget {
           shrinkWrap: true,
           itemCount: 5,
           itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: MyCommunityRecruitCardWidget(),
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: MyCommunityRecruitCardWidget(
+                recruitData: recruitDetailData[index],
+              ),
             );
           },
         ),
