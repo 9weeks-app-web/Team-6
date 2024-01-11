@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/util/dummy_data/club_data.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/community_card_widget.dart';
 
 class MyCommunityClubWidget extends StatelessWidget {
@@ -22,13 +23,14 @@ class MyCommunityClubWidget extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 12),
           shrinkWrap: true,
-          itemCount: 5,
+          itemCount: growthClubData.length,
           itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.only(bottom: 20),
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 20),
               child: CommunityCardWidget(
                 width: CardWidth.wMax,
                 type: CardType.free,
+                cardData: growthClubData[index],
               ),
             );
           },
