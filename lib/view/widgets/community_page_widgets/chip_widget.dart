@@ -100,7 +100,7 @@ class ChipWidget extends StatelessWidget {
         );
       case ChipType.tag:
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(

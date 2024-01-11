@@ -19,12 +19,9 @@ class TabWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: CustomedTabbarWidget(
-              changeTabType: changeTabType,
-              tabContents: tabContents,
-            ),
+          CustomedTabbarWidget(
+            changeTabType: changeTabType,
+            tabContents: tabContents,
           ),
           Flexible(
             fit: FlexFit.loose,
