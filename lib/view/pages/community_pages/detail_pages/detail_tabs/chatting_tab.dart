@@ -4,16 +4,23 @@ import 'package:flutter_app/util/dummy_data/chatting_data.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/chat_view_widget.dart';
 import 'package:flutter_app/view/widgets/community_page_widgets/club_message_input_widget.dart';
 
-class ChattingTab extends StatelessWidget {
+class ChattingTab extends StatefulWidget {
   const ChattingTab({super.key});
 
   @override
+  State<ChattingTab> createState() => _ChattingTabState();
+}
+
+class _ChattingTabState extends State<ChattingTab> {
+  String myNickname = 'me';
+  bool isMenuOpend = true;
+
+  @override
   Widget build(BuildContext context) {
-    String myNickname = 'me';
     TextEditingController controller = TextEditingController();
-    bool isMenuOpend = false;
-    handleMenuOpend() {
+    void handleMenuOpend() {
       isMenuOpend = !isMenuOpend;
+      setState(() {});
     }
 
     return Column(
