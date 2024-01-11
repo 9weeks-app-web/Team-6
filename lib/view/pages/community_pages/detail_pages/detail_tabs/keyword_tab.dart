@@ -32,7 +32,7 @@ class KeywordTab extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                context.push('/community/club/:clubId/keyword/all/$keywrodId');
+                context.push('/community/club/grwoth/1/keyword/all/$keywrodId');
               },
               child: ClubKeywordChip(
                 keyword: club['keyword'][index],
