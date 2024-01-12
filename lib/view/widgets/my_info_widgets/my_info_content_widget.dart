@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common.dart';
+import 'package:flutter_app/view/widgets/common_widgets/toast_widget.dart';
 import 'package:flutter_app/viewmodel/my_info_page_viewmodel/my_info_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -61,7 +62,105 @@ class MyInfoContentWidget extends ConsumerWidget {
           height: 1,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return Dialog(
+                  insetPadding: EdgeInsets.zero,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                    height: 206,
+                    width: 320,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 24),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            '로그아웃',
+                            style: DesignTextStyle(
+                                    style: DesignStyle.SubTitle_Bold,
+                                    color: DesignColor.Primary)
+                                .textStyle,
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          Text(
+                            '정말 로그아웃하시겠습니까?',
+                            style: DesignTextStyle(
+                                    style: DesignStyle.Body,
+                                    color: DesignColor.Neutral.shade70)
+                                .textStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 28,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 120,
+                                height: 46,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    backgroundColor:
+                                        DesignColor.Primary.shade10,
+                                    shape: DesignButtonStyle.BorderStyle04,
+                                  ),
+                                  onPressed: () {
+                                    context.pop();
+                                  },
+                                  child: Text(
+                                    '아니오',
+                                    style: DesignTextStyle(
+                                            style: DesignStyle.Label_1_SemiBold,
+                                            color: DesignColor.Neutral.shade50)
+                                        .textStyle,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              SizedBox(
+                                width: 120,
+                                height: 46,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    backgroundColor: DesignColor.Primary,
+                                    shape: DesignButtonStyle.BorderStyle04,
+                                  ),
+                                  onPressed: () {
+                                    context.pop();
+                                    showToast(context, '로그아웃이 성공적으로 되었습니다.');
+                                  },
+                                  child: Text(
+                                    '예',
+                                    style: DesignTextStyle(
+                                            style: DesignStyle.Label_1_SemiBold,
+                                            color: Colors.white)
+                                        .textStyle,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          },
           child: Text(
             '로그아웃',
             style: DesignTextStyle(

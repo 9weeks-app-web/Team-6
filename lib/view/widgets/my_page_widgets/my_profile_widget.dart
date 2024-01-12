@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/custom_icons_icons.dart';
+import 'package:flutter_app/model/badge_model.dart';
 import 'package:flutter_app/model/menu_model.dart';
 import 'package:flutter_app/view/widgets/common_widgets/custom_menu_widget.dart';
 import 'package:flutter_app/view/widgets/my_page_widgets/my_profile_badge_widget.dart';
@@ -27,6 +28,13 @@ class MyProfileWidget extends StatelessWidget {
     MenuModel(
         iconImg: Icons.share, title: '공유', listColor: DesignColor.Neutral),
   ];
+
+  List<BadgeModel> badgeList = [
+    BadgeModel(title: '스팩폴리오 Pick\n2회 선정', badgeDate: '2023.12.17'),
+    BadgeModel(title: '스팩 채용 성공\n1회', badgeDate: '2023.03.25'),
+    BadgeModel(title: '사이드 프로젝트\n칭찬 3개', badgeDate: '2022.07.01'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final top = coverHeight - profileHeight / 2;
@@ -62,8 +70,8 @@ class MyProfileWidget extends StatelessWidget {
                 height: profileHeight,
                 width: profileHeight,
                 decoration: const BoxDecoration(color: Colors.black),
-                child:
-                    Image.asset('assets/images/profile.png', fit: BoxFit.cover),
+                child: Image.asset('assets/images/portfolio/avatar.png',
+                    fit: BoxFit.cover),
               ),
             ),
           ),
@@ -75,8 +83,9 @@ class MyProfileWidget extends StatelessWidget {
                 showDialog(
                   context: context,
                   barrierDismissible: true,
-                  builder: (BuildContext context) =>
-                      const MyProfileBadgeWidget(),
+                  builder: (BuildContext context) => MyProfileBadgeWidget(
+                    badgeData: badgeList,
+                  ),
                 );
               },
               child: Container(

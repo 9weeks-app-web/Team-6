@@ -89,8 +89,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: SearchBarWidget(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: const SearchBarWidget(
                   hintText: "궁금한 포트폴리오 분야를 검색해주세요",
                 ),
               ),
@@ -125,7 +125,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(right: 8),
+                      margin: const EdgeInsets.only(right: 8),
                       height: 40,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 8),
@@ -343,7 +343,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '채용 정보도 스팩폴리오에서!',
+                      '스팩폴리오 추천, HOT 메이커',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
@@ -423,7 +423,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '채용 정보도 스팩폴리오에서!',
+                      '스팩폴리오 추천, HOT 메이커',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
@@ -562,7 +562,7 @@ class HotMaker extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontFamily: 'Pretendard Variable',
@@ -574,7 +574,7 @@ class HotMaker extends StatelessWidget {
                   ),
                   Text(
                     job,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontFamily: 'Pretendard Variable',

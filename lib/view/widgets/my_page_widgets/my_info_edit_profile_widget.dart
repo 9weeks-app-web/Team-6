@@ -17,11 +17,12 @@ class MyInfoEditProfileWidget extends StatelessWidget {
               height: profileHeight,
               width: profileHeight,
               decoration: const BoxDecoration(color: Colors.black),
-              child:
-                  Image.asset('assets/images/profile.png', fit: BoxFit.cover),
+              child: Image.asset('assets/images/portfolio/avatar.png',
+                  fit: BoxFit.cover),
             ),
           ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
                 width: 155,
