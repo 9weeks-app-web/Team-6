@@ -95,19 +95,19 @@ class MyPage extends ConsumerWidget {
                   height: 45,
                   width: 45,
                   decoration: const BoxDecoration(color: Colors.black),
-                  child: Image.asset('assets/images/profile.png',
+                  child: Image.asset('assets/images/portfolio/avatar.png',
                       fit: BoxFit.cover),
                 ),
               ),
               const SizedBox(width: 10),
               Text(
-                'Name',
+                'Hayoung Jang',
                 style: DesignTextStyle(
                         color: DesignColor.Neutral,
                         style: DesignStyle.Title_Bold)
                     .textStyle,
               ),
-              const SizedBox(width: 120),
+              const SizedBox(width: 70),
             ],
           ),
         ),

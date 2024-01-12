@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
-  return runApp(PortfolioProjectPage());
+  return runApp(const PortfolioProjectPage());
 }
 
 class PortfolioProjectPage extends StatefulWidget {
@@ -27,15 +27,15 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 1), () {
       _scrollController.animateTo(0.1,
-          duration: Duration(milliseconds: 450), curve: Curves.easeInOut);
+          duration: const Duration(milliseconds: 450), curve: Curves.easeInOut);
     });
     _scrollController = ScrollController(initialScrollOffset: 200.0);
     _scrollController.addListener(_scrollListener);
 
     _isVisibleList = true;
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       print('Initial Scroll Offset: ${_scrollController.offset}');
       print('_isFabExtended: $_isFabExtended1');
     });
@@ -69,7 +69,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        floatingActionButton: Container(
+        floatingActionButton: SizedBox(
           width: 360,
           height: 740,
           child: Stack(
@@ -80,63 +80,67 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 24,
                       height: 24,
                       child: FloatingActionButton(
                         heroTag: "btn4",
                         backgroundColor: Colors.transparent,
                         onPressed: () {},
+                        elevation: 0,
                         child: Icon(
                           Icons.share,
                           color: _isFabExtended4 ? Colors.white : Colors.black,
                         ),
-                        elevation: 0,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Container(
+                    SizedBox(
                       width: 24,
                       height: 24,
                       child: FloatingActionButton(
                         heroTag: "btn3",
                         onPressed: () {},
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
                         child: Icon(
                           Icons.folder_open,
                           color: _isFabExtended3 ? Colors.white : Colors.black,
                         ),
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Container(
+                    SizedBox(
                       width: 24,
                       height: 24,
                       child: FloatingActionButton(
                         heroTag: "btn2",
                         onPressed: () {},
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
                         child: Icon(
                           Icons.mail,
                           color: _isFabExtended2 ? Colors.white : Colors.black,
                         ),
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Container(
+                    SizedBox(
                       width: 46,
                       height: 46,
                       child: FloatingActionButton(
                         heroTag: "btn1",
                         onPressed: () {},
+                        shape: const OvalBorder(),
+                        backgroundColor: _isFabExtended1
+                            ? Colors.white
+                            : const Color(0xFF0059FF),
                         child: Icon(
                           _isFabExtended1
                               ? Icons.favorite_outline
@@ -144,9 +148,6 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                           color: _isFabExtended1 ? Colors.black : Colors.white,
                           size: 24,
                         ),
-                        shape: OvalBorder(),
-                        backgroundColor:
-                            _isFabExtended1 ? Colors.white : Color(0xFF0059FF),
                       ),
                     ),
                   ],
@@ -158,12 +159,12 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                   ),
                   onPressed: () {
                     context.push('/home');
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.close,
                     size: 24,
                     color: Colors.black,
@@ -180,20 +181,23 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         Container(
                           width: 46,
                           height: 46,
-                          decoration: ShapeDecoration(
-                            shape: OvalBorder(),
-                            color: Color(0xFFE6E6E6),
-                          ),
+                          decoration: const ShapeDecoration(
+                              shape: OvalBorder(),
+                              color: Color(0xFFE6E6E6),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/images/portfolio/avatar.png'),
+                              )),
                         ),
-                      SizedBox(
+                      const SizedBox(
                         width: 9,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (_isVisibleList)
-                            Text(
-                              'Project',
+                            const Text(
+                              'DDONA',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -202,8 +206,8 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                               ),
                             ),
                           if (_isVisibleList)
-                            Text(
-                              'Name',
+                            const Text(
+                              'Hayoung Jang',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -228,7 +232,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
             children: [
               Container(
                 width: 360,
-                decoration: BoxDecoration(color: Color(0xFF333333)),
+                decoration: const BoxDecoration(color: Color(0xFF333333)),
                 child: Image.asset(
                   "assets/images/portfolio/ex.png",
                   //fit: BoxFit.fitWidth,
@@ -236,11 +240,11 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
               ),
               Container(
                 height: 13,
-                color: Color(0xFFE6E6E6),
+                color: const Color(0xFFE6E6E6),
               ),
               Container(
-                padding:
-                    EdgeInsets.only(left: 20, right: 20, top: 8, bottom: 85.08),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 8, bottom: 85.08),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,19 +254,23 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         Container(
                           width: 46,
                           height: 46,
-                          decoration: ShapeDecoration(
+                          decoration: const ShapeDecoration(
                             shape: OvalBorder(),
                             color: Color(0xFFE6E6E6),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/images/portfolio/avatar.png'),
+                            ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 9,
                         ),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Project',
+                              'DDONA',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
@@ -271,7 +279,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                               ),
                             ),
                             Text(
-                              'Name',
+                              'Hayoung Jang',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
@@ -283,11 +291,11 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 42,
                     ),
-                    Text(
-                      'YYYY.MM.DD | 직군 | 분야',
+                    const Text(
+                      '2023.12.17 | UI/UX디자이너',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -296,10 +304,10 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 3,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Icon(
                           Icons.visibility_outlined,
@@ -357,21 +365,21 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 18,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.more_horiz,
                       size: 24,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 42,
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         vertical: 16,
                       ),
-                      child: Text(
+                      child: const Text(
                         '소유자',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -383,7 +391,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -391,19 +399,22 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         Container(
                           width: 46,
                           height: 46,
-                          decoration: ShapeDecoration(
-                            shape: OvalBorder(),
-                            color: Color(0xFFE6E6E6),
-                          ),
+                          decoration: const ShapeDecoration(
+                              shape: OvalBorder(),
+                              color: Color(0xFFE6E6E6),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/images/portfolio/avatar.png'),
+                              )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 9,
                         ),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Name',
+                              'Hayoung Jang',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
@@ -412,7 +423,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                               ),
                             ),
                             Text(
-                              '직군 분야',
+                              'UI|UX 디자인',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
@@ -424,7 +435,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 14,
                     ),
                     Row(
@@ -432,14 +443,14 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(155, 48),
-                            backgroundColor: Color(0xFF0059FF),
+                            minimumSize: const Size(155, 48),
+                            backgroundColor: const Color(0xFF0059FF),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                           onPressed: () {},
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
@@ -464,14 +475,14 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(155, 48),
+                            minimumSize: const Size(155, 48),
                             backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                           onPressed: () {},
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
@@ -496,12 +507,12 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 11),
-                      child: Row(
+                      padding: const EdgeInsets.symmetric(vertical: 11),
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -515,7 +526,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                               height: 0.09,
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             width: 24,
                             height: 24,
                             child: Icon(Icons.arrow_forward_ios),
@@ -543,7 +554,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  gradient: LinearGradient(
+                                  gradient: const LinearGradient(
                                     begin: Alignment(0.00, -1.00),
                                     end: Alignment(0, 1),
                                     colors: [
@@ -553,7 +564,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                                   ),
                                 ),
                               ),
-                              Positioned(
+                              const Positioned(
                                 bottom: 12.96,
                                 left: 8.28,
                                 child: Column(
@@ -597,7 +608,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  gradient: LinearGradient(
+                                  gradient: const LinearGradient(
                                     begin: Alignment(0.00, -1.00),
                                     end: Alignment(0, 1),
                                     colors: [
@@ -607,7 +618,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                                   ),
                                 ),
                               ),
-                              Positioned(
+                              const Positioned(
                                 bottom: 12.96,
                                 left: 8.28,
                                 child: Column(
@@ -642,12 +653,13 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 45,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                child: Text(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                child: const Text(
                   '댓글 (200)',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -660,31 +672,32 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(left: 20, right: 20, bottom: 36),
+                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 36),
                 child: Row(
                   children: [
                     Container(
                       width: 36,
                       height: 36,
-                      decoration: ShapeDecoration(
+                      decoration: const ShapeDecoration(
                         shape: OvalBorder(),
                         color: Color(0xFFF3F3F3),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Container(
                       width: 274,
                       height: 36,
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF3F3F3),
+                        color: const Color(0xFFF3F3F3),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFE6E6E6)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFE6E6E6)),
                           borderRadius: BorderRadius.circular(18),
                         ),
                       ),
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.only(left: 14, top: 6, bottom: 6),
@@ -708,22 +721,23 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       width: 30,
                       height: 30,
-                      decoration: ShapeDecoration(
+                      decoration: const ShapeDecoration(
                         shape: OvalBorder(),
                         color: Color(0xFFF3F3F3),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
@@ -778,22 +792,22 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(left: 60, top: 10, bottom: 10),
+                padding: const EdgeInsets.only(left: 60, top: 10, bottom: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       width: 20,
                       height: 20,
-                      decoration: ShapeDecoration(
+                      decoration: const ShapeDecoration(
                         shape: OvalBorder(),
                         color: Color(0xFFCCCCCC),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
@@ -848,22 +862,23 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       width: 30,
                       height: 30,
-                      decoration: ShapeDecoration(
+                      decoration: const ShapeDecoration(
                         shape: OvalBorder(),
                         color: Color(0xFFF3F3F3),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
@@ -891,7 +906,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                             )
                           ],
                         ),
-                        Container(
+                        SizedBox(
                           width: 279,
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
@@ -923,9 +938,9 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 ),
               ),
               Container(
-                padding:
-                    EdgeInsets.only(left: 60, top: 10, bottom: 10, right: 68),
-                child: SizedBox(
+                padding: const EdgeInsets.only(
+                    left: 60, top: 10, bottom: 10, right: 68),
+                child: const SizedBox(
                   width: 232,
                   child: Text(
                     '모든 댓글 보기',
@@ -939,12 +954,13 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 46,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                child: Text(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                child: const Text(
                   '작업 도구',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -957,7 +973,8 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 child: Row(
                   children: [
                     Container(
@@ -966,7 +983,8 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                       clipBehavior: Clip.antiAlias,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFCCCCCC)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFCCCCCC)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -977,10 +995,10 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                             width: 13,
                             height: 13,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 6,
                           ),
-                          Text(
+                          const Text(
                             'Figma',
                             style: TextStyle(
                               color: Colors.black,
@@ -993,7 +1011,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
                     Container(
@@ -1002,7 +1020,8 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                       clipBehavior: Clip.antiAlias,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFCCCCCC)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFCCCCCC)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -1013,10 +1032,10 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                             width: 13,
                             height: 13,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 6,
                           ),
-                          Text(
+                          const Text(
                             'Photoshop',
                             style: TextStyle(
                               color: Colors.black,
@@ -1029,7 +1048,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
                     Container(
@@ -1038,7 +1057,8 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                       clipBehavior: Clip.antiAlias,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFCCCCCC)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFCCCCCC)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -1049,10 +1069,10 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                             width: 13,
                             height: 13,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 6,
                           ),
-                          Text(
+                          const Text(
                             'Aftereffects',
                             style: TextStyle(
                               color: Colors.black,
@@ -1068,12 +1088,13 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                child: Text(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                child: const Text(
                   '태그',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -1086,19 +1107,22 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 child: Row(
                   children: [
                     Container(
                       height: 26,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 9),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 7, horizontal: 9),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFCCCCCC)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFCCCCCC)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'ux',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -1110,19 +1134,21 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
                     Container(
                       height: 26,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 9),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 7, horizontal: 9),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFCCCCCC)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFCCCCCC)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'ui',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -1134,19 +1160,21 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
                     Container(
                       height: 26,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 9),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 7, horizontal: 9),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFCCCCCC)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFCCCCCC)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'ui design',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -1158,19 +1186,21 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
                     Container(
                       height: 26,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 9),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 7, horizontal: 9),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFCCCCCC)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFCCCCCC)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'user interface',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -1182,19 +1212,21 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
                     Container(
                       height: 26,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 9),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 7, horizontal: 9),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFCCCCCC)),
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFCCCCCC)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'ux/ui',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -1209,7 +1241,7 @@ class _PortfolioProjectPageState extends State<PortfolioProjectPage> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 75.08,
               ),
             ],

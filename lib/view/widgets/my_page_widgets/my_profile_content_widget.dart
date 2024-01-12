@@ -11,7 +11,7 @@ class MyProfileContentWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          'Name',
+          'Hayoung Jang',
           style: DesignTextStyle(
                   style: DesignStyle.Title_Bold, color: DesignColor.Neutral)
               .textStyle,

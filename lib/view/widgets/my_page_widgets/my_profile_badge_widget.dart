@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/common.dart';
 import 'package:flutter_app/custom_icons_icons.dart';
+import 'package:flutter_app/model/badge_model.dart';
 import 'package:go_router/go_router.dart';
 
 class MyProfileBadgeWidget extends StatelessWidget {
-  const MyProfileBadgeWidget({super.key});
+  final List<BadgeModel> badgeData;
+  const MyProfileBadgeWidget({
+    super.key,
+    required this.badgeData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,7 @@ class MyProfileBadgeWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            'Name 님이 획득한 뱃지',
+            'Hayoung Jang 님이 획득한 뱃지',
             style: DesignTextStyle(
                     style: DesignStyle.Title_Bold, color: Colors.white)
                 .textStyle,
@@ -50,7 +55,7 @@ class MyProfileBadgeWidget extends StatelessWidget {
                               color: Colors.white, size: 60),
                           const SizedBox(height: 20),
                           Text(
-                            '스펙폴리오 Pick\n3회 선정',
+                            badgeData[index].title,
                             style: DesignTextStyle(
                                     color: Colors.white,
                                     style: DesignStyle.SubTitle_Bold)
@@ -59,7 +64,7 @@ class MyProfileBadgeWidget extends StatelessWidget {
                           ),
                           const SizedBox(height: 11),
                           Text(
-                            'YYYY.MM.DD',
+                            badgeData[index].badgeDate,
                             style: DesignTextStyle(
                                     color: Colors.white,
                                     style: DesignStyle.Body)
